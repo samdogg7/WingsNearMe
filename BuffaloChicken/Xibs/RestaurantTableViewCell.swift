@@ -17,8 +17,14 @@ class RestaurantTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet private weak var button: UIButton!
     
+    var delegate: FindBuffaloChickenVCDelegate? {
+        didSet {
+            button.addTarget(self, action: #selector(openDetailVC), for: .touchUpInside)
+        }
+    }
+    
     override func prepareForReuse() {
-      super.prepareForReuse()
+        super.prepareForReuse()
     }
     
     var restaurant : Restaurant? {
@@ -35,6 +41,11 @@ class RestaurantTableViewCell: UITableViewCell {
             location.text = restaurant.formattedAddress
             phone.text = restaurant.formattedPhoneNumber
         }
+    }
+    
+    @objc func openDetailVC() {
+        guard let delegate = delegate, let restaurant = restaurant else { return }
+        delegate.openRestaurantDetailVC(restaurant: restaurant)
     }
     
     func updateRating(rating: Double) {

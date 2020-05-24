@@ -16,16 +16,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="U4Q-Sl-cYQ">
-                                <rect key="frame" x="5" y="93" width="404" height="764"/>
+                                <rect key="frame" x="10" y="93" width="394" height="803"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUw-kE-Nlq">
-                                        <rect key="frame" x="0.0" y="0.0" width="404" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="bz2-3J-RfX"/>
                                         </constraints>
                                     </mapView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gNQ-Fn-ewk">
-                                        <rect key="frame" x="0.0" y="300" width="404" height="464"/>
+                                        <rect key="frame" x="0.0" y="300" width="394" height="503"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableView>
                                 </subviews>
@@ -33,14 +33,19 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="U4Q-Sl-cYQ" firstAttribute="leading" secondItem="QIf-Z5-9xd" secondAttribute="leading" constant="5" id="Ovo-T2-j2v"/>
-                            <constraint firstItem="QIf-Z5-9xd" firstAttribute="trailing" secondItem="U4Q-Sl-cYQ" secondAttribute="trailing" constant="5" id="ROH-gd-fIz"/>
-                            <constraint firstItem="QIf-Z5-9xd" firstAttribute="bottom" secondItem="U4Q-Sl-cYQ" secondAttribute="bottom" constant="5" id="RP4-og-h1R"/>
+                            <constraint firstItem="U4Q-Sl-cYQ" firstAttribute="leading" secondItem="QIf-Z5-9xd" secondAttribute="leading" constant="10" id="Ovo-T2-j2v"/>
+                            <constraint firstItem="QIf-Z5-9xd" firstAttribute="trailing" secondItem="U4Q-Sl-cYQ" secondAttribute="trailing" constant="10" id="ROH-gd-fIz"/>
+                            <constraint firstAttribute="bottom" secondItem="U4Q-Sl-cYQ" secondAttribute="bottom" id="RP4-og-h1R"/>
                             <constraint firstItem="U4Q-Sl-cYQ" firstAttribute="top" secondItem="QIf-Z5-9xd" secondAttribute="top" constant="5" id="xNM-t5-LOV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QIf-Z5-9xd"/>
                     </view>
                     <navigationItem key="navigationItem" title="Chicken Near Me" id="XGQ-jC-eDm">
+                        <barButtonItem key="leftBarButtonItem" title="Sidebar" image="sidebar.left" catalog="system" id="dgZ-4p-qpU">
+                            <connections>
+                                <segue destination="taq-Br-ATB" kind="presentation" id="GGI-IO-jFV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="vI5-1a-8Ni">
                             <connections>
                                 <segue destination="ZJo-82-754" kind="presentation" id="e16-Tb-Nbm"/>
@@ -237,14 +242,21 @@
         <!--Wing Finder-->
         <scene sceneID="y5C-yX-LeO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="taq-Br-ATB" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="taq-Br-ATB" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Wing Finder" image="magnifyingglass.circle" catalog="system" id="IgM-9w-5B3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wyh-wc-hWM">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="alwaysAnimate" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="menuWidth">
+                            <real key="value" value="0.69999999999999996"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="cCg-05-Pw8" kind="relationship" relationship="rootViewController" id="bXR-8o-ir2"/>
                     </connections>
@@ -257,6 +269,7 @@
     <resources>
         <image name="PlaceholderWing" width="286" height="135"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
+        <image name="sidebar.left" catalog="system" width="128" height="93"/>
         <image name="star" catalog="system" width="128" height="116"/>
     </resources>
 </document>

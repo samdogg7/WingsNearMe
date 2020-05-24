@@ -9,30 +9,29 @@
 import UIKit
 import MapKit
 import CoreLocation
-import CBFlashyTabBarController
+import SideMenu
 
 protocol FindBuffaloChickenVCDelegate {
     func filterAnnotations(filter: Filter)
+    func openRestaurantDetailVC(restaurant: Restaurant)
 }
 
 class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, FindBuffaloChickenVCDelegate {
-    
-    
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     
-    let locationManager = CLLocationManager()
-    let cellId = "RestuarantCell"
-    let testing_enabled = false
-    let loadingView = LoadingView().loadNib() as! LoadingView
-    let radius:Double = 10000
-    let cellSpacingHeight: CGFloat = 5
+    private let locationManager = CLLocationManager()
+    private let cellId = "RestuarantCell"
+    private let testing_enabled = false
+    private let loadingView = LoadingView().loadNib() as! LoadingView
+    private let radius:Double = 10000
+    private let cellSpacingHeight: CGFloat = 5
+
     
-    var lat:Double = 37.3230
-    var long:Double = -122.0322
-    var sortedAnnotations: [RestaurantAnnotation] = []
-    var unsortedAnnotations: [RestaurantAnnotation] = []
-    
+    private var lat:Double = 37.3230
+    private var long:Double = -122.0322
+    private var sortedAnnotations: [RestaurantAnnotation] = []
+    private var unsortedAnnotations: [RestaurantAnnotation] = []
     
     // MARK: - View handler Methods
     
@@ -47,11 +46,18 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         setupSubviews()
     }
     
-    
     func setupSubviews() {
         let tableViewNib = UINib(nibName: "RestaurantTableViewCell", bundle: nil)
         tableView.register(tableViewNib, forCellReuseIdentifier: cellId)
         tableView.showsVerticalScrollIndicator = false
+        let refreshControl = UIRefreshControl()
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(getPlaces), for: .valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing...")
         
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringSignificantLocationChanges()
@@ -62,7 +68,9 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     
     // MARK: - API Request Methods
     
-    func getPlaces() {
+    @objc func getPlaces() {
+        sortedAnnotations.removeAll()
+        unsortedAnnotations.removeAll()
         APIManager().placesRequest(search_term: "wings", lat: lat, long: long, radius: radius, testing: testing_enabled, placesResponse: { response, error in
             if error != nil {
                 print(error?.localizedDescription ?? "Error")
@@ -98,6 +106,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
                             //If all detail requests are done loading, add annotations
                             if !detailRequestComplete.contains(false) {
                                 self.addAnnotations(places: places)
+                                self.tableView.refreshControl?.endRefreshing()
                             }
                         }
                     }
@@ -244,17 +253,20 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let restaurant = sortedAnnotations[indexPath.section].restaurant
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RestaurantTableViewCell
-        cell.restaurant = sortedAnnotations[indexPath.section].restaurant
+        cell.restaurant = restaurant
         
         cell.layer.borderColor = UIColor(named: "InverseSystem")?.cgColor
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
         
+        cell.delegate = self
+        
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
@@ -273,7 +285,6 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         let annotation = sortedAnnotations[indexPath.section]
         map.selectAnnotation(annotation, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
-        openRestaurantDetailVC(restaurant: annotation.restaurant)
     }
 }
 
