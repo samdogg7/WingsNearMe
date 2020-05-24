@@ -21,7 +21,7 @@ class RestauarantDetailVC: UIViewController {
         
         if let restaurant = restaurant {
             name.text = restaurant.name
-            hours.text = restaurant.isOpen
+            hours.text = restaurant.hoursString
             self.location.text = "Location: " + restaurant.formattedAddress
         }
     }

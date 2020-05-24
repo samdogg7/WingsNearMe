@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0rf-QN-ehI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="taq-Br-ATB">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -7,49 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Social Chicks-->
-        <scene sceneID="qZI-b5-lcK">
-            <objects>
-                <viewController id="86q-aP-fTw" customClass="SocialVC" customModule="BuffaloChicken" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9uM-7M-OYf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qWA-v8-tM5">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="75l-O1-JCk">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="704.5"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbN-rT-zrO">
-                                        <rect key="frame" x="0.0" y="704.5" width="414" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Ve5-R0-RUy" firstAttribute="bottom" secondItem="qWA-v8-tM5" secondAttribute="bottom" id="A81-eR-rzo"/>
-                            <constraint firstItem="qWA-v8-tM5" firstAttribute="top" secondItem="Ve5-R0-RUy" secondAttribute="top" id="W6l-Dl-AVe"/>
-                            <constraint firstItem="Ve5-R0-RUy" firstAttribute="trailing" secondItem="qWA-v8-tM5" secondAttribute="trailing" id="YWd-bq-A3k"/>
-                            <constraint firstItem="qWA-v8-tM5" firstAttribute="leading" secondItem="Ve5-R0-RUy" secondAttribute="leading" id="sgb-jg-ABR"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Ve5-R0-RUy"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Social Chicks" image="person.3" catalog="system" id="p3N-Q8-Tnv"/>
-                    <connections>
-                        <outlet property="image" destination="75l-O1-JCk" id="mLQ-pe-yoW"/>
-                        <outlet property="label" destination="BbN-rT-zrO" id="5q1-Sp-2zS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vqY-Xu-rKU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3450" y="-494"/>
-        </scene>
-        <!--Wing Finder-->
+        <!--Chicken Near Me-->
         <scene sceneID="2dC-zc-3Ij">
             <objects>
                 <viewController id="cCg-05-Pw8" customClass="FindBuffaloChickenVC" customModule="BuffaloChicken" customModuleProvider="target" sceneMemberID="viewController">
@@ -58,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="U4Q-Sl-cYQ">
-                                <rect key="frame" x="5" y="93" width="404" height="715"/>
+                                <rect key="frame" x="5" y="93" width="404" height="764"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUw-kE-Nlq">
                                         <rect key="frame" x="0.0" y="0.0" width="404" height="300"/>
@@ -67,7 +25,7 @@
                                         </constraints>
                                     </mapView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gNQ-Fn-ewk">
-                                        <rect key="frame" x="0.0" y="300" width="404" height="415"/>
+                                        <rect key="frame" x="0.0" y="300" width="404" height="464"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableView>
                                 </subviews>
@@ -82,7 +40,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QIf-Z5-9xd"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Wing Finder" image="magnifyingglass.circle" catalog="system" id="IgM-9w-5B3"/>
+                    <navigationItem key="navigationItem" title="Chicken Near Me" id="XGQ-jC-eDm">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="vI5-1a-8Ni">
+                            <connections>
+                                <segue destination="ZJo-82-754" kind="presentation" id="e16-Tb-Nbm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="map" destination="XUw-kE-Nlq" id="ufd-4Y-2Vv"/>
                         <outlet property="tableView" destination="gNQ-Fn-ewk" id="TQA-42-mYk"/>
@@ -91,7 +55,123 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Yn-13-U8Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3451" y="-1142"/>
+            <point key="canvasLocation" x="-2542.0289855072465" y="-1142.4107142857142"/>
+        </scene>
+        <!--FilterVC-->
+        <scene sceneID="2Au-Tr-R7e">
+            <objects>
+                <viewController id="ZJo-82-754" customClass="FilterVC" customModule="BuffaloChicken" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="euO-Ua-Wyj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xqd-V8-gDF">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Filter Chicken Near Me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzf-Le-OlM">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="29"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9MF-0V-7GP">
+                                        <rect key="frame" x="0.0" y="39" width="414" height="216"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5a-wj-tt2">
+                                                <rect key="frame" x="0.0" y="0.0" width="66" height="216"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3yr-d8-hrD">
+                                                <rect key="frame" x="76" y="0.0" width="338" height="216"/>
+                                            </pickerView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" id="71s-db-39b">
+                                        <rect key="frame" x="0.0" y="265" width="414" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGb-63-tbN">
+                                                <rect key="frame" x="0.0" y="0.0" width="106.5" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GH0-bR-ks2">
+                                                <rect key="frame" x="114.5" y="0.0" width="301.5" height="31"/>
+                                            </slider>
+                                        </subviews>
+                                        <viewLayoutGuide key="safeArea" id="TDZ-0X-rq0"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7L-eG-D9n">
+                                        <rect key="frame" x="0.0" y="305" width="414" height="22"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPQ-B1-0XD">
+                                                <rect key="frame" x="0.0" y="0.0" width="123.5" height="22"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="I6S-ay-nMz">
+                                                <rect key="frame" x="123.5" y="0.0" width="290.5" height="22"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAs-7A-2AX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="58" height="22"/>
+                                                        <state key="normal" title="Star" image="star" catalog="system"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="COR-o9-kJe">
+                                                        <rect key="frame" x="58" y="0.0" width="58" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Star" image="star" catalog="system"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YtF-2R-fXr">
+                                                        <rect key="frame" x="116" y="0.0" width="58.5" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Star" image="star" catalog="system"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="skr-pC-UdE">
+                                                        <rect key="frame" x="174.5" y="0.0" width="58" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Star" image="star" catalog="system"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CFu-bv-Z3v">
+                                                        <rect key="frame" x="232.5" y="0.0" width="58" height="22"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Star" image="star" catalog="system"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgm-d4-vgp">
+                                        <rect key="frame" x="0.0" y="337" width="414" height="422"/>
+                                        <state key="normal" title="Filter"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xqd-V8-gDF" firstAttribute="top" secondItem="M5Z-Pv-8PV" secondAttribute="top" id="4Q6-3i-I1e"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="xqd-V8-gDF" secondAttribute="bottom" id="BlS-01-rhh"/>
+                            <constraint firstItem="xqd-V8-gDF" firstAttribute="leading" secondItem="M5Z-Pv-8PV" secondAttribute="leading" id="XqB-C8-nif"/>
+                            <constraint firstItem="xqd-V8-gDF" firstAttribute="trailing" secondItem="M5Z-Pv-8PV" secondAttribute="trailing" id="bHR-6o-dyG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="M5Z-Pv-8PV"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="filterButton" destination="bgm-d4-vgp" id="jGP-Pg-zey"/>
+                        <outlet property="filterByPicker" destination="3yr-d8-hrD" id="wbh-qU-ZBj"/>
+                        <outlet property="maxDistanceSlider" destination="GH0-bR-ks2" id="9F8-VO-t3D"/>
+                        <outlet property="starButtonStack" destination="I6S-ay-nMz" id="aLM-Ol-8cz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eQ6-Qp-uxW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1497" y="-1474"/>
         </scene>
         <!--Restauarant DetailVC-->
         <scene sceneID="NxU-pd-yvt">
@@ -152,49 +232,31 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LT4-Fo-0vu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2423.1884057971015" y="-1142.4107142857142"/>
+            <point key="canvasLocation" x="-1497" y="-811"/>
         </scene>
-        <!--Flashy Tab Bar Controller-->
-        <scene sceneID="OwZ-Xl-wH4">
+        <!--Wing Finder-->
+        <scene sceneID="y5C-yX-LeO">
             <objects>
-                <tabBarController id="ZS8-c2-pF5" customClass="CBFlashyTabBarController" customModule="CBFlashyTabBarController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Fax-q7-0Xk"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tZa-Oq-vBy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="cCg-05-Pw8" kind="relationship" relationship="viewControllers" id="M2t-7V-hRP"/>
-                        <segue destination="86q-aP-fTw" kind="relationship" relationship="viewControllers" id="vBf-KD-OLQ"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mKV-Ol-KKl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-4368" y="-818"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="jog-E3-bqE">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0rf-QN-ehI" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="taq-Br-ATB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Wing Finder" image="magnifyingglass.circle" catalog="system" id="IgM-9w-5B3"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="34U-Df-YaL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wyh-wc-hWM">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ZS8-c2-pF5" kind="relationship" relationship="rootViewController" id="LYM-K6-cy5"/>
+                        <segue destination="cCg-05-Pw8" kind="relationship" relationship="rootViewController" id="bXR-8o-ir2"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4od-xs-rsG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="37s-Jz-yup" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5452" y="-818"/>
+            <point key="canvasLocation" x="-3452.1739130434785" y="-1142.4107142857142"/>
         </scene>
     </scenes>
     <resources>
         <image name="PlaceholderWing" width="286" height="135"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
-        <image name="person.3" catalog="system" width="128" height="62"/>
+        <image name="star" catalog="system" width="128" height="116"/>
     </resources>
 </document>

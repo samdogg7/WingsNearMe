@@ -11,7 +11,13 @@ import MapKit
 import CoreLocation
 import CBFlashyTabBarController
 
-class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate {
+protocol FindBuffaloChickenVCDelegate {
+    func filterAnnotations(filter: Filter)
+}
+
+class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, FindBuffaloChickenVCDelegate {
+    
+    
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,8 +30,12 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     
     var lat:Double = 37.3230
     var long:Double = -122.0322
-    var annotations: [RestaurantAnnotation] = []
-
+    var sortedAnnotations: [RestaurantAnnotation] = []
+    var unsortedAnnotations: [RestaurantAnnotation] = []
+    
+    
+    // MARK: - View handler Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +46,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         
         setupSubviews()
     }
+    
     
     func setupSubviews() {
         let tableViewNib = UINib(nibName: "RestaurantTableViewCell", bundle: nil)
@@ -95,14 +106,47 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         }
     }
     
+    
     func addAnnotations(places: [Place]) {
         for (index, place) in places.enumerated() {
-            let annotation = RestaurantAnnotation(id: index, restaurant: Restaurant(place: place))
-            annotations.append(annotation)
+            let annotation = RestaurantAnnotation(id: index, restaurant: Restaurant(place: place), userLocation: CLLocation(latitude: lat, longitude: long) )
+            unsortedAnnotations.append(annotation)
         }
-        map.addAnnotations(annotations)
-        self.tableView.reloadData()
+        filterAnnotations(filter: Filter())
         loadingView.hide()
+    }
+    
+    // MARK: - FindBuffaloChickenVCDelegate methods
+    
+    func filterAnnotations(filter: Filter) {
+        var sorted = unsortedAnnotations
+        
+        if(filter.isOpen) {
+            sorted = sorted.filter({ $0.restaurant.isOpen })
+        }
+        sorted = sorted.filter({ $0.distance <= filter.maxDistance })
+        sorted = sorted.filter({ $0.restaurant.rating >= filter.minRating })
+
+        switch filter.filterBy {
+        case .rating:
+            sorted.sort(by: { ($0.restaurant.rating) < ($1.restaurant.rating) })
+        //Nearest by default
+        default:
+            sorted.sort(by: { ($0.distance) < ($1.distance) })
+        }
+        
+        for i in 0..<sorted.count {
+            sorted[i].id = i
+        }
+        
+        sortedAnnotations = sorted
+        reloadSubviews()
+    }
+    
+    func reloadSubviews() {
+        map.removeAnnotations(map.annotations)
+        map.addAnnotations(sortedAnnotations)
+        tableView.reloadData()
     }
     
     @objc func openInMaps(_ sender: AnnotationButton) {
@@ -116,12 +160,10 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         }
     }
     
+    //MARK: - Segue methods
+    
     func openRestaurantDetailVC(restaurant: Restaurant) {
         performSegue(withIdentifier: "ShowRestaurantDetail", sender: restaurant)
-    }
-    
-    func reloadSubviews() {
-        tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -203,7 +245,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RestaurantTableViewCell
-        cell.restaurant = annotations[indexPath.section].restaurant
+        cell.restaurant = sortedAnnotations[indexPath.section].restaurant
         
         cell.layer.borderColor = UIColor(named: "InverseSystem")?.cgColor
         cell.layer.borderWidth = 1
@@ -218,7 +260,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return annotations.count
+        return sortedAnnotations.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -227,8 +269,8 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.section).")
-        map.setRegion(MKCoordinateRegion(center: annotations[indexPath.section].coordinate, latitudinalMeters: radius, longitudinalMeters: radius), animated: true)
-        let annotation = annotations[indexPath.section]
+        map.setRegion(MKCoordinateRegion(center: sortedAnnotations[indexPath.section].coordinate, latitudinalMeters: radius, longitudinalMeters: radius), animated: true)
+        let annotation = sortedAnnotations[indexPath.section]
         map.selectAnnotation(annotation, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
         openRestaurantDetailVC(restaurant: annotation.restaurant)

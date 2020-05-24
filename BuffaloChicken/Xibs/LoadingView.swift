@@ -43,7 +43,7 @@ class LoadingView: UIView {
         }
     }
     
-    func hide(delay: Double = 0.5) {
+    func hide(delay: Double = 0.0) {
         UIView.animate(withDuration: fadeDuration, delay: delay, options: .curveEaseInOut, animations: {
             self.alpha = 0.25
         }) { (isCompleted) in

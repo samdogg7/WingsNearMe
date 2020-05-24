@@ -7,6 +7,7 @@
 //
 
 import MapKit
+import CoreLocation
 
 class RestaurantAnnotation: NSObject, MKAnnotation {
     var id: Int
@@ -14,13 +15,16 @@ class RestaurantAnnotation: NSObject, MKAnnotation {
     var subtitle: String?
     var coordinate: CLLocationCoordinate2D
     var restaurant: Restaurant
-
-    init(id: Int, restaurant: Restaurant) {
+    var distance: Double
+    
+    init(id: Int, restaurant: Restaurant, userLocation: CLLocation) {
         self.id = id
         self.restaurant = restaurant
         self.title = restaurant.name
-        self.subtitle = restaurant.isOpen
+        self.subtitle = restaurant.hoursString
         self.coordinate = restaurant.coordinate
+        self.distance = userLocation.distance(from: CLLocation(latitude: restaurant.coordinate.latitude, longitude: restaurant.coordinate.longitude))
+        
         super.init()
     }
 }

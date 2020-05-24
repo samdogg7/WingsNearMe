@@ -10,7 +10,8 @@ import CoreLocation
 
 class Restaurant {
     var name: String
-    var isOpen: String
+    var isOpen: Bool = false
+    var hoursString: String
     var coordinate: CLLocationCoordinate2D
     var formattedAddress: String
     var formattedPhoneNumber: String
@@ -19,9 +20,10 @@ class Restaurant {
     init(place: Place) {
         self.name = place.name ?? "Restaurant Name"
         if let isOpen = place.openingHours?.openNow {
-            self.isOpen =  (isOpen ? "Open" : "Closed")
+            self.isOpen = isOpen
+            self.hoursString =  (isOpen ? "Open" : "Closed")
         } else {
-            self.isOpen = "Hours not available"
+            self.hoursString = "Hours not available"
         }
         self.coordinate = CLLocationCoordinate2D(latitude: place.geometry?.location?.lat ?? 37.3230, longitude: place.geometry?.location?.lng ?? -122.0322)
         self.formattedAddress = place.placeDetail?.formattedAddress ?? "No formatted address given"
