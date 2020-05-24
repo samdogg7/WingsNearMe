@@ -3,27 +3,57 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43B779BAE3CF9486741F8041 /* Pods_BuffaloChicken.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F837E01982443BD6CAB6D2BC /* Pods_BuffaloChicken.framework */; };
 		9F08C41324690F900053CC42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41224690F900053CC42 /* AppDelegate.swift */; };
 		9F08C41524690F900053CC42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41424690F900053CC42 /* SceneDelegate.swift */; };
-		9F08C41724690F900053CC42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41624690F900053CC42 /* ViewController.swift */; };
+		9F08C41724690F900053CC42 /* FindBuffaloChickenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41624690F900053CC42 /* FindBuffaloChickenVC.swift */; };
 		9F08C41A24690F900053CC42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F08C41824690F900053CC42 /* Main.storyboard */; };
 		9F08C41C24690F910053CC42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F08C41B24690F910053CC42 /* Assets.xcassets */; };
 		9F08C41F24690F910053CC42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F08C41D24690F910053CC42 /* LaunchScreen.storyboard */; };
+		9F08C42924690FAD0053CC42 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C42824690FAD0053CC42 /* APIManager.swift */; };
+		9F08C42B246914630053CC42 /* GooglePlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C42A246914630053CC42 /* GooglePlaceModel.swift */; };
+		9F2334642475895500C06EA3 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2334632475895500C06EA3 /* RestaurantAnnotation.swift */; };
+		9F3F41352479A99200F00A56 /* RestaurantDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F41342479A99200F00A56 /* RestaurantDetailVC.swift */; };
+		9F3F41372479BC5600F00A56 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F41362479BC5600F00A56 /* Restaurant.swift */; };
+		9F7B505C24692B510099AB3D /* SocialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7B505B24692B510099AB3D /* SocialVC.swift */; };
+		9F928758246B578D00E4DCCC /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */; };
+		9F92875A246B7A7200E4DCCC /* DetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F928759246B7A7200E4DCCC /* DetailResponseModel.swift */; };
+		9FB2C03E246B050600650946 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */; };
+		9FD0D6DB246F441300FD05A0 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD0D6DA246F441300FD05A0 /* LoadingView.xib */; };
+		9FD2604D246F24E3003E3443 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2604C246F24E2003E3443 /* loading.json */; };
+		9FD2604F246F2555003E3443 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2604E246F2555003E3443 /* LoadingView.swift */; };
+		9FE0B4AB24703DC6000A122D /* TestResponses in Resources */ = {isa = PBXBuildFile; fileRef = 9FE0B4AA24703DC6000A122D /* TestResponses */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6BFF46863EFD21005D5672F1 /* Pods-BuffaloChicken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.release.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.release.xcconfig"; sourceTree = "<group>"; };
 		9F08C40F24690F900053CC42 /* BuffaloChicken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuffaloChicken.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F08C41224690F900053CC42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F08C41424690F900053CC42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9F08C41624690F900053CC42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9F08C41624690F900053CC42 /* FindBuffaloChickenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindBuffaloChickenVC.swift; sourceTree = "<group>"; };
 		9F08C41924690F900053CC42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F08C41B24690F910053CC42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F08C41E24690F910053CC42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F08C42024690F910053CC42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F08C42824690FAD0053CC42 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		9F08C42A246914630053CC42 /* GooglePlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceModel.swift; sourceTree = "<group>"; };
+		9F2334632475895500C06EA3 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
+		9F3F41342479A99200F00A56 /* RestaurantDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVC.swift; sourceTree = "<group>"; };
+		9F3F41362479BC5600F00A56 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		9F7B505B24692B510099AB3D /* SocialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialVC.swift; sourceTree = "<group>"; };
+		9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
+		9F928759246B7A7200E4DCCC /* DetailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponseModel.swift; sourceTree = "<group>"; };
+		9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		9FD0D6DA246F441300FD05A0 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		9FD2604C246F24E2003E3443 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		9FD2604E246F2555003E3443 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		9FE0B4AA24703DC6000A122D /* TestResponses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestResponses; sourceTree = "<group>"; };
+		F1908D0AE2E48D5E98DC1F53 /* Pods-BuffaloChicken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.debug.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.debug.xcconfig"; sourceTree = "<group>"; };
+		F837E01982443BD6CAB6D2BC /* Pods_BuffaloChicken.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuffaloChicken.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +61,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43B779BAE3CF9486741F8041 /* Pods_BuffaloChicken.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7057BD79C36779EC41D94EDE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1908D0AE2E48D5E98DC1F53 /* Pods-BuffaloChicken.debug.xcconfig */,
+				6BFF46863EFD21005D5672F1 /* Pods-BuffaloChicken.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9E1243F233ED3E9126432D6E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F837E01982443BD6CAB6D2BC /* Pods_BuffaloChicken.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9F08C40624690F900053CC42 = {
 			isa = PBXGroup;
 			children = (
 				9F08C41124690F900053CC42 /* BuffaloChicken */,
 				9F08C41024690F900053CC42 /* Products */,
+				7057BD79C36779EC41D94EDE /* Pods */,
+				9E1243F233ED3E9126432D6E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +106,68 @@
 		9F08C41124690F900053CC42 /* BuffaloChicken */ = {
 			isa = PBXGroup;
 			children = (
+				9FE0B4AA24703DC6000A122D /* TestResponses */,
+				9FD2604B246F24D5003E3443 /* LottieAnimations */,
+				9F92875D246B7B1C00E4DCCC /* API */,
+				9F92875C246B7B0800E4DCCC /* ViewControllers */,
+				9F92875B246B7AF900E4DCCC /* Models */,
+				9F92875E246B7B3000E4DCCC /* Xibs */,
 				9F08C41224690F900053CC42 /* AppDelegate.swift */,
 				9F08C41424690F900053CC42 /* SceneDelegate.swift */,
-				9F08C41624690F900053CC42 /* ViewController.swift */,
 				9F08C41824690F900053CC42 /* Main.storyboard */,
 				9F08C41B24690F910053CC42 /* Assets.xcassets */,
 				9F08C41D24690F910053CC42 /* LaunchScreen.storyboard */,
 				9F08C42024690F910053CC42 /* Info.plist */,
 			);
 			path = BuffaloChicken;
+			sourceTree = "<group>";
+		};
+		9F92875B246B7AF900E4DCCC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F08C42A246914630053CC42 /* GooglePlaceModel.swift */,
+				9F928759246B7A7200E4DCCC /* DetailResponseModel.swift */,
+				9F3F41362479BC5600F00A56 /* Restaurant.swift */,
+				9F2334632475895500C06EA3 /* RestaurantAnnotation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9F92875C246B7B0800E4DCCC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9F08C41624690F900053CC42 /* FindBuffaloChickenVC.swift */,
+				9F7B505B24692B510099AB3D /* SocialVC.swift */,
+				9F3F41342479A99200F00A56 /* RestaurantDetailVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9F92875D246B7B1C00E4DCCC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9F08C42824690FAD0053CC42 /* APIManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		9F92875E246B7B3000E4DCCC /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */,
+				9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */,
+				9FD2604E246F2555003E3443 /* LoadingView.swift */,
+				9FD0D6DA246F441300FD05A0 /* LoadingView.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		9FD2604B246F24D5003E3443 /* LottieAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				9FD2604C246F24E2003E3443 /* loading.json */,
+			);
+			path = LottieAnimations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +177,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F08C42324690F910053CC42 /* Build configuration list for PBXNativeTarget "BuffaloChicken" */;
 			buildPhases = (
+				2D359DCA61834CA7D49FE525 /* [CP] Check Pods Manifest.lock */,
 				9F08C40B24690F900053CC42 /* Sources */,
 				9F08C40C24690F900053CC42 /* Frameworks */,
 				9F08C40D24690F900053CC42 /* Resources */,
+				ED47F34579F443513756960F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,22 +230,77 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F928758246B578D00E4DCCC /* RestaurantTableViewCell.xib in Resources */,
 				9F08C41F24690F910053CC42 /* LaunchScreen.storyboard in Resources */,
+				9FD2604D246F24E3003E3443 /* loading.json in Resources */,
+				9FD0D6DB246F441300FD05A0 /* LoadingView.xib in Resources */,
 				9F08C41C24690F910053CC42 /* Assets.xcassets in Resources */,
+				9FE0B4AB24703DC6000A122D /* TestResponses in Resources */,
 				9F08C41A24690F900053CC42 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2D359DCA61834CA7D49FE525 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BuffaloChicken-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED47F34579F443513756960F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9F08C40B24690F900053CC42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F08C41724690F900053CC42 /* ViewController.swift in Sources */,
+				9F08C42924690FAD0053CC42 /* APIManager.swift in Sources */,
+				9F92875A246B7A7200E4DCCC /* DetailResponseModel.swift in Sources */,
+				9F7B505C24692B510099AB3D /* SocialVC.swift in Sources */,
+				9F08C41724690F900053CC42 /* FindBuffaloChickenVC.swift in Sources */,
 				9F08C41324690F900053CC42 /* AppDelegate.swift in Sources */,
+				9F2334642475895500C06EA3 /* RestaurantAnnotation.swift in Sources */,
 				9F08C41524690F900053CC42 /* SceneDelegate.swift in Sources */,
+				9FB2C03E246B050600650946 /* RestaurantTableViewCell.swift in Sources */,
+				9F3F41372479BC5600F00A56 /* Restaurant.swift in Sources */,
+				9F3F41352479A99200F00A56 /* RestaurantDetailVC.swift in Sources */,
+				9F08C42B246914630053CC42 /* GooglePlaceModel.swift in Sources */,
+				9FD2604F246F2555003E3443 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +442,7 @@
 		};
 		9F08C42424690F910053CC42 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1908D0AE2E48D5E98DC1F53 /* Pods-BuffaloChicken.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +461,7 @@
 		};
 		9F08C42524690F910053CC42 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BFF46863EFD21005D5672F1 /* Pods-BuffaloChicken.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,0 +1,72 @@
+{
+   "html_attributions" : [],
+   "result" : {
+      "formatted_address" : "100 Independence Way, Danvers, MA 01923, USA",
+      "formatted_phone_number" : "(978) 646-9464",
+      "opening_hours" : {
+         "weekday_text" : [
+            "Monday: 11:00 AM – 1:00 AM",
+            "Tuesday: 11:00 AM – 1:00 AM",
+            "Wednesday: 11:00 AM – 1:00 AM",
+            "Thursday: 11:00 AM – 1:00 AM",
+            "Friday: 11:00 AM – 1:00 AM",
+            "Saturday: 11:00 AM – 1:00 AM",
+            "Sunday: 11:00 AM – 1:00 AM"
+         ]
+      },
+      "reviews" : [
+         {
+            "author_name" : "Jeremy Dalton",
+            "author_url" : "https://www.google.com/maps/contrib/111043018313004062937/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh3.ggpht.com/-sD9XxJUuvpU/AAAAAAAAAAI/AAAAAAAAAAA/mw2jay_RHXQ/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating" : 5,
+            "relative_time_description" : "2 months ago",
+            "text" : "Awesome. I miss my old bartender that we used to be there Stephanie. But the new one is pretty nice. I think her name is Bria or something like that. She's a sweetheart and she takes care of you and make sure you need a refill as soon as you're ready for it. And also got me my wings really quickly.",
+            "time" : 1582942801
+         },
+         {
+            "author_name" : "sharklar sharklar",
+            "author_url" : "https://www.google.com/maps/contrib/108512974029536119246/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh4.ggpht.com/-pDO1PbWBDyk/AAAAAAAAAAI/AAAAAAAAAAA/9XyZrt_zRJ4/s128-c0x00000000-cc-rp-mo-ba6/photo.jpg",
+            "rating" : 3,
+            "relative_time_description" : "a year ago",
+            "text" : "We waited for our food for an hour. Our waitress was great , I feel it was the back of the house that was having a hard time ,my friend specifically asked for no ranch sauce and our waitress made a note of it ,but when her burger came there was ranch.. the waitress brought it back and a new burger with no ranch came back in a speedy manner.. all and all I've never been a fan of this place.  Nothing against the wait staff . Just never had a great experience with the food .",
+            "time" : 1539804214
+         },
+         {
+            "author_name" : "Felicia Dobransky",
+            "author_url" : "https://www.google.com/maps/contrib/100718093490051724182/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh6.ggpht.com/-i9YoN06iZ7Y/AAAAAAAAAAI/AAAAAAAAAAA/_x1aRZxfaWg/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating" : 5,
+            "relative_time_description" : "3 months ago",
+            "text" : "If this was a year ago I would have left 1 star since there’s no zero star option. \nBUT they have completely turned around with their re imaging. The food was delicious and the service was friendly and prompt. \nGood job revamping the quality of product",
+            "time" : 1580941237
+         },
+         {
+            "author_name" : "mike costello",
+            "author_url" : "https://www.google.com/maps/contrib/111539728244918185023/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh4.ggpht.com/-w_s77kHlHxA/AAAAAAAAAAI/AAAAAAAAAAA/B7IizvLK1tQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating" : 1,
+            "relative_time_description" : "a month ago",
+            "text" : "Just placed order for family bundle, consisting of 20 wings and 20 boneless wings. Picked up order got home and only received 18 wings I call to explain what happened and manager hung up on me. I will never go there again. I just don’t understand in a time when all restaurants need the money but they can’t get it right and try to say it was the right order, 35.00 for 18 wings is not the right order. Will never go there again!",
+            "time" : 1586646727
+         },
+         {
+            "author_name" : "Chris Black",
+            "author_url" : "https://www.google.com/maps/contrib/102457555684699632089/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh5.ggpht.com/-t2KWJ8dY7X8/AAAAAAAAAAI/AAAAAAAAAAA/rdsEzbbkvGw/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating" : 1,
+            "relative_time_description" : "3 weeks ago",
+            "text" : "Very disappointed with the service, food, and general health and safety. Ordered takeout and found multiple employees without masks and gloves including the manager. At one point someone had to walk back to the kitchen to find someone as no one was around for an extended period of time. \n\nWhen an employee did show up to finally hand out takeout orders I had to ask him 3 separate times to please put on his mask that he was not wearing around his chin. Every customer was wearing at least a mask if not gloves. It was a complete disregard of public health and social responsibility during this time. \n\nThe food was also very disappointing as they combined the chicken tenders with the cheese wedges, and forgot all dipping sauces and vegetables. Was also 30 mins past the time we were supposed to pick up\n\nIronically, the the receipt includes a reviewed by, which was left blank.\n\nAs a customer for over a decade I am shocked  and I can confidently say this will be the last time I order from Buffalo Wild Wings.",
+            "time" : 1587256688
+         }
+      ],
+      "website" : "https://www.buffalowildwings.com/en/locations/detail/777/?utm_source=google&utm_medium=organic&utm_campaign=rio"
+   },
+   "status" : "OK"
+}

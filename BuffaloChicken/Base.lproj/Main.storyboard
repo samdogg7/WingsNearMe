@@ -1,24 +1,200 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0rf-QN-ehI">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Social Chicks-->
+        <scene sceneID="qZI-b5-lcK">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="86q-aP-fTw" customClass="SocialVC" customModule="BuffaloChicken" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9uM-7M-OYf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qWA-v8-tM5">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="75l-O1-JCk">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="704.5"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbN-rT-zrO">
+                                        <rect key="frame" x="0.0" y="704.5" width="414" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Ve5-R0-RUy" firstAttribute="bottom" secondItem="qWA-v8-tM5" secondAttribute="bottom" id="A81-eR-rzo"/>
+                            <constraint firstItem="qWA-v8-tM5" firstAttribute="top" secondItem="Ve5-R0-RUy" secondAttribute="top" id="W6l-Dl-AVe"/>
+                            <constraint firstItem="Ve5-R0-RUy" firstAttribute="trailing" secondItem="qWA-v8-tM5" secondAttribute="trailing" id="YWd-bq-A3k"/>
+                            <constraint firstItem="qWA-v8-tM5" firstAttribute="leading" secondItem="Ve5-R0-RUy" secondAttribute="leading" id="sgb-jg-ABR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ve5-R0-RUy"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Social Chicks" image="person.3" catalog="system" id="p3N-Q8-Tnv"/>
+                    <connections>
+                        <outlet property="image" destination="75l-O1-JCk" id="mLQ-pe-yoW"/>
+                        <outlet property="label" destination="BbN-rT-zrO" id="5q1-Sp-2zS"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vqY-Xu-rKU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-3450" y="-494"/>
+        </scene>
+        <!--Wing Finder-->
+        <scene sceneID="2dC-zc-3Ij">
+            <objects>
+                <viewController id="cCg-05-Pw8" customClass="FindBuffaloChickenVC" customModule="BuffaloChicken" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Rz-lX-VUP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="U4Q-Sl-cYQ">
+                                <rect key="frame" x="5" y="93" width="404" height="715"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUw-kE-Nlq">
+                                        <rect key="frame" x="0.0" y="0.0" width="404" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="bz2-3J-RfX"/>
+                                        </constraints>
+                                    </mapView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gNQ-Fn-ewk">
+                                        <rect key="frame" x="0.0" y="300" width="404" height="415"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="U4Q-Sl-cYQ" firstAttribute="leading" secondItem="QIf-Z5-9xd" secondAttribute="leading" constant="5" id="Ovo-T2-j2v"/>
+                            <constraint firstItem="QIf-Z5-9xd" firstAttribute="trailing" secondItem="U4Q-Sl-cYQ" secondAttribute="trailing" constant="5" id="ROH-gd-fIz"/>
+                            <constraint firstItem="QIf-Z5-9xd" firstAttribute="bottom" secondItem="U4Q-Sl-cYQ" secondAttribute="bottom" constant="5" id="RP4-og-h1R"/>
+                            <constraint firstItem="U4Q-Sl-cYQ" firstAttribute="top" secondItem="QIf-Z5-9xd" secondAttribute="top" constant="5" id="xNM-t5-LOV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QIf-Z5-9xd"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Wing Finder" image="magnifyingglass.circle" catalog="system" id="IgM-9w-5B3"/>
+                    <connections>
+                        <outlet property="map" destination="XUw-kE-Nlq" id="ufd-4Y-2Vv"/>
+                        <outlet property="tableView" destination="gNQ-Fn-ewk" id="TQA-42-mYk"/>
+                        <segue destination="bSs-wC-H6e" kind="presentation" identifier="ShowRestaurantDetail" id="KcH-e5-up6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Yn-13-U8Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3451" y="-1142"/>
+        </scene>
+        <!--Restauarant DetailVC-->
+        <scene sceneID="NxU-pd-yvt">
+            <objects>
+                <viewController storyboardIdentifier="RestaurantDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bSs-wC-H6e" customClass="RestauarantDetailVC" customModule="BuffaloChicken" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="amg-wi-A7c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AfO-oR-s6H">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlaceholderWing" translatesAutoresizingMaskIntoConstraints="NO" id="vLC-O2-4mm">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="UrA-tV-44P"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe Vesuvius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7P-1I-xla">
+                                        <rect key="frame" x="0.0" y="200" width="414" height="577"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours: 9:00am - 5:00pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U2d-0f-sqS">
+                                        <rect key="frame" x="0.0" y="777" width="414" height="20.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: 18 Bessom St, Marblehead, MA 01945" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qxN-xA-AQ9">
+                                        <rect key="frame" x="0.0" y="797.5" width="414" height="20.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ch0-Vw-Jwj" firstAttribute="bottom" secondItem="AfO-oR-s6H" secondAttribute="bottom" id="DkZ-2U-IIw"/>
+                            <constraint firstItem="ch0-Vw-Jwj" firstAttribute="trailing" secondItem="AfO-oR-s6H" secondAttribute="trailing" id="Lxo-Pw-5ap"/>
+                            <constraint firstItem="AfO-oR-s6H" firstAttribute="leading" secondItem="ch0-Vw-Jwj" secondAttribute="leading" id="adx-dz-IUK"/>
+                            <constraint firstItem="AfO-oR-s6H" firstAttribute="top" secondItem="ch0-Vw-Jwj" secondAttribute="top" id="xih-Ck-vNv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ch0-Vw-Jwj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TBU-Oz-wtq"/>
+                    <connections>
+                        <outlet property="hours" destination="U2d-0f-sqS" id="wTD-mb-vvg"/>
+                        <outlet property="image" destination="vLC-O2-4mm" id="M9P-Nd-H40"/>
+                        <outlet property="location" destination="qxN-xA-AQ9" id="Yk9-Aq-qag"/>
+                        <outlet property="name" destination="r7P-1I-xla" id="s0s-Rp-voh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LT4-Fo-0vu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2423.1884057971015" y="-1142.4107142857142"/>
+        </scene>
+        <!--Flashy Tab Bar Controller-->
+        <scene sceneID="OwZ-Xl-wH4">
+            <objects>
+                <tabBarController id="ZS8-c2-pF5" customClass="CBFlashyTabBarController" customModule="CBFlashyTabBarController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Fax-q7-0Xk"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tZa-Oq-vBy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="cCg-05-Pw8" kind="relationship" relationship="viewControllers" id="M2t-7V-hRP"/>
+                        <segue destination="86q-aP-fTw" kind="relationship" relationship="viewControllers" id="vBf-KD-OLQ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mKV-Ol-KKl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4368" y="-818"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jog-E3-bqE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0rf-QN-ehI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="34U-Df-YaL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZS8-c2-pF5" kind="relationship" relationship="rootViewController" id="LYM-K6-cy5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4od-xs-rsG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5452" y="-818"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PlaceholderWing" width="286" height="135"/>
+        <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
+        <image name="person.3" catalog="system" width="128" height="62"/>
+    </resources>
 </document>

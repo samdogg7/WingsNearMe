@@ -1,0 +1,72 @@
+{
+   "html_attributions" : [],
+   "result" : {
+      "formatted_address" : "45 Enon St #1, Beverly, MA 01915, USA",
+      "formatted_phone_number" : "(978) 998-4950",
+      "opening_hours" : {
+         "weekday_text" : [
+            "Monday: Closed",
+            "Tuesday: 4:00 – 7:30 PM",
+            "Wednesday: 11:30 AM – 7:30 PM",
+            "Thursday: 11:30 AM – 7:30 PM",
+            "Friday: 11:30 AM – 7:30 PM",
+            "Saturday: 11:30 AM – 7:30 PM",
+            "Sunday: 11:30 PM – 12:00 AM"
+         ]
+      },
+      "reviews" : [
+         {
+            "author_name" : "glenn kennedy",
+            "author_url" : "https://www.google.com/maps/contrib/111743893862684743414/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh4.ggpht.com/-hkbXI8e78-0/AAAAAAAAAAI/AAAAAAAAAAA/gf-Bju_SAwI/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+            "rating" : 1,
+            "relative_time_description" : "7 months ago",
+            "text" : "We went for the first and last time last week.\nWhen my 9 dollar super skimpy glass of red wine arrived, I knew  we were in trouble. I mentioned it to our waitress, she agreed it looked short, she brought it back to the bartender and was informed it was indeed the correct amount and pointed to the \"fill line\" which was basically at the bottom of the glass. Also no bread for the table, it's an additional $10.95, everything was overpriced, maybe that's why the place was empty? That doesn't explain why the food took forever to arrive. There are so many better values around, sorry I cannot recommend Rev Kitchen & Bar.",
+            "time" : 1571249913
+         },
+         {
+            "author_name" : "Howard Gans",
+            "author_url" : "https://www.google.com/maps/contrib/115321952706605281097/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh3.ggpht.com/-_tK_--n2zD8/AAAAAAAAAAI/AAAAAAAAAAA/NCU_UO-vNE0/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating" : 5,
+            "relative_time_description" : "2 months ago",
+            "text" : "I celebrated my PhD earlier this evening in this gorgeous place. happy to tell that it was a incredible evening and the venue was clearly the reason for the fruitful evening. The crew  contributed in a graceful way, the meals were extremely good and my guests were very  overjoyed. We shall absolutely come back again for more events. Thank you very much.",
+            "time" : 1582559629
+         },
+         {
+            "author_name" : "Brea Lucci",
+            "author_url" : "https://www.google.com/maps/contrib/101378069974252673281/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh6.ggpht.com/-WMwx0uMJx94/AAAAAAAAAAI/AAAAAAAAAAA/6u7t3bue9RI/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating" : 5,
+            "relative_time_description" : "2 weeks ago",
+            "text" : "No contact pick up order for taco Tuesday. Can’t beat the price and quality of food. Also got some gauc and chips, amazing portions! Great customer service :)",
+            "time" : 1588120430
+         },
+         {
+            "author_name" : "Clarence Weatherwax",
+            "author_url" : "https://www.google.com/maps/contrib/114763222839176936977/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh3.ggpht.com/-G67pnFItt6I/AAAAAAAAAAI/AAAAAAAAAAA/1boFolog-bI/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating" : 5,
+            "relative_time_description" : "2 months ago",
+            "text" : "This restaurant is no doubt one of the most attractive restaurants in the neighborhood. Anytime I come there I am highly glad. They preserve their very high  level service and the topmost level of cooking  they provide. You surely will enjoy this this restaurant. Very  recommended.",
+            "time" : 1583254432
+         },
+         {
+            "author_name" : "Joshua Lynch",
+            "author_url" : "https://www.google.com/maps/contrib/111342725577628249701/reviews",
+            "language" : "en",
+            "profile_photo_url" : "https://lh4.ggpht.com/-Fo0NukExoag/AAAAAAAAAAI/AAAAAAAAAAA/Ukr6FWG4wUw/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating" : 5,
+            "relative_time_description" : "3 months ago",
+            "text" : "Consistently great food.",
+            "time" : 1581436974
+         }
+      ],
+      "website" : "https://www.revkitchenandbar.com/"
+   },
+   "status" : "OK"
+}
