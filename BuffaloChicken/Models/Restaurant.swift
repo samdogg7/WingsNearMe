@@ -25,7 +25,7 @@ class Restaurant {
         }
         self.coordinate = CLLocationCoordinate2D(latitude: place.geometry?.location?.lat ?? 37.3230, longitude: place.geometry?.location?.lng ?? -122.0322)
         self.formattedAddress = place.placeDetail?.formattedAddress ?? "No formatted address given"
-        self.rating = place.placeDetail?.rating ?? 0.0
+        self.rating = place.rating ?? 0.0
         self.formattedPhoneNumber = place.placeDetail?.formattedPhoneNumber ?? "No phone number given"
     }
 }

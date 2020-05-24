@@ -25,7 +25,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     var lat:Double = 37.3230
     var long:Double = -122.0322
     var annotations: [RestaurantAnnotation] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,10 +60,39 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
             
             DispatchQueue.main.async {
                 if let results = response {
-                    self.addAnnotations(places: results)
+                    self.getDetails(places: results)
                 }
             }
         })
+    }
+    
+    func getDetails(places: [Place]) {
+        var places = places
+        //Keep track of if a detail request is complete...
+        var detailRequestComplete = Array(repeating: false, count: places.count)
+        //For each place, get the place's detail
+        for index in 0..<places.count {
+            if let placeID = places[index].placeID {
+                APIManager().placeDetailRequest(placeId: placeID, testing: testing_enabled, detailResponse: { response, error in
+                    detailRequestComplete[index] = true
+                    
+                    if error != nil {
+                        print(error?.localizedDescription ?? "Error")
+                        return
+                    }
+                    
+                    DispatchQueue.main.async {
+                        if let detail = response {
+                            places[index].placeDetail = detail
+                            //If all detail requests are done loading, add annotations
+                            if !detailRequestComplete.contains(false) {
+                                self.addAnnotations(places: places)
+                            }
+                        }
+                    }
+                })
+            }
+        }
     }
     
     func addAnnotations(places: [Place]) {

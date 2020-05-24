@@ -27,7 +27,7 @@ class RestaurantTableViewCell: UITableViewCell {
             
             name.text = restaurant.name
             
-            updateRating(rating: restaurant.rating ?? 0)
+            updateRating(rating: restaurant.rating)
             
             imgView.layer.cornerRadius = imgView.frame.size.width/2
             imgView.clipsToBounds = true

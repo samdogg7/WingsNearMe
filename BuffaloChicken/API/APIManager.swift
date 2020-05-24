@@ -30,28 +30,10 @@ public class APIManager {
                         placesResponse(nil, error)
                         return
                     }
-                    if let data = data, let response = try? JSONDecoder().decode(PlacesResponse.self, from: data), var results = response.results {
+                    if let data = data, let response = try? JSONDecoder().decode(PlacesResponse.self, from: data), let results = response.results {
                         //Now retrieve the place details from each place in results
                         DispatchQueue.main.async {
-                            for i in 0..<results.count {
-                                self.placeDetailRequest(placeId: (results[i].placeID ?? ""), testing: testing, detailResponse: { response, error in
-                                    if error != nil {
-                                        print(error?.localizedDescription ?? "Error")
-                                        return
-                                    }
-                                    
-                                    if let detail = response {
-                                        DispatchQueue.main.async {
-                                            results[i].placeDetail = detail
-                                            if i == (results.count - 1) {
-                                                placesResponse(results, nil)
-                                            }
-                                        }
-                                    } else {
-                                        print("Detail missing from PID: " + (results[i].placeID ?? "nil"))
-                                    }
-                                })
-                            }
+                            placesResponse(results, nil)
                         }
                     }
                 })
