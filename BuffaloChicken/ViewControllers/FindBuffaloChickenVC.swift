@@ -9,29 +9,34 @@
 import UIKit
 import MapKit
 import CoreLocation
-import SideMenu
 
 protocol FindBuffaloChickenVCDelegate {
     func filterAnnotations(filter: Filter)
     func openRestaurantDetailVC(restaurant: Restaurant)
+    func closeFilterView()
 }
 
 class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, FindBuffaloChickenVCDelegate {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filterButton: UIBarButtonItem!
     
     private let locationManager = CLLocationManager()
-    private let cellId = "RestuarantCell"
-    private let testing_enabled = false
     private let loadingView = LoadingView().loadNib() as! LoadingView
-    private let radius:Double = 10000
-    private let cellSpacingHeight: CGFloat = 5
+    private let filterView = FilterView().loadNib() as! FilterView
 
+    private var sortedAnnotations: [RestaurantAnnotation] = []
+    private var unsortedAnnotations: [RestaurantAnnotation] = []
+    private var filter = Filter()
+    private let apiManager = APIManager()
     
     private var lat:Double = 37.3230
     private var long:Double = -122.0322
-    private var sortedAnnotations: [RestaurantAnnotation] = []
-    private var unsortedAnnotations: [RestaurantAnnotation] = []
+    private let radius:Double = 10000
+    private let cellSpacingHeight: CGFloat = 5
+    private let cellId = "RestuarantCell"
+    
+    private let testing_enabled = true
     
     // MARK: - View handler Methods
     
@@ -42,6 +47,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         map.delegate = self
+        filterView.delegate = self
         
         setupSubviews()
     }
@@ -50,20 +56,22 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         let tableViewNib = UINib(nibName: "RestaurantTableViewCell", bundle: nil)
         tableView.register(tableViewNib, forCellReuseIdentifier: cellId)
         tableView.showsVerticalScrollIndicator = false
-        let refreshControl = UIRefreshControl()
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
-        refreshControl.addTarget(self, action: #selector(getPlaces), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing...")
         
         locationManager.requestAlwaysAuthorization()
         locationManager.startMonitoringSignificantLocationChanges()
         
+        map.layer.masksToBounds = true
+        map.layer.cornerRadius = 10
+        
+        filterButton.target = self
+        filterButton.action = #selector(openFilterView(_:))
+        
+        filterView.isHidden = true
+        filterView.frame = self.view.frame
+        filterView.setMaxDistance(d: radius)
         loadingView.frame = self.view.frame
         self.view.addSubview(loadingView)
+        self.view.addSubview(filterView)
     }
     
     // MARK: - API Request Methods
@@ -71,7 +79,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     @objc func getPlaces() {
         sortedAnnotations.removeAll()
         unsortedAnnotations.removeAll()
-        APIManager().placesRequest(search_term: "wings", lat: lat, long: long, radius: radius, testing: testing_enabled, placesResponse: { response, error in
+        apiManager.placesRequest(search_term: "wings", lat: lat, long: long, radius: radius, testing: testing_enabled, placesResponse: { response, error in
             if error != nil {
                 print(error?.localizedDescription ?? "Error")
                 return
@@ -92,7 +100,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         //For each place, get the place's detail
         for index in 0..<places.count {
             if let placeID = places[index].placeID {
-                APIManager().placeDetailRequest(placeId: placeID, testing: testing_enabled, detailResponse: { response, error in
+                apiManager.placeDetailRequest(placeId: placeID, testing: testing_enabled, detailResponse: { response, error in
                     detailRequestComplete[index] = true
                     
                     if error != nil {
@@ -106,7 +114,6 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
                             //If all detail requests are done loading, add annotations
                             if !detailRequestComplete.contains(false) {
                                 self.addAnnotations(places: places)
-                                self.tableView.refreshControl?.endRefreshing()
                             }
                         }
                     }
@@ -117,17 +124,19 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     
     
     func addAnnotations(places: [Place]) {
+        unsortedAnnotations.removeAll()
         for (index, place) in places.enumerated() {
             let annotation = RestaurantAnnotation(id: index, restaurant: Restaurant(place: place), userLocation: CLLocation(latitude: lat, longitude: long) )
             unsortedAnnotations.append(annotation)
         }
-        filterAnnotations(filter: Filter())
+        filterAnnotations(filter: filter)
         loadingView.hide()
     }
     
     // MARK: - FindBuffaloChickenVCDelegate methods
     
     func filterAnnotations(filter: Filter) {
+        sortedAnnotations.removeAll()
         var sorted = unsortedAnnotations
         
         if(filter.isOpen) {
@@ -175,12 +184,26 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         performSegue(withIdentifier: "ShowRestaurantDetail", sender: restaurant)
     }
     
+    @objc func openRestaurantDetailVC(_ sender: AnnotationButton) {
+        performSegue(withIdentifier: "ShowRestaurantDetail", sender: sender.annotation?.restaurant)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let restaurant = sender as? Restaurant else { return }
         
         if let target = segue.destination as? RestauarantDetailVC {
             target.restaurant = restaurant
         }
+    }
+    
+    //MARK: - Filter View helper methods
+    
+    @objc func openFilterView(_ sender: UIButton) {
+        filterView.isHidden = false
+    }
+    
+    func closeFilterView() {
+        filterView.isHidden = true
     }
     
     // MARK: - LocationManager Delegate Methods
@@ -217,13 +240,27 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: 0, y: 0)
+                        
+            let hoursLabel = UILabel()
+            hoursLabel.text = annotation.restaurant.hoursString
             
-            let mapsButton = AnnotationButton(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 48, height: 48)))
+            let mapsButton = AnnotationButton()
             mapsButton.setBackgroundImage(UIImage(named: "MapIcon"), for: .normal)
             mapsButton.annotation = annotation
             mapsButton.addTarget(self, action: #selector(self.openInMaps(_:)), for: .touchUpInside)
+            mapsButton.translatesAutoresizingMaskIntoConstraints = false
+            mapsButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
             
-            view.rightCalloutAccessoryView = mapsButton
+            let detailsButton = AnnotationButton(type: .detailDisclosure)
+            detailsButton.addTarget(self, action: #selector(self.openRestaurantDetailVC(_:)), for: .touchUpInside)
+            
+            let stack = UIStackView(arrangedSubviews: [hoursLabel, detailsButton, mapsButton])
+            stack.distribution = .fillProportionally
+            stack.alignment = .fill
+            stack.spacing = 5
+            
+            view.detailCalloutAccessoryView = stack
+
             view.glyphImage = UIImage(named: "WingGlyph")
         }
         return view
@@ -288,7 +325,8 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     }
 }
 
+//Helper class to store annotation with button. Helpful with #selector.
 class AnnotationButton: UIButton {
-    var annotation: MKAnnotation?
+    var annotation: RestaurantAnnotation?
 }
 

@@ -16,25 +16,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="U4Q-Sl-cYQ">
-                                <rect key="frame" x="10" y="93" width="394" height="803"/>
+                                <rect key="frame" x="7" y="93" width="400" height="803"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUw-kE-Nlq">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="300"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="bz2-3J-RfX"/>
                                         </constraints>
                                     </mapView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gNQ-Fn-ewk">
-                                        <rect key="frame" x="0.0" y="300" width="394" height="503"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <rect key="frame" x="0.0" y="300" width="400" height="503"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="U4Q-Sl-cYQ" firstAttribute="leading" secondItem="QIf-Z5-9xd" secondAttribute="leading" constant="10" id="Ovo-T2-j2v"/>
-                            <constraint firstItem="QIf-Z5-9xd" firstAttribute="trailing" secondItem="U4Q-Sl-cYQ" secondAttribute="trailing" constant="10" id="ROH-gd-fIz"/>
+                            <constraint firstItem="U4Q-Sl-cYQ" firstAttribute="leading" secondItem="QIf-Z5-9xd" secondAttribute="leading" constant="7" id="Ovo-T2-j2v"/>
+                            <constraint firstItem="QIf-Z5-9xd" firstAttribute="trailing" secondItem="U4Q-Sl-cYQ" secondAttribute="trailing" constant="7" id="ROH-gd-fIz"/>
                             <constraint firstAttribute="bottom" secondItem="U4Q-Sl-cYQ" secondAttribute="bottom" id="RP4-og-h1R"/>
                             <constraint firstItem="U4Q-Sl-cYQ" firstAttribute="top" secondItem="QIf-Z5-9xd" secondAttribute="top" constant="5" id="xNM-t5-LOV"/>
                         </constraints>
@@ -43,16 +43,13 @@
                     <navigationItem key="navigationItem" title="Chicken Near Me" id="XGQ-jC-eDm">
                         <barButtonItem key="leftBarButtonItem" title="Sidebar" image="sidebar.left" catalog="system" id="dgZ-4p-qpU">
                             <connections>
-                                <segue destination="taq-Br-ATB" kind="presentation" id="GGI-IO-jFV"/>
+                                <segue destination="Ke4-yL-2oX" kind="show" id="3Rv-Km-bFs"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="vI5-1a-8Ni">
-                            <connections>
-                                <segue destination="ZJo-82-754" kind="presentation" id="e16-Tb-Nbm"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="vI5-1a-8Ni"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="filterButton" destination="vI5-1a-8Ni" id="jpP-DN-HSR"/>
                         <outlet property="map" destination="XUw-kE-Nlq" id="ufd-4Y-2Vv"/>
                         <outlet property="tableView" destination="gNQ-Fn-ewk" id="TQA-42-mYk"/>
                         <segue destination="bSs-wC-H6e" kind="presentation" identifier="ShowRestaurantDetail" id="KcH-e5-up6"/>
@@ -61,122 +58,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Yn-13-U8Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2542.0289855072465" y="-1142.4107142857142"/>
-        </scene>
-        <!--FilterVC-->
-        <scene sceneID="2Au-Tr-R7e">
-            <objects>
-                <viewController id="ZJo-82-754" customClass="FilterVC" customModule="BuffaloChicken" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="euO-Ua-Wyj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xqd-V8-gDF">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Filter Chicken Near Me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yzf-Le-OlM">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="29"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9MF-0V-7GP">
-                                        <rect key="frame" x="0.0" y="39" width="414" height="216"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5a-wj-tt2">
-                                                <rect key="frame" x="0.0" y="0.0" width="66" height="216"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3yr-d8-hrD">
-                                                <rect key="frame" x="76" y="0.0" width="338" height="216"/>
-                                            </pickerView>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" id="71s-db-39b">
-                                        <rect key="frame" x="0.0" y="265" width="414" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGb-63-tbN">
-                                                <rect key="frame" x="0.0" y="0.0" width="106.5" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GH0-bR-ks2">
-                                                <rect key="frame" x="114.5" y="0.0" width="301.5" height="31"/>
-                                            </slider>
-                                        </subviews>
-                                        <viewLayoutGuide key="safeArea" id="TDZ-0X-rq0"/>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7L-eG-D9n">
-                                        <rect key="frame" x="0.0" y="305" width="414" height="22"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPQ-B1-0XD">
-                                                <rect key="frame" x="0.0" y="0.0" width="123.5" height="22"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="I6S-ay-nMz">
-                                                <rect key="frame" x="123.5" y="0.0" width="290.5" height="22"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAs-7A-2AX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="58" height="22"/>
-                                                        <state key="normal" title="Star" image="star" catalog="system"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="COR-o9-kJe">
-                                                        <rect key="frame" x="58" y="0.0" width="58" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <state key="normal" title="Star" image="star" catalog="system"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YtF-2R-fXr">
-                                                        <rect key="frame" x="116" y="0.0" width="58.5" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <state key="normal" title="Star" image="star" catalog="system"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="skr-pC-UdE">
-                                                        <rect key="frame" x="174.5" y="0.0" width="58" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <state key="normal" title="Star" image="star" catalog="system"/>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CFu-bv-Z3v">
-                                                        <rect key="frame" x="232.5" y="0.0" width="58" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <state key="normal" title="Star" image="star" catalog="system"/>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgm-d4-vgp">
-                                        <rect key="frame" x="0.0" y="337" width="414" height="422"/>
-                                        <state key="normal" title="Filter"/>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="xqd-V8-gDF" firstAttribute="top" secondItem="M5Z-Pv-8PV" secondAttribute="top" id="4Q6-3i-I1e"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="xqd-V8-gDF" secondAttribute="bottom" id="BlS-01-rhh"/>
-                            <constraint firstItem="xqd-V8-gDF" firstAttribute="leading" secondItem="M5Z-Pv-8PV" secondAttribute="leading" id="XqB-C8-nif"/>
-                            <constraint firstItem="xqd-V8-gDF" firstAttribute="trailing" secondItem="M5Z-Pv-8PV" secondAttribute="trailing" id="bHR-6o-dyG"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="M5Z-Pv-8PV"/>
-                    </view>
-                    <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="filterButton" destination="bgm-d4-vgp" id="jGP-Pg-zey"/>
-                        <outlet property="filterByPicker" destination="3yr-d8-hrD" id="wbh-qU-ZBj"/>
-                        <outlet property="maxDistanceSlider" destination="GH0-bR-ks2" id="9F8-VO-t3D"/>
-                        <outlet property="starButtonStack" destination="I6S-ay-nMz" id="aLM-Ol-8cz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eQ6-Qp-uxW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1497" y="-1474"/>
         </scene>
         <!--Restauarant DetailVC-->
         <scene sceneID="NxU-pd-yvt">
@@ -228,6 +109,7 @@
                         <viewLayoutGuide key="safeArea" id="ch0-Vw-Jwj"/>
                     </view>
                     <navigationItem key="navigationItem" id="TBU-Oz-wtq"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="414" height="400"/>
                     <connections>
                         <outlet property="hours" destination="U2d-0f-sqS" id="wTD-mb-vvg"/>
                         <outlet property="image" destination="vLC-O2-4mm" id="M9P-Nd-H40"/>
@@ -237,19 +119,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LT4-Fo-0vu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1497" y="-811"/>
+            <point key="canvasLocation" x="-1700" y="-1142"/>
         </scene>
         <!--Wing Finder-->
         <scene sceneID="y5C-yX-LeO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="taq-Br-ATB" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="taq-Br-ATB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Wing Finder" image="magnifyingglass.circle" catalog="system" id="IgM-9w-5B3"/>
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wyh-wc-hWM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jb4-Fd-QTp">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="alwaysAnimate" value="YES"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
@@ -263,13 +149,129 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="37s-Jz-yup" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3452.1739130434785" y="-1142.4107142857142"/>
+            <point key="canvasLocation" x="-3407" y="-1142"/>
+        </scene>
+        <!--Side Menu TableVC-->
+        <scene sceneID="2CN-CJ-gq9">
+            <objects>
+                <tableViewController id="YHc-47-uxT" customClass="SideMenuTableVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="unI-x7-HLX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="8" maxY="0.0"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="UIA-WV-gqa">
+                            <rect key="frame" x="0.0" y="188" width="414" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <sections>
+                            <tableViewSection id="zL1-NU-Ynt">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="9yz-vw-wNo" style="IBUITableViewCellStyleDefault" id="GPf-Xu-WJx" customClass="UITableViewVibrantCell" customModule="SideMenu">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GPf-Xu-WJx" id="ECf-Uc-biq">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Find Wing Near Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9yz-vw-wNo">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="5M0-UM-Iap" style="IBUITableViewCellStyleDefault" id="fwM-lA-cTV" customClass="UITableViewVibrantCell" customModule="SideMenu">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fwM-lA-cTV" id="WVb-eb-uNW">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Social" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5M0-UM-Iap">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="jcd-rr-tET" style="IBUITableViewCellStyleDefault" id="OLG-bh-kBd" customClass="UITableViewVibrantCell" customModule="SideMenu">
+                                        <rect key="frame" x="0.0" y="116" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OLG-bh-kBd" id="0Rl-4B-HfI">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jcd-rr-tET">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="YHc-47-uxT" id="OOH-wB-DNJ"/>
+                            <outlet property="delegate" destination="YHc-47-uxT" id="7u4-OR-Flp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="72q-G2-ENa"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dOt-fw-Sui" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-791" y="-1799"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="Exx-on-DsG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ke4-yL-2oX" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="KPS-gp-Qgg"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WII-qf-S48">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="dismissOnPresent" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="dismissOnPush" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="dismissOnRotation" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="dismissWhenBackgrounded" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableSwipeToDismissGesture" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="enableTapToDismissGesture" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="statusBarEndAlpha">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="YHc-47-uxT" kind="relationship" relationship="rootViewController" id="OWM-oT-oY4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Opu-ut-BBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1700" y="-1799"/>
         </scene>
     </scenes>
     <resources>
         <image name="PlaceholderWing" width="286" height="135"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
         <image name="sidebar.left" catalog="system" width="128" height="93"/>
-        <image name="star" catalog="system" width="128" height="116"/>
     </resources>
 </document>

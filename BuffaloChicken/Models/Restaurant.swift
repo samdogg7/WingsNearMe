@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-class Restaurant {
+class Restaurant: NSObject {
     var name: String
     var isOpen: Bool = false
     var hoursString: String

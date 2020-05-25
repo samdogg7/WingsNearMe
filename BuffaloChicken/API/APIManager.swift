@@ -56,7 +56,7 @@ public class APIManager {
     
     func placeDetailRequest(placeId: String, testing: Bool = false, detailResponse: @escaping (PlaceDetail?, Error?) -> Void) {
         if !testing {
-            if let url = URL(string: "https://maps.googleapis.com/maps/api/place/details/json?place_id=\(placeId)&fields=formatted_address,formatted_phone_number,opening_hours/weekday_text,reviews,website&key=\(api_key)") {
+            if let url = URL(string: "https://maps.googleapis.com/maps/api/place/details/json?place_id=\(placeId)&fields=formatted_address,formatted_phone_number,opening_hours/weekday_text,website&key=\(api_key)") {
                 
                 let task = URLSession.shared.dataTask(with: URLRequest(url: url) as URLRequest, completionHandler: { data, response, error in
                     guard error == nil else {

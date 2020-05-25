@@ -26,6 +26,10 @@ class RestaurantTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
     }
+
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
     
     var restaurant : Restaurant? {
         didSet {

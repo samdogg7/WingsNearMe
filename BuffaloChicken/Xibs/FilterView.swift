@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var filterByPicker: UIPickerView!
     @IBOutlet weak var maxDistanceSlider: UISlider!
     @IBOutlet weak var filterButton: UIButton!
@@ -16,28 +16,52 @@ class FilterVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var delegate: FindBuffaloChickenVCDelegate?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private let filter = Filter()
         
-        for button in starButtonStack.arrangedSubviews {
-            if let button = button as? UIButton {
-//                button.addTarget(self, action: #selector(), for: .touchUpInside)
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        maxDistanceSlider.maximumValue = 10000.0
+        maxDistanceSlider.minimumValue = 500.0
+        
+        self.filterByPicker.delegate = self
+        self.filterByPicker.dataSource = self
+        
+        for (index, button) in starButtonStack.arrangedSubviews.enumerated() {
+            if let button = button as? RatingStar {
+                button.rating = index + 1
+                button.addTarget(self, action: #selector(starPressed(_:)), for: .touchUpInside)
             }
         }
-        
+                
         filterButton.addTarget(self, action: #selector(filterPressed), for: .touchUpInside)
     }
     
     @objc func filterPressed() {
-        let filter = Filter()
-        
         filter.filterBy = FilterBy.allCases[filterByPicker.selectedRow(inComponent: 0)]
         filter.maxDistance = Double(maxDistanceSlider.value)
         
-        
         guard let delegate = delegate else { return }
         delegate.filterAnnotations(filter: filter)
-        dismiss(animated: true, completion: nil)
+        delegate.closeFilterView()
+    }
+    
+    @objc func starPressed(_ sender: RatingStar) {
+        if let minRating = sender.rating {
+            filter.minRating = Double(minRating)
+            if let stars = starButtonStack.arrangedSubviews as? [RatingStar] {
+                for (index, star) in stars.enumerated() {
+                    star.setImage(UIImage(systemName: "star"), for: .normal)
+                    if index < minRating {
+                        star.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                    }
+                }
+            }
+        }
+    }
+    
+    func setMaxDistance(d: Double) {
+        maxDistanceSlider.maximumValue = Float(d)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -51,6 +75,10 @@ class FilterVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return FilterBy.allCases[row].rawValue
     }
+}
+
+class RatingStar: UIButton {
+    var rating: Int?
 }
 
 enum FilterBy: String, CaseIterable {
