@@ -38,7 +38,6 @@ struct Place: Codable {
     var reference: String?
     var types: [String]?
     var userRatingsTotal: Int?
-    var permanentlyClosed: Bool?
     var placeDetail: PlaceDetail?
 
     enum CodingKeys: String, CodingKey {
@@ -52,7 +51,6 @@ struct Place: Codable {
         case priceLevel = "price_level"
         case rating, reference, types
         case userRatingsTotal = "user_ratings_total"
-        case permanentlyClosed = "permanently_closed"
     }
 }
 

@@ -57,7 +57,9 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         tableView.register(tableViewNib, forCellReuseIdentifier: cellId)
         tableView.showsVerticalScrollIndicator = false
         
-        locationManager.requestAlwaysAuthorization()
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+           locationManager.requestWhenInUseAuthorization()
+        }
         locationManager.startMonitoringSignificantLocationChanges()
         
         map.layer.masksToBounds = true
@@ -214,8 +216,11 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .denied {
+        switch status {
+        case .denied:
             getPlaces()
+        default:
+            print("Auth same")
         }
     }
     

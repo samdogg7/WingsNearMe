@@ -23,6 +23,7 @@
 		9F71D841247C7535004EF23E /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F71D840247C7535004EF23E /* FilterView.xib */; };
 		9F71D845247C75FD004EF23E /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71D844247C75FD004EF23E /* FilterView.swift */; };
 		9F79152F247DE9F900C0ECE0 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79152E247DE9F900C0ECE0 /* Review.swift */; };
+		9F791531247EDB4600C0ECE0 /* menu-open-and-close.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F791530247EDB4600C0ECE0 /* menu-open-and-close.json */; };
 		9F928758246B578D00E4DCCC /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */; };
 		9F92875A246B7A7200E4DCCC /* DetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F928759246B7A7200E4DCCC /* DetailResponse.swift */; };
 		9FB2C03E246B050600650946 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */; };
@@ -33,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		6BFF46863EFD21005D5672F1 /* Pods-BuffaloChicken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.release.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.release.xcconfig"; sourceTree = "<group>"; };
-		9F08C40F24690F900053CC42 /* BuffaloChicken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuffaloChicken.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F08C40F24690F900053CC42 /* Wings Near Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wings Near Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F08C41224690F900053CC42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F08C41424690F900053CC42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9F08C41624690F900053CC42 /* FindBuffaloChickenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindBuffaloChickenVC.swift; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		9F71D840247C7535004EF23E /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		9F71D844247C75FD004EF23E /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		9F79152E247DE9F900C0ECE0 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		9F791530247EDB4600C0ECE0 /* menu-open-and-close.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "menu-open-and-close.json"; sourceTree = "<group>"; };
 		9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		9F928759246B7A7200E4DCCC /* DetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponse.swift; sourceTree = "<group>"; };
 		9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 		9F08C41024690F900053CC42 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9F08C40F24690F900053CC42 /* BuffaloChicken.app */,
+				9F08C40F24690F900053CC42 /* Wings Near Me.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,6 +173,7 @@
 		9FD2604B246F24D5003E3443 /* LottieAnimations */ = {
 			isa = PBXGroup;
 			children = (
+				9F791530247EDB4600C0ECE0 /* menu-open-and-close.json */,
 				9FD2604C246F24E2003E3443 /* loading.json */,
 			);
 			path = LottieAnimations;
@@ -195,7 +198,7 @@
 			);
 			name = BuffaloChicken;
 			productName = BuffaloChicken;
-			productReference = 9F08C40F24690F900053CC42 /* BuffaloChicken.app */;
+			productReference = 9F08C40F24690F900053CC42 /* Wings Near Me.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -243,6 +246,7 @@
 				9FD0D6DB246F441300FD05A0 /* LoadingView.xib in Resources */,
 				9F08C41C24690F910053CC42 /* Assets.xcassets in Resources */,
 				9F08C41A24690F900053CC42 /* Main.storyboard in Resources */,
+				9F791531247EDB4600C0ECE0 /* menu-open-and-close.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,8 +464,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.samdoggett.BuffaloChicken;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.samdoggett.WingsNearMe;
+				PRODUCT_NAME = "Wings Near Me";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -479,8 +483,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.samdoggett.BuffaloChicken;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.samdoggett.WingsNearMe;
+				PRODUCT_NAME = "Wings Near Me";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
