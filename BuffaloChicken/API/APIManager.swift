@@ -20,7 +20,7 @@ public class APIManager {
             let query = search_term.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
             url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(long)&radius=\(radius)&type=food&keyword=\(query)&key=\(api_key)")
         } else {
-            url = URL(string: "https://samdoggett.com/WingsNearMe/TestResponses/NearbySearch.json")
+            url = URL(string: "https://samdoggett.com/WingsNearMe/NearbySearch.json")
         }
         
         URLSession.shared.dataTask(with: URLRequest(url: url!), completionHandler: { data, response, error in
