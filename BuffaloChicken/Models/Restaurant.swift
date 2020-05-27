@@ -16,6 +16,7 @@ class Restaurant: NSObject {
     var formattedAddress: String
     var formattedPhoneNumber: String
     var rating: Double
+    var placeID: String
     
     init(place: Place) {
         self.name = place.name ?? "Restaurant Name"
@@ -29,5 +30,6 @@ class Restaurant: NSObject {
         self.formattedAddress = place.placeDetail?.formattedAddress ?? "No formatted address given"
         self.rating = place.rating ?? 0.0
         self.formattedPhoneNumber = place.placeDetail?.formattedPhoneNumber ?? "No phone number given"
+        self.placeID = place.placeID ?? "PlaceID"
     }
 }

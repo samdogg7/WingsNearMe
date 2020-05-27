@@ -13,6 +13,7 @@ class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var maxDistanceSlider: UISlider!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var starButtonStack: UIStackView!
+    @IBOutlet weak var backgroundView: UIView!
     
     var delegate: FindBuffaloChickenVCDelegate?
     
@@ -26,6 +27,11 @@ class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         
         self.filterByPicker.delegate = self
         self.filterByPicker.dataSource = self
+        
+        backgroundView.layer.masksToBounds = true
+        backgroundView.layer.cornerRadius = 25
+        backgroundView.layer.borderColor = UIColor.systemGray3.cgColor
+        backgroundView.layer.borderWidth = 1.0
         
         for (index, button) in starButtonStack.arrangedSubviews.enumerated() {
             if let button = button as? RatingStar {
@@ -43,7 +49,7 @@ class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         
         guard let delegate = delegate else { return }
         delegate.filterAnnotations(filter: filter)
-        delegate.closeFilterView()
+        delegate.switchFilterView()
     }
     
     @objc func starPressed(_ sender: RatingStar) {

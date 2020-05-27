@@ -82,4 +82,23 @@ public class APIManager {
             }
         }
     }
+    
+    func getReviewsRequest(placeID: String, response: @escaping ([Review]?, Error?) -> Void) {
+        if let url = URL(string: "https://samdoggett.com/WingsNearMe/get_reviews.php") {
+            var request = URLRequest(url: url)
+            let postString = ("PlaceID="+placeID).data(using: .utf8)
+            request.httpBody = postString
+
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+                guard error == nil else {
+                    response(nil, error)
+                    return
+                }
+                if let data = data, let response = try? JSONDecoder().decode(DetailResponse.self, from: data), let result = response.result {
+                    response(result, nil)
+                }
+            })
+            task.resume()
+        }
+    }
 }

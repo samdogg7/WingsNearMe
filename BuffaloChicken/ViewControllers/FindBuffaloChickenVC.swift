@@ -13,7 +13,7 @@ import CoreLocation
 protocol FindBuffaloChickenVCDelegate {
     func filterAnnotations(filter: Filter)
     func openRestaurantDetailVC(restaurant: Restaurant)
-    func closeFilterView()
+    func switchFilterView()
 }
 
 class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, FindBuffaloChickenVCDelegate {
@@ -36,7 +36,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     private let cellSpacingHeight: CGFloat = 5
     private let cellId = "RestuarantCell"
     
-    private let testing_enabled = true
+    private let testing_enabled = false
     
     // MARK: - View handler Methods
     
@@ -50,6 +50,10 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         filterView.delegate = self
         
         setupSubviews()
+        
+        #if targetEnvironment(simulator)
+            getPlaces()
+        #endif
     }
     
     func setupSubviews() {
@@ -64,7 +68,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         map.layer.cornerRadius = 10
         
         filterButton.target = self
-        filterButton.action = #selector(openFilterView(_:))
+        filterButton.action = #selector(switchFilterView)
         
         filterView.isHidden = true
         filterView.frame = self.view.frame
@@ -147,7 +151,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
 
         switch filter.filterBy {
         case .rating:
-            sorted.sort(by: { ($0.restaurant.rating) < ($1.restaurant.rating) })
+            sorted.sort(by: { ($0.restaurant.rating) > ($1.restaurant.rating) })
         //Nearest by default
         default:
             sorted.sort(by: { ($0.distance) < ($1.distance) })
@@ -198,12 +202,13 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     
     //MARK: - Filter View helper methods
     
-    @objc func openFilterView(_ sender: UIButton) {
-        filterView.isHidden = false
-    }
-    
-    func closeFilterView() {
-        filterView.isHidden = true
+    @objc func switchFilterView() {
+        filterView.isHidden = !filterView.isHidden
+        if !filterView.isHidden {
+            filterButton.title = "Cancel"
+        } else {
+            filterButton.title = "Filter"
+        }
     }
     
     // MARK: - LocationManager Delegate Methods
@@ -322,6 +327,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         let annotation = sortedAnnotations[indexPath.section]
         map.selectAnnotation(annotation, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        print(annotation.restaurant.placeID)
     }
 }
 
