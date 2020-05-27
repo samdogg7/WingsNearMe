@@ -36,7 +36,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     private let cellSpacingHeight: CGFloat = 5
     private let cellId = "RestuarantCell"
     
-    private let testing_enabled = true
+    private let testing_enabled = false
     
     // MARK: - View handler Methods
     
@@ -50,10 +50,6 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         filterView.delegate = self
         
         setupSubviews()
-        
-        #if targetEnvironment(simulator)
-            getPlaces()
-        #endif
     }
     
     func setupSubviews() {

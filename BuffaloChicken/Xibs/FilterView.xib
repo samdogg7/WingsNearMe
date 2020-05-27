@@ -26,37 +26,65 @@
                                         <rect key="frame" x="25" y="25" width="422" height="367"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Filter Chicken Near Me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlJ-aO-urf">
-                                                <rect key="frame" x="0.0" y="0.0" width="422" height="29"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="422" height="93"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="47m-No-RBi" userLabel="Filter By">
-                                                <rect key="frame" x="0.0" y="39" width="422" height="216"/>
+                                                <rect key="frame" x="0.0" y="103" width="422" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOf-re-g8c">
-                                                        <rect key="frame" x="0.0" y="0.0" width="66" height="216"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZs-Dn-tCs">
-                                                        <rect key="frame" x="76" y="0.0" width="346" height="216"/>
+                                                        <rect key="frame" x="76" y="0.0" width="346" height="100"/>
                                                     </pickerView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="Ec2-I2-D4s"/>
+                                                </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" id="Fzu-Ml-fns" userLabel="Max Distance">
-                                                <rect key="frame" x="0.0" y="265" width="422" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2k-AE-6Wk">
+                                                <rect key="frame" x="0.0" y="213" width="422" height="31"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RA9-Wr-a5o">
-                                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="30"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLo-fU-HXX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="31"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6HL-EX-AwR">
+                                                        <rect key="frame" x="373" y="0.0" width="51" height="31"/>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" id="Fzu-Ml-fns" userLabel="Max Distance">
+                                                <rect key="frame" x="0.0" y="254" width="422" height="41"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Jbc-Gx-tWC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="70.5" height="41"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RA9-Wr-a5o">
+                                                                <rect key="frame" x="0.0" y="0.0" width="70.5" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMB-oe-rb2">
+                                                                <rect key="frame" x="0.0" y="20.5" width="70.5" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10000" minValue="0.0" maxValue="10000" translatesAutoresizingMaskIntoConstraints="NO" id="Hlj-AQ-sbE">
-                                                        <rect key="frame" x="114.5" y="0.0" width="309.5" height="31"/>
+                                                        <rect key="frame" x="78.5" y="0.0" width="345.5" height="42"/>
                                                     </slider>
                                                 </subviews>
                                                 <viewLayoutGuide key="safeArea" id="vPJ-kk-y2Q"/>
@@ -137,8 +165,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="backgroundView" destination="eyX-Pw-ddJ" id="WiU-a5-1ch"/>
+                <outlet property="distanceLabel" destination="rMB-oe-rb2" id="yXx-Ni-tl9"/>
                 <outlet property="filterButton" destination="NdC-yc-hB1" id="wvG-X8-VZ8"/>
                 <outlet property="filterByPicker" destination="CZs-Dn-tCs" id="FPa-ln-dDS"/>
+                <outlet property="isOpenSwitch" destination="6HL-EX-AwR" id="GWJ-rf-i90"/>
                 <outlet property="maxDistanceSlider" destination="Hlj-AQ-sbE" id="0qB-Or-gd5"/>
                 <outlet property="starButtonStack" destination="UHQ-Rc-amy" id="kzT-JJ-NfU"/>
             </connections>

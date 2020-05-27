@@ -14,6 +14,8 @@ class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var starButtonStack: UIStackView!
     @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var isOpenSwitch: UISwitch!
+    @IBOutlet weak var distanceLabel: UILabel!
     
     var delegate: FindBuffaloChickenVCDelegate?
     
@@ -24,6 +26,7 @@ class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         
         maxDistanceSlider.maximumValue = 10000.0
         maxDistanceSlider.minimumValue = 500.0
+        maxDistanceSlider.value = 8046.72 //5 miles in meters
         
         self.filterByPicker.delegate = self
         self.filterByPicker.dataSource = self
@@ -41,15 +44,24 @@ class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         }
                 
         filterButton.addTarget(self, action: #selector(filterPressed), for: .touchUpInside)
+        maxDistanceSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
+        
+        sliderValueChanged()
     }
     
     @objc func filterPressed() {
         filter.filterBy = FilterBy.allCases[filterByPicker.selectedRow(inComponent: 0)]
         filter.maxDistance = Double(maxDistanceSlider.value)
+        filter.isOpen = isOpenSwitch.isOn
         
         guard let delegate = delegate else { return }
         delegate.filterAnnotations(filter: filter)
         delegate.switchFilterView()
+    }
+    
+    @objc func sliderValueChanged() {
+        let miles = String(format: "%.1f", (maxDistanceSlider.value * 0.00062137))
+        distanceLabel.text = miles + " Miles"
     }
     
     @objc func starPressed(_ sender: RatingStar) {
