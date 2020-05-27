@@ -8,97 +8,93 @@
 
 import Foundation
 
+public typealias ResultCallback<Value> = (Result<Value, Error>) -> Void
+
 let api_key = "AIzaSyDnfkzsqLDaN8gBW5uHqq4hOS6JJJElgUo"
-
-//Google maps API key for Postman: AIzaSyDnfkzsqLDaN8gBW5uHqq4hOS6JJJElgUo
-//The following example is a search request for places of type 'restaurant' within a 1500m radius of a point in Hamilton, MA, containing the word 'buffalo chicken':
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.627392,-70.860649&radius=10000&type=food&keyword=wings&key=AIzaSyDnfkzsqLDaN8gBW5uHqq4hOS6JJJElgUo
-//Text search https://maps.googleapis.com/maps/api/place/textsearch/json?query=123+main+street&location=42.3675294,-71.186966&radius=10000&key=YOUR_API_KEY
-//YOUR_API_KEY
-
-//rankby=distance : if let url = URL(string: "https://maps.googleapis.com/maps/api/place/textsearch/json?query=\(query)&location=\(lat),\(long)&rankby=distance&type=food,restaurant&key=\(api_key)") {
-
 
 public class APIManager {
     
-    func placesRequest(search_term: String, lat: Double, long: Double, radius: Double = 10000, testing: Bool = false, placesResponse: @escaping ([Place]?, Error?) -> Void) {
+    func placesRequest(search_term: String, lat: Double, long: Double, radius: Double = 10000, testing: Bool = false, completion: @escaping ResultCallback<[Place]>) {
+        var url: URL?
         if !testing {
             let query = search_term.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-            if let url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(long)&radius=\(radius)&type=food&keyword=\(query)&key=\(api_key)") {
-                let task = URLSession.shared.dataTask(with: URLRequest(url: url) as URLRequest, completionHandler: { data, response, error in
-                    guard error == nil else {
-                        placesResponse(nil, error)
-                        return
-                    }
-                    if let data = data, let response = try? JSONDecoder().decode(PlacesResponse.self, from: data), let results = response.results {
-                        //Now retrieve the place details from each place in results
-                        DispatchQueue.main.async {
-                            placesResponse(results, nil)
-                        }
-                    }
-                })
-                task.resume()
-                
-            }
+            url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(long)&radius=\(radius)&type=food&keyword=\(query)&key=\(api_key)")
         } else {
-            if let path = Bundle.main.path(forResource: "NearbySearch", ofType: "json", inDirectory: "TestResponses") {
+            url = URL(string: "https://samdoggett.com/WingsNearMe/TestResponses/NearbySearch.json")
+        }
+        
+        URLSession.shared.dataTask(with: URLRequest(url: url!), completionHandler: { data, response, error in
+            if let data = data {
                 do {
-                    let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                    if let response = try? JSONDecoder().decode(PlacesResponse.self, from: data), let results = response.results {
-                        placesResponse(results, nil)
+                    let response = try JSONDecoder().decode(PlacesResponse.self, from: data)
+                    
+                    if let results = response.results {
+                        completion(.success(results))
+                    } else if let message = response.status {
+                        completion(.failure(ResponseError.server(message: message)))
+                    } else {
+                        completion(.failure(ResponseError.decoding))
                     }
                 } catch {
-                    placesResponse(nil, error)
+                    completion(.failure(error))
                 }
+            } else if let error = error {
+                completion(.failure(error))
             }
-        }
+        }).resume()
     }
     
-    func placeDetailRequest(placeId: String, testing: Bool = false, detailResponse: @escaping (PlaceDetail?, Error?) -> Void) {
+    func placeDetailRequest(placeId: String, testing: Bool = false, completion: @escaping ResultCallback<PlaceDetail>) {
+        var url: URL?
         if !testing {
-            if let url = URL(string: "https://maps.googleapis.com/maps/api/place/details/json?place_id=\(placeId)&fields=formatted_address,formatted_phone_number,opening_hours/weekday_text,website&key=\(api_key)") {
-                
-                let task = URLSession.shared.dataTask(with: URLRequest(url: url) as URLRequest, completionHandler: { data, response, error in
-                    guard error == nil else {
-                        detailResponse(nil, error)
-                        return
-                    }
-                    if let data = data, let response = try? JSONDecoder().decode(DetailResponse.self, from: data), let result = response.result {
-                        detailResponse(result, nil)
-                    }
-                })
-                task.resume()
-            }
+            url = URL(string: "https://maps.googleapis.com/maps/api/place/details/json?place_id=\(placeId)&fields=formatted_address,formatted_phone_number,opening_hours/weekday_text,website&key=\(api_key)")
         } else {
-            if let path = Bundle.main.path(forResource: placeId, ofType: "json", inDirectory: "TestResponses") {
+            url = URL(string: "https://samdoggett.com/WingsNearMe/TestResponses/\(placeId).json")
+        }
+        
+        URLSession.shared.dataTask(with: URLRequest(url: url!), completionHandler: { data, response, error in
+            if let data = data {
                 do {
-                    let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                    if let response = try? JSONDecoder().decode(DetailResponse.self, from: data), let result = response.result {
-                        detailResponse(result, nil)
+                    let response = try JSONDecoder().decode(DetailResponse.self, from: data)
+                    
+                    if let result = response.result {
+                        completion(.success(result))
+                    } else if let message = response.status {
+                        completion(.failure(ResponseError.server(message: message)))
+                    } else {
+                        completion(.failure(ResponseError.decoding))
                     }
                 } catch {
-                    detailResponse(nil, error)
+                    completion(.failure(error))
                 }
+            } else if let error = error {
+                completion(.failure(error))
             }
-        }
+        }).resume()
     }
     
-    func getReviewsRequest(placeID: String, response: @escaping ([Review]?, Error?) -> Void) {
-        if let url = URL(string: "https://samdoggett.com/WingsNearMe/get_reviews.php") {
-            var request = URLRequest(url: url)
-            let postString = ("PlaceID="+placeID).data(using: .utf8)
-            request.httpBody = postString
+//    func getReviewsRequest(placeID: String, response: @escaping ([Review]?, Error?) -> Void) {
+//        if let url = URL(string: "https://samdoggett.com/WingsNearMe/get_reviews.php") {
+//            var request = URLRequest(url: url)
+//            let postString = ("PlaceID="+placeID).data(using: .utf8)
+//            request.httpBody = postString
+//
+//            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+//                guard error == nil else {
+//                    response(nil, error)
+//                    return
+//                }
+//                if let data = data, let response = try? JSONDecoder().decode(DetailResponse.self, from: data), let result = response.result {
+//                    response(result, nil)
+//                }
+//            })
+//            task.resume()
+//        }
+//    }
+}
 
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-                guard error == nil else {
-                    response(nil, error)
-                    return
-                }
-                if let data = data, let response = try? JSONDecoder().decode(DetailResponse.self, from: data), let result = response.result {
-                    response(result, nil)
-                }
-            })
-            task.resume()
-        }
-    }
+public enum ResponseError: Error {
+    case encoding
+    case decoding
+    case server(message: String)
 }

@@ -29,7 +29,6 @@
 		9FD0D6DB246F441300FD05A0 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD0D6DA246F441300FD05A0 /* LoadingView.xib */; };
 		9FD2604D246F24E3003E3443 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2604C246F24E2003E3443 /* loading.json */; };
 		9FD2604F246F2555003E3443 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2604E246F2555003E3443 /* LoadingView.swift */; };
-		9FE0B4AB24703DC6000A122D /* TestResponses in Resources */ = {isa = PBXBuildFile; fileRef = 9FE0B4AA24703DC6000A122D /* TestResponses */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +56,6 @@
 		9FD0D6DA246F441300FD05A0 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		9FD2604C246F24E2003E3443 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		9FD2604E246F2555003E3443 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		9FE0B4AA24703DC6000A122D /* TestResponses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestResponses; sourceTree = "<group>"; };
 		F1908D0AE2E48D5E98DC1F53 /* Pods-BuffaloChicken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.debug.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.debug.xcconfig"; sourceTree = "<group>"; };
 		F837E01982443BD6CAB6D2BC /* Pods_BuffaloChicken.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuffaloChicken.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -112,7 +110,6 @@
 		9F08C41124690F900053CC42 /* BuffaloChicken */ = {
 			isa = PBXGroup;
 			children = (
-				9FE0B4AA24703DC6000A122D /* TestResponses */,
 				9FD2604B246F24D5003E3443 /* LottieAnimations */,
 				9F92875D246B7B1C00E4DCCC /* API */,
 				9F92875C246B7B0800E4DCCC /* ViewControllers */,
@@ -245,7 +242,6 @@
 				9FD2604D246F24E3003E3443 /* loading.json in Resources */,
 				9FD0D6DB246F441300FD05A0 /* LoadingView.xib in Resources */,
 				9F08C41C24690F910053CC42 /* Assets.xcassets in Resources */,
-				9FE0B4AB24703DC6000A122D /* TestResponses in Resources */,
 				9F08C41A24690F900053CC42 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

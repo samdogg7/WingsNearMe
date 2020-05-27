@@ -36,7 +36,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     private let cellSpacingHeight: CGFloat = 5
     private let cellId = "RestuarantCell"
     
-    private let testing_enabled = false
+    private let testing_enabled = true
     
     // MARK: - View handler Methods
     
