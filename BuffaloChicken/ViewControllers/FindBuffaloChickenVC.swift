@@ -83,16 +83,14 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     @objc func getPlaces() {
         sortedAnnotations.removeAll()
         unsortedAnnotations.removeAll()
-        apiManager.placesRequest(search_term: "wings", lat: lat, long: long, radius: radius, testing: testing_enabled, placesResponse: { response, error in
-            if error != nil {
-                print(error?.localizedDescription ?? "Error")
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if let results = response {
+        apiManager.placesRequest(search_term: "wings", lat: lat, long: long, radius: radius, testing: testing_enabled, completion: { response in
+            switch response {
+            case .success(let results):
+                DispatchQueue.main.async {
                     self.getDetails(places: results)
                 }
+            case .failure(let error):
+                print(error)
             }
         })
     }
@@ -104,22 +102,19 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         //For each place, get the place's detail
         for index in 0..<places.count {
             if let placeID = places[index].placeID {
-                apiManager.placeDetailRequest(placeId: placeID, testing: testing_enabled, detailResponse: { response, error in
+                apiManager.placeDetailRequest(placeId: placeID, testing: testing_enabled, completion: { response in
                     detailRequestComplete[index] = true
-                    
-                    if error != nil {
-                        print(error?.localizedDescription ?? "Error")
-                        return
-                    }
-                    
-                    DispatchQueue.main.async {
-                        if let detail = response {
+                    switch response {
+                    case .success(let detail):
+                        DispatchQueue.main.async {
                             places[index].placeDetail = detail
                             //If all detail requests are done loading, add annotations
                             if !detailRequestComplete.contains(false) {
                                 self.addAnnotations(places: places)
                             }
                         }
+                    case .failure(let error):
+                        print(error)
                     }
                 })
             }
