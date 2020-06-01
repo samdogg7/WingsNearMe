@@ -10,7 +10,7 @@
         <!--Chicken Near Me-->
         <scene sceneID="2dC-zc-3Ij">
             <objects>
-                <viewController id="cCg-05-Pw8" customClass="FindBuffaloChickenVC" customModule="BuffaloChicken" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cCg-05-Pw8" customClass="FindBuffaloChickenVC" customModule="Wings_Near_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Rz-lX-VUP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,11 +41,6 @@
                         <viewLayoutGuide key="safeArea" id="QIf-Z5-9xd"/>
                     </view>
                     <navigationItem key="navigationItem" title="Chicken Near Me" id="XGQ-jC-eDm">
-                        <barButtonItem key="leftBarButtonItem" title="Sidebar" image="sidebar.left" catalog="system" id="dgZ-4p-qpU">
-                            <connections>
-                                <segue destination="Ke4-yL-2oX" kind="show" id="3Rv-Km-bFs"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="vI5-1a-8Ni"/>
                     </navigationItem>
                     <connections>
@@ -57,12 +52,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Yn-13-U8Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2542.0289855072465" y="-1142.4107142857142"/>
+            <point key="canvasLocation" x="-2668" y="-1071"/>
         </scene>
         <!--Restauarant DetailVC-->
         <scene sceneID="NxU-pd-yvt">
             <objects>
-                <viewController storyboardIdentifier="RestaurantDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bSs-wC-H6e" customClass="RestauarantDetailVC" customModule="BuffaloChicken" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RestaurantDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bSs-wC-H6e" customClass="RestauarantDetailVC" customModule="Wings_Near_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" ambiguous="YES" id="amg-wi-A7c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -119,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LT4-Fo-0vu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1700" y="-1142"/>
+            <point key="canvasLocation" x="-1828" y="-1071"/>
         </scene>
         <!--Wing Finder-->
         <scene sceneID="y5C-yX-LeO">
@@ -149,7 +144,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="37s-Jz-yup" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3407" y="-1142"/>
+            <point key="canvasLocation" x="-3468" y="-1071"/>
         </scene>
         <!--Side Menu TableVC-->
         <scene sceneID="2CN-CJ-gq9">
@@ -235,12 +230,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOt-fw-Sui" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-791" y="-1799"/>
+            <point key="canvasLocation" x="-1829" y="-1757"/>
         </scene>
         <!--Side Menu Navigation Controller-->
         <scene sceneID="Exx-on-DsG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ke4-yL-2oX" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SideMenu" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ke4-yL-2oX" customClass="SideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KPS-gp-Qgg"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WII-qf-S48">
@@ -266,12 +261,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opu-ut-BBF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1700" y="-1799"/>
+            <point key="canvasLocation" x="-2668" y="-1757"/>
         </scene>
     </scenes>
     <resources>
         <image name="PlaceholderWing" width="286" height="135"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
-        <image name="sidebar.left" catalog="system" width="128" height="93"/>
     </resources>
 </document>

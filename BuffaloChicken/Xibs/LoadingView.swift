@@ -16,7 +16,7 @@ class LoadingView: UIView {
     
     var lottieView: AnimationView {
         let animation = AnimationView()
-        animation.animation = Animation.named("loading")
+        animation.animation = Animation.named("loading-tenders")
         animation.loopMode = .loop
         animation.play()
         return animation

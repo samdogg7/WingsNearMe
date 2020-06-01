@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Lottie
 
 protocol FindBuffaloChickenVCDelegate {
     func filterAnnotations(filter: Filter)
@@ -24,15 +25,17 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     private let locationManager = CLLocationManager()
     private let loadingView = LoadingView().loadNib() as! LoadingView
     private let filterView = FilterView().loadNib() as! FilterView
-
+    
     private var sortedAnnotations: [RestaurantAnnotation] = []
     private var unsortedAnnotations: [RestaurantAnnotation] = []
     private var filter = Filter()
     private let apiManager = APIManager()
+    private var isSideMenuActive = false
     
-    private var lat:Double = 37.3230
-    private var long:Double = -122.0322
-    private let radius:Double = 10000
+    private var lat:Double = .defaultLatitude
+    private var long:Double = .defaultLongitude
+    private let radius:Double = .defaultRadius
+    
     private let cellSpacingHeight: CGFloat = 5
     private let cellId = "RestuarantCell"
     
@@ -58,9 +61,14 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         tableView.showsVerticalScrollIndicator = false
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
-           locationManager.requestWhenInUseAuthorization()
+            locationManager.requestWhenInUseAuthorization()
         }
         locationManager.startMonitoringSignificantLocationChanges()
+        
+//        let sideMenuSwitch = LottieSwitch(animation: Animation.named("sidemenu-icon")!,
+//                                          colorKeypaths: AnimationKeypath(keys: ["Upper.Upper.Fill 1.Color", "Center.Center.Fill 1.Color", "Buttom.Buttom.Fill 1.Color"]), frame: CGRect(x: 0, y: 0, width: 22, height: 22))
+
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: #selector(sideMenuPressed))
         
         map.layer.masksToBounds = true
         map.layer.cornerRadius = 10
@@ -204,6 +212,18 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         }
     }
     
+    //MARK: - Side Menu Button helper method
+    @objc func sideMenuPressed() {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "SideMenu") else { return }
+                
+        isSideMenuActive = !isSideMenuActive
+        if isSideMenuActive {
+            self.navigationController?.present(vc, animated: true)
+        } else {
+            self.navigationController?.dismiss(animated: true)
+        }
+    }
+    
     // MARK: - LocationManager Delegate Methods
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -241,7 +261,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: 0, y: 0)
-                        
+            
             let hoursLabel = UILabel()
             hoursLabel.text = annotation.restaurant.hoursString
             
@@ -261,7 +281,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
             stack.spacing = 5
             
             view.detailCalloutAccessoryView = stack
-
+            
             view.glyphImage = UIImage(named: "WingGlyph")
         }
         return view
@@ -304,7 +324,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
     }
@@ -331,4 +351,3 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
 class AnnotationButton: UIButton {
     var annotation: RestaurantAnnotation?
 }
-
