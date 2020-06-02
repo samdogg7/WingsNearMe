@@ -33,9 +33,7 @@
 		9F9ABFDE247F761400787376 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9ABFDD247F761400787376 /* Extensions.swift */; };
 		9F9ABFE3247F827800787376 /* LottieSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9ABFE2247F827800787376 /* LottieSwitch.swift */; };
 		9FB2C03E246B050600650946 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */; };
-		9FD0D6DB246F441300FD05A0 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD0D6DA246F441300FD05A0 /* LoadingView.xib */; };
 		9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2604C246F24E2003E3443 /* loading-tenders.json */; };
-		9FD2604F246F2555003E3443 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2604E246F2555003E3443 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,9 +65,7 @@
 		9F9ABFDD247F761400787376 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9F9ABFE2247F827800787376 /* LottieSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieSwitch.swift; sourceTree = "<group>"; };
 		9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
-		9FD0D6DA246F441300FD05A0 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		9FD2604C246F24E2003E3443 /* loading-tenders.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-tenders.json"; sourceTree = "<group>"; };
-		9FD2604E246F2555003E3443 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F1908D0AE2E48D5E98DC1F53 /* Pods-BuffaloChicken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.debug.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.debug.xcconfig"; sourceTree = "<group>"; };
 		F837E01982443BD6CAB6D2BC /* Pods_BuffaloChicken.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuffaloChicken.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -129,6 +125,7 @@
 				9F92875C246B7B0800E4DCCC /* ViewControllers */,
 				9F92875B246B7AF900E4DCCC /* Models */,
 				9F92875E246B7B3000E4DCCC /* Xibs */,
+				9F86DB612485A44B00984B42 /* Controls */,
 				9F9ABFDF247F76E200787376 /* Helpers */,
 				9F08C41224690F900053CC42 /* AppDelegate.swift */,
 				9F08C41424690F900053CC42 /* SceneDelegate.swift */,
@@ -138,6 +135,14 @@
 				9F08C42024690F910053CC42 /* Info.plist */,
 			);
 			path = BuffaloChicken;
+			sourceTree = "<group>";
+		};
+		9F86DB612485A44B00984B42 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				9F9ABFE2247F827800787376 /* LottieSwitch.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		9F92875B246B7AF900E4DCCC /* Models */ = {
@@ -177,8 +182,6 @@
 				9F71D844247C75FD004EF23E /* FilterView.swift */,
 				9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */,
 				9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */,
-				9FD2604E246F2555003E3443 /* LoadingView.swift */,
-				9FD0D6DA246F441300FD05A0 /* LoadingView.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -186,7 +189,6 @@
 		9F9ABFDF247F76E200787376 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				9F9ABFE2247F827800787376 /* LottieSwitch.swift */,
 				9F9ABFDD247F761400787376 /* Extensions.swift */,
 			);
 			path = Helpers;
@@ -271,7 +273,6 @@
 				9F08C41F24690F910053CC42 /* LaunchScreen.storyboard in Resources */,
 				9F9ABFDC247F6CE500787376 /* chicken-icon.json in Resources */,
 				9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */,
-				9FD0D6DB246F441300FD05A0 /* LoadingView.xib in Resources */,
 				9F9ABFDB247F6CE500787376 /* spice-icon.json in Resources */,
 				9F08C41C24690F910053CC42 /* Assets.xcassets in Resources */,
 				9F9ABFD9247F6CE500787376 /* fries-icon.json in Resources */,
@@ -344,7 +345,6 @@
 				9F3F41352479A99200F00A56 /* RestaurantDetailVC.swift in Sources */,
 				9F08C42B246914630053CC42 /* PlacesResponse.swift in Sources */,
 				9F71D845247C75FD004EF23E /* FilterView.swift in Sources */,
-				9FD2604F246F2555003E3443 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

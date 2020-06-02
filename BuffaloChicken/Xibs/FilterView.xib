@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FilterView" customModule="BuffaloChicken" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FilterView" customModule="Wings_Near_Me" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="635" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -20,63 +20,52 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyX-Pw-ddJ">
-                                <rect key="frame" x="25" y="217.5" width="585" height="417"/>
+                                <rect key="frame" x="25" y="253" width="585" height="306"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="oC7-xv-He6">
-                                        <rect key="frame" x="25" y="25" width="422" height="367"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oC7-xv-He6">
+                                        <rect key="frame" x="25" y="25" width="535" height="256"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Filter Chicken Near Me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BlJ-aO-urf">
-                                                <rect key="frame" x="0.0" y="0.0" width="422" height="93"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="535" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="47m-No-RBi" userLabel="Filter By">
-                                                <rect key="frame" x="0.0" y="103" width="422" height="100"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOf-re-g8c">
-                                                        <rect key="frame" x="0.0" y="0.0" width="66" height="100"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZs-Dn-tCs">
-                                                        <rect key="frame" x="76" y="0.0" width="346" height="100"/>
-                                                    </pickerView>
-                                                </subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DHc-Yo-IgP">
+                                                <rect key="frame" x="0.0" y="44" width="535" height="26"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="100" id="Ec2-I2-D4s"/>
+                                                    <constraint firstAttribute="height" constant="25" id="Hep-Tb-ZjO"/>
                                                 </constraints>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2k-AE-6Wk">
-                                                <rect key="frame" x="0.0" y="213" width="422" height="31"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLo-fU-HXX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="31"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6HL-EX-AwR">
-                                                        <rect key="frame" x="373" y="0.0" width="51" height="31"/>
-                                                    </switch>
-                                                </subviews>
-                                            </stackView>
+                                                <segments>
+                                                    <segment title="Nearest"/>
+                                                    <segment title="Rating"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vvd-GJ-yIr">
+                                                <rect key="frame" x="0.0" y="89" width="535" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="7va-EV-lfN"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="Open Now"/>
+                                                    <segment title="All"/>
+                                                </segments>
+                                            </segmentedControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" id="Fzu-Ml-fns" userLabel="Max Distance">
-                                                <rect key="frame" x="0.0" y="254" width="422" height="41"/>
+                                                <rect key="frame" x="0.0" y="134" width="535" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Jbc-Gx-tWC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="70.5" height="41"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="98.5" height="30"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RA9-Wr-a5o">
-                                                                <rect key="frame" x="0.0" y="0.0" width="70.5" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Max distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RA9-Wr-a5o">
+                                                                <rect key="frame" x="0.0" y="0.0" width="98.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMB-oe-rb2">
-                                                                <rect key="frame" x="0.0" y="20.5" width="70.5" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="20.5" width="98.5" height="9.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -84,13 +73,13 @@
                                                         </subviews>
                                                     </stackView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10000" minValue="0.0" maxValue="10000" translatesAutoresizingMaskIntoConstraints="NO" id="Hlj-AQ-sbE">
-                                                        <rect key="frame" x="78.5" y="0.0" width="345.5" height="42"/>
+                                                        <rect key="frame" x="106.5" y="0.0" width="430.5" height="31"/>
                                                     </slider>
                                                 </subviews>
                                                 <viewLayoutGuide key="safeArea" id="vPJ-kk-y2Q"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nab-0v-llc" userLabel="Min Rating">
-                                                <rect key="frame" x="0.0" y="305" width="422" height="22"/>
+                                                <rect key="frame" x="0.0" y="184" width="535" height="22"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIW-Dk-MhH">
                                                         <rect key="frame" x="0.0" y="0.0" width="123.5" height="22"/>
@@ -99,29 +88,29 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="UHQ-Rc-amy">
-                                                        <rect key="frame" x="123.5" y="0.0" width="298.5" height="22"/>
+                                                        <rect key="frame" x="123.5" y="0.0" width="411.5" height="22"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rl-0I-fL5" customClass="RatingStar" customModule="BuffaloChicken" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="59.5" height="22"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rl-0I-fL5" customClass="RatingStar" customModule="Wings_Near_Me" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="22"/>
                                                                 <state key="normal" image="star" catalog="system"/>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YP1-om-Z3C" customClass="RatingStar" customModule="BuffaloChicken" customModuleProvider="target">
-                                                                <rect key="frame" x="59.5" y="0.0" width="60" height="22"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YP1-om-Z3C" customClass="RatingStar" customModule="Wings_Near_Me" customModuleProvider="target">
+                                                                <rect key="frame" x="82.5" y="0.0" width="82" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <state key="normal" image="star" catalog="system"/>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hJR-8b-yNR" customClass="RatingStar" customModule="BuffaloChicken" customModuleProvider="target">
-                                                                <rect key="frame" x="119.5" y="0.0" width="59.5" height="22"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hJR-8b-yNR" customClass="RatingStar" customModule="Wings_Near_Me" customModuleProvider="target">
+                                                                <rect key="frame" x="164.5" y="0.0" width="82.5" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <state key="normal" image="star" catalog="system"/>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="s02-VE-GtT" customClass="RatingStar" customModule="BuffaloChicken" customModuleProvider="target">
-                                                                <rect key="frame" x="179" y="0.0" width="60" height="22"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="s02-VE-GtT" customClass="RatingStar" customModule="Wings_Near_Me" customModuleProvider="target">
+                                                                <rect key="frame" x="247" y="0.0" width="82" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <state key="normal" image="star" catalog="system"/>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yRO-UQ-y8f" customClass="RatingStar" customModule="BuffaloChicken" customModuleProvider="target">
-                                                                <rect key="frame" x="239" y="0.0" width="59.5" height="22"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yRO-UQ-y8f" customClass="RatingStar" customModule="Wings_Near_Me" customModuleProvider="target">
+                                                                <rect key="frame" x="329" y="0.0" width="82.5" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <state key="normal" image="star" catalog="system"/>
                                                             </button>
@@ -130,7 +119,8 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdC-yc-hB1">
-                                                <rect key="frame" x="0.0" y="337" width="422" height="30"/>
+                                                <rect key="frame" x="0.0" y="226" width="535" height="30"/>
+                                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Filter"/>
                                             </button>
                                         </subviews>
@@ -146,9 +136,9 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="eyX-Pw-ddJ" firstAttribute="centerY" secondItem="Axc-Xp-frg" secondAttribute="centerY" id="Do0-Pn-53r"/>
                             <constraint firstAttribute="trailing" secondItem="eyX-Pw-ddJ" secondAttribute="trailing" constant="25" id="NnD-lo-T0l"/>
                             <constraint firstItem="eyX-Pw-ddJ" firstAttribute="leading" secondItem="Axc-Xp-frg" secondAttribute="leading" constant="25" id="cPp-Ro-LNO"/>
+                            <constraint firstItem="eyX-Pw-ddJ" firstAttribute="centerY" secondItem="Axc-Xp-frg" secondAttribute="centerY" constant="-20" id="wGN-2v-a1L"/>
                         </constraints>
                     </view>
                     <blurEffect style="regular"/>
@@ -157,6 +147,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="mvY-l7-fCp" secondAttribute="bottom" id="EpP-DO-7o0"/>
+                <constraint firstItem="mvY-l7-fCp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Qab-rE-aSW"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mvY-l7-fCp" secondAttribute="trailing" id="VUX-kf-E5S"/>
                 <constraint firstItem="mvY-l7-fCp" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="YgY-mz-ROV"/>
                 <constraint firstItem="mvY-l7-fCp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="lrM-dn-3Wu"/>
@@ -167,8 +158,8 @@
                 <outlet property="backgroundView" destination="eyX-Pw-ddJ" id="WiU-a5-1ch"/>
                 <outlet property="distanceLabel" destination="rMB-oe-rb2" id="yXx-Ni-tl9"/>
                 <outlet property="filterButton" destination="NdC-yc-hB1" id="wvG-X8-VZ8"/>
-                <outlet property="filterByPicker" destination="CZs-Dn-tCs" id="FPa-ln-dDS"/>
-                <outlet property="isOpenSwitch" destination="6HL-EX-AwR" id="GWJ-rf-i90"/>
+                <outlet property="filterBySegment" destination="DHc-Yo-IgP" id="h6I-DL-e8E"/>
+                <outlet property="isOpenSegment" destination="Vvd-GJ-yIr" id="pFR-Di-rlA"/>
                 <outlet property="maxDistanceSlider" destination="Hlj-AQ-sbE" id="0qB-Or-gd5"/>
                 <outlet property="starButtonStack" destination="UHQ-Rc-amy" id="kzT-JJ-NfU"/>
             </connections>

@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Lottie
+import ViewAnimator
 
 protocol FindBuffaloChickenVCDelegate {
     func filterAnnotations(filter: Filter)
@@ -23,7 +24,6 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     @IBOutlet weak var filterButton: UIBarButtonItem!
     
     private let locationManager = CLLocationManager()
-    private let loadingView = LoadingView().loadNib() as! LoadingView
     private let filterView = FilterView().loadNib() as! FilterView
     
     private var sortedAnnotations: [RestaurantAnnotation] = []
@@ -64,9 +64,6 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
             locationManager.requestWhenInUseAuthorization()
         }
         locationManager.startMonitoringSignificantLocationChanges()
-        
-//        let sideMenuSwitch = LottieSwitch(animation: Animation.named("sidemenu-icon")!,
-//                                          colorKeypaths: AnimationKeypath(keys: ["Upper.Upper.Fill 1.Color", "Center.Center.Fill 1.Color", "Buttom.Buttom.Fill 1.Color"]), frame: CGRect(x: 0, y: 0, width: 22, height: 22))
 
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: #selector(sideMenuPressed))
         
@@ -79,8 +76,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         filterView.isHidden = true
         filterView.frame = self.view.frame
         filterView.setMaxDistance(d: radius)
-        loadingView.frame = self.view.frame
-        self.view.addSubview(loadingView)
+        presentLoadingAlert()
         self.view.addSubview(filterView)
     }
     
@@ -134,8 +130,21 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
             let annotation = RestaurantAnnotation(id: index, restaurant: Restaurant(place: place), userLocation: CLLocation(latitude: lat, longitude: long) )
             unsortedAnnotations.append(annotation)
         }
+        dismiss(animated: false, completion: {
+            DispatchQueue.main.async {
+                if let indexPaths = self.tableView.indexPathsForVisibleRows {
+                    var cells:[RestaurantTableViewCell] = []
+                    for indexPath in indexPaths {
+                        if let cell = self.tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
+                            cells.append(cell)
+                        }
+                    }
+                    UIView.animate(views: cells, animations: [AnimationType.from(direction: .left, offset: 30.0)], duration: 1.5)
+                }
+            }
+        })
+        
         filterAnnotations(filter: filter)
-        loadingView.hide()
     }
     
     // MARK: - FindBuffaloChickenVCDelegate methods
@@ -169,6 +178,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     func reloadSubviews() {
         map.removeAnnotations(map.annotations)
         map.addAnnotations(sortedAnnotations)
+        map.showAnnotations(map.annotations, animated: true)
         tableView.reloadData()
     }
     
@@ -230,17 +240,14 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         if let lat = manager.location?.coordinate.latitude, let long = manager.location?.coordinate.longitude {
             self.lat = lat
             self.long = long
-            map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: long), latitudinalMeters: radius*2, longitudinalMeters: radius*2), animated: true)
+            map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: long), latitudinalMeters: radius*2, longitudinalMeters: radius*2), animated: false)
             getPlaces()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .denied:
+        if status == .denied {
             getPlaces()
-        default:
-            print("Auth same")
         }
     }
     

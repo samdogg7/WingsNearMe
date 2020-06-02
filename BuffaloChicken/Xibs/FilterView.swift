@@ -8,13 +8,13 @@
 
 import UIKit
 
-class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
-    @IBOutlet weak var filterByPicker: UIPickerView!
+class FilterView: UIView {
+    @IBOutlet weak var filterBySegment: UISegmentedControl!
     @IBOutlet weak var maxDistanceSlider: UISlider!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var starButtonStack: UIStackView!
     @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var isOpenSwitch: UISwitch!
+    @IBOutlet weak var isOpenSegment: UISegmentedControl!
     @IBOutlet weak var distanceLabel: UILabel!
     
     var delegate: FindBuffaloChickenVCDelegate?
@@ -24,17 +24,28 @@ class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        maxDistanceSlider.maximumValue = 10000.0
+        maxDistanceSlider.maximumValue = 12070.0
         maxDistanceSlider.minimumValue = 500.0
         maxDistanceSlider.value = 8046.72 //5 miles in meters
-        
-        self.filterByPicker.delegate = self
-        self.filterByPicker.dataSource = self
         
         backgroundView.layer.masksToBounds = true
         backgroundView.layer.cornerRadius = 25
         backgroundView.layer.borderColor = UIColor.systemGray3.cgColor
         backgroundView.layer.borderWidth = 1.0
+        
+        filterButton.layer.masksToBounds = true
+        filterButton.layer.cornerRadius = filterButton.frame.height / 2
+        filterButton.layer.borderColor = UIColor.systemGray3.cgColor
+        filterButton.layer.borderWidth = 1.0
+        
+        filterBySegment.apportionsSegmentWidthsByContent = false
+        isOpenSegment.apportionsSegmentWidthsByContent = false
+
+        filterBySegment.removeAllSegments()
+        for (index, filterType) in FilterBy.allCases.enumerated() {
+            filterBySegment.insertSegment(withTitle: filterType.rawValue, at: index, animated: false)
+        }
+        filterBySegment.selectedSegmentIndex = 0
         
         for (index, button) in starButtonStack.arrangedSubviews.enumerated() {
             if let button = button as? RatingStar {
@@ -50,11 +61,12 @@ class FilterView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     @objc func filterPressed() {
-        filter.filterBy = FilterBy.allCases[filterByPicker.selectedRow(inComponent: 0)]
-        filter.maxDistance = Double(maxDistanceSlider.value)
-        filter.isOpen = isOpenSwitch.isOn
+        filter.filterBy = FilterBy.allCases[filterBySegment.selectedSegmentIndex]
+        filter.maxDistance = Double(round(maxDistanceSlider.value))
+        filter.isOpen = isOpenSegment.selectedSegmentIndex == 0
         
         guard let delegate = delegate else { return }
+        
         delegate.filterAnnotations(filter: filter)
         delegate.switchFilterView()
     }
