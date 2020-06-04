@@ -8,11 +8,18 @@
 
 import SideMenu
 
-class SideMenuTableVC: UITableViewController {
+@objc public protocol SideMenuVCDelegate {
+    @objc func sideMenuPressed()
+}
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+class SideMenuVC: UITableViewController {
+    let reusableCellId = "SideMenuCell"
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
         // refresh cell blur effect in case it changed
         tableView.reloadData()
         
@@ -22,25 +29,20 @@ class SideMenuTableVC: UITableViewController {
         
         let imageView = UIImageView()
         imageView.image = UIImage(named: "sidemenu-background") ?? UIImage(systemName: "star")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .bottom
         tableView.backgroundView = imageView
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath) as! UITableViewVibrantCell
-
-        if let menu = navigationController as? SideMenuNavigationController {
-            cell.blurEffectStyle = menu.blurEffectStyle
-        }
-        
-        return cell
     }
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
+        //FindWingsVC
         case 0:
             break
+        //Social
         case 1:
+           break
+        //Settings
+        case 2:
             break
         default:
             break

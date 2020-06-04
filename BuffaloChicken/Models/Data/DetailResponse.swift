@@ -10,7 +10,7 @@
 import Foundation
 
 // MARK: - DetailsResponse
-struct DetailResponse: Codable {
+struct DetailResponse: GoogleResponse, Codable {
     var htmlAttributions: [JSONAny]?
     var result: PlaceDetail?
     var status: String?

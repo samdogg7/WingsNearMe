@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import Lottie
 import ViewAnimator
+import SideMenu
 
 protocol FindBuffaloChickenVCDelegate {
     func filterAnnotations(filter: Filter)
@@ -18,10 +19,11 @@ protocol FindBuffaloChickenVCDelegate {
     func switchFilterView()
 }
 
-class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, FindBuffaloChickenVCDelegate {
+class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, FindBuffaloChickenVCDelegate, SideMenuVCDelegate {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filterButton: UIBarButtonItem!
+    @IBOutlet weak var sideMenuButton: UIBarButtonItem!
     
     private let locationManager = CLLocationManager()
     private let filterView = FilterView().loadNib() as! FilterView
@@ -30,8 +32,8 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     private var unsortedAnnotations: [RestaurantAnnotation] = []
     private var filter = Filter()
     private let apiManager = APIManager()
-    private var isSideMenuActive = false
-    
+    private var alertController: UIAlertController?
+
     private var lat:Double = .defaultLatitude
     private var long:Double = .defaultLongitude
     private let radius:Double = .defaultRadius
@@ -39,7 +41,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     private let cellSpacingHeight: CGFloat = 5
     private let cellId = "RestuarantCell"
     
-    private let testing_enabled = false
+    private let testing_enabled = true
     
     // MARK: - View handler Methods
     
@@ -55,6 +57,17 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         setupSubviews()
     }
     
+    private func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.default.leftMenuNavigationController = storyboard?.instantiateViewController(withIdentifier: "SideMenu") as? SideMenuNavigationController
+        
+        // Enable gestures. The left and/or right menus must be set up above for these to work.
+        // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
+        SideMenuManager.default.addPanGestureToPresent(toView: navigationController!.navigationBar)
+        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
+    }
+    
+    
     func setupSubviews() {
         let tableViewNib = UINib(nibName: "RestaurantTableViewCell", bundle: nil)
         tableView.register(tableViewNib, forCellReuseIdentifier: cellId)
@@ -65,7 +78,9 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         }
         locationManager.startMonitoringSignificantLocationChanges()
 
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: #selector(sideMenuPressed))
+        sideMenuButton.target = self
+        sideMenuButton.action = #selector(sideMenuPressed)
+        setupSideMenu()
         
         map.layer.masksToBounds = true
         map.layer.cornerRadius = 10
@@ -76,7 +91,7 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
         filterView.isHidden = true
         filterView.frame = self.view.frame
         filterView.setMaxDistance(d: radius)
-        presentLoadingAlert()
+        alertController = presentLoadingAlert()
         self.view.addSubview(filterView)
     }
     
@@ -99,52 +114,79 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     
     func getDetails(places: [Place]) {
         var places = places
-        //Keep track of if a detail request is complete...
+        //Keep track of if a request is complete...
         var detailRequestComplete = Array(repeating: false, count: places.count)
+        var photoRequestComplete = Array(repeating: false, count: places.count)
         //For each place, get the place's detail
         for index in 0..<places.count {
             if let placeID = places[index].placeID {
                 apiManager.placeDetailRequest(placeId: placeID, testing: testing_enabled, completion: { response in
-                    detailRequestComplete[index] = true
-                    switch response {
-                    case .success(let detail):
-                        DispatchQueue.main.async {
+                    DispatchQueue.main.async {
+                        detailRequestComplete[index] = true
+                        switch response {
+                        case .success(let detail):
                             places[index].placeDetail = detail
                             //If all detail requests are done loading, add annotations
-                            if !detailRequestComplete.contains(false) {
+                            if !detailRequestComplete.contains(false) && self.unsortedAnnotations.isEmpty { //&& !photoRequestComplete.contains(false)
                                 self.addAnnotations(places: places)
                             }
+                        case .failure(let error):
+                            print(error)
                         }
-                    case .failure(let error):
-                        print(error)
                     }
                 })
             }
+//            if let photoID = places[index].photos?.first?.photoReference {
+//                apiManager.placePhotoRequest(photoId: photoID, testing: testing_enabled, completion: { response in
+//                    photoRequestComplete[index] = true
+//                    switch response {
+//                    case .success(let photo):
+//                        DispatchQueue.main.async {
+//                            places[index].downloadedPhoto = photo
+//                            //If all detail requests are done loading, add annotations
+//                            if !detailRequestComplete.contains(false) && !photoRequestComplete.contains(false) {
+//                                self.addAnnotations(places: places)
+//                            }
+//                        }
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                })
+//            } else {
+//                photoRequestComplete[index] = true
+//                places[index].downloadedPhoto = UIImage(named: "PlaceholderWing")
+//            }
         }
     }
     
     
     func addAnnotations(places: [Place]) {
-        unsortedAnnotations.removeAll()
         for (index, place) in places.enumerated() {
             let annotation = RestaurantAnnotation(id: index, restaurant: Restaurant(place: place), userLocation: CLLocation(latitude: lat, longitude: long) )
             unsortedAnnotations.append(annotation)
         }
-        dismiss(animated: false, completion: {
-            DispatchQueue.main.async {
-                if let indexPaths = self.tableView.indexPathsForVisibleRows {
-                    var cells:[RestaurantTableViewCell] = []
-                    for indexPath in indexPaths {
-                        if let cell = self.tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
-                            cells.append(cell)
-                        }
-                    }
-                    UIView.animate(views: cells, animations: [AnimationType.from(direction: .left, offset: 30.0)], duration: 1.5)
+        
+        if let _alertController = alertController {
+            _alertController.dismiss(animated: false, completion: {
+                DispatchQueue.main.async {
+                    self.animateTableCells()
                 }
-            }
-        })
+            })
+        }
         
         filterAnnotations(filter: filter)
+    }
+    
+    func animateTableCells() {
+        if let indexPaths = self.tableView.indexPathsForVisibleRows {
+            var cells:[RestaurantTableViewCell] = []
+            for indexPath in indexPaths {
+                if let cell = self.tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
+                    cells.append(cell)
+                }
+            }
+            UIView.animate(views: cells, animations: [AnimationType.from(direction: .left, offset: 30.0)], duration: 1.5)
+        }
     }
     
     // MARK: - FindBuffaloChickenVCDelegate methods
@@ -205,6 +247,8 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let restaurant = sender as? Restaurant else { return }
+//        guard let sideMenuNavigationController = segue.destination as? SideMenuNavigationController else { return }
+
         
         if let target = segue.destination as? RestauarantDetailVC {
             target.restaurant = restaurant
@@ -219,19 +263,14 @@ class FindBuffaloChickenVC: UIViewController, UITableViewDelegate,  UITableViewD
             filterButton.title = "Cancel"
         } else {
             filterButton.title = "Filter"
+            animateTableCells()
         }
     }
     
     //MARK: - Side Menu Button helper method
     @objc func sideMenuPressed() {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "SideMenu") else { return }
-                
-        isSideMenuActive = !isSideMenuActive
-        if isSideMenuActive {
-            self.navigationController?.present(vc, animated: true)
-        } else {
-            self.navigationController?.dismiss(animated: true)
-        }
+//        guard let nav = storyboard?.instantiateViewController(identifier: "SideMenu") as? SideMenuNavigationController, let vc = nav.visibleViewController else { return }
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - LocationManager Delegate Methods

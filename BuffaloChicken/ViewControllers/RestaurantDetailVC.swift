@@ -11,7 +11,7 @@ import UIKit
 class RestauarantDetailVC: UIViewController {
     var restaurant: Restaurant?
     
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var hours: UILabel!
     @IBOutlet weak var location: UILabel!
@@ -23,6 +23,7 @@ class RestauarantDetailVC: UIViewController {
             name.text = restaurant.name
             hours.text = restaurant.hoursString
             self.location.text = "Location: " + restaurant.formattedAddress
+            imageView.image = restaurant.photo
         }
     }
 }

@@ -7,10 +7,10 @@
 //
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 //
-import Foundation
+import UIKit.UIImage
 
 // MARK: - PlacesResponse
-struct PlacesResponse: Codable {
+struct PlacesResponse: GoogleResponse, Codable {
     var htmlAttributions: [JSONAny]?
     var nextPageToken: String?
     var results: [Place]?
@@ -39,6 +39,7 @@ struct Place: Codable {
     var types: [String]?
     var userRatingsTotal: Int?
     var placeDetail: PlaceDetail?
+    var downloadedPhoto = UIImage(named: "PlaceholderWing")!
 
     enum CodingKeys: String, CodingKey {
         case businessStatus = "business_status"
@@ -106,7 +107,7 @@ struct PlusCode: Codable {
 
 // MARK: - Encode/decode helpers
 
-class JSONNull: Codable, Hashable {
+public class JSONNull: Codable, Hashable {
 
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
@@ -155,7 +156,7 @@ class JSONCodingKey: CodingKey {
     }
 }
 
-class JSONAny: Codable {
+public class JSONAny: Codable {
 
     let value: Any
 

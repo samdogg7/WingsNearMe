@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import UIKit.UIImage
 
 class Restaurant: NSObject {
     var name: String
@@ -17,6 +18,7 @@ class Restaurant: NSObject {
     var formattedPhoneNumber: String
     var rating: Double
     var placeID: String
+    var photo: UIImage
     
     init(place: Place) {
         self.name = place.name ?? "Restaurant Name"
@@ -26,6 +28,7 @@ class Restaurant: NSObject {
         } else {
             self.hoursString = "Hours not available"
         }
+        self.photo = place.downloadedPhoto
         self.coordinate = CLLocationCoordinate2D(latitude: place.geometry?.location?.lat ?? 37.3230, longitude: place.geometry?.location?.lng ?? -122.0322)
         self.formattedAddress = place.placeDetail?.formattedAddress ?? "No formatted address given"
         self.rating = place.rating ?? 0.0
