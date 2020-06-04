@@ -17,6 +17,10 @@ extension UIColor {
 }
 
 extension String {
+    static var baseUrl: String {
+        return "https://maps.googleapis.com/maps/api/place/"
+    }
+
     static var api_key: String {
         return "AIzaSyDnfkzsqLDaN8gBW5uHqq4hOS6JJJElgUo"
     }

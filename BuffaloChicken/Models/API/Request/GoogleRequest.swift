@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol GoogleRequest {
-    var endpoint: String { get set }
+public protocol GoogleRequest: Encodable {
+    var url: URL? { get set }
 }

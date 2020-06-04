@@ -31,7 +31,6 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     private var sortedAnnotations: [RestaurantAnnotation] = []
     private var unsortedAnnotations: [RestaurantAnnotation] = []
     private var filter = Filter()
-    private let apiManager = APIManager()
     private var alertController: UIAlertController?
 
     private var lat:Double = .defaultLatitude
@@ -100,10 +99,14 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     @objc func getPlaces() {
         sortedAnnotations.removeAll()
         unsortedAnnotations.removeAll()
-        apiManager.placesRequest(search_term: "wings", lat: lat, long: long, radius: radius, testing: testing_enabled, completion: { response in
+        
+        //If testing is enabled, use default init. Otherwise, give params.
+        let request = testing_enabled ? PlacesRequest() : PlacesRequest(query: "wings", lat: lat, long: long, radius: radius)
+            
+        APIManager.request(request: request, responseType: PlacesResponse.self, completion: { response in
             switch response {
-            case .success(let results):
-                DispatchQueue.main.async {
+            case .success(let data):
+                if let results = data.results {
                     self.getDetails(places: results)
                 }
             case .failure(let error):
@@ -114,25 +117,27 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     
     func getDetails(places: [Place]) {
         var places = places
+        
         //Keep track of if a request is complete...
         var detailRequestComplete = Array(repeating: false, count: places.count)
         var photoRequestComplete = Array(repeating: false, count: places.count)
+
         //For each place, get the place's detail
         for index in 0..<places.count {
             if let placeID = places[index].placeID {
-                apiManager.placeDetailRequest(placeId: placeID, testing: testing_enabled, completion: { response in
-                    DispatchQueue.main.async {
-                        detailRequestComplete[index] = true
-                        switch response {
-                        case .success(let detail):
-                            places[index].placeDetail = detail
-                            //If all detail requests are done loading, add annotations
-                            if !detailRequestComplete.contains(false) && self.unsortedAnnotations.isEmpty { //&& !photoRequestComplete.contains(false)
-                                self.addAnnotations(places: places)
-                            }
-                        case .failure(let error):
-                            print(error)
+                let request = DetailRequest(placeId: placeID, testing: testing_enabled)
+                
+                APIManager.request(request: request, responseType: DetailResponse.self, completion: { response in
+                    detailRequestComplete[index] = true
+                    switch response {
+                    case .success(let data):
+                        places[index].placeDetail = data.result
+                        //If all detail requests are done loading, add annotations
+                        if !detailRequestComplete.contains(false) { //&& !photoRequestComplete.contains(false)
+                            self.addAnnotations(places: places)
                         }
+                    case .failure(let error):
+                        print(error)
                     }
                 })
             }

@@ -10,8 +10,6 @@ import UIKit.UIImage
 
 public typealias ResultCallback<Value> = (Result<Value, Error>) -> Void
 
-let baseUrl = "https://maps.googleapis.com/maps/api/place/"
-
 public enum ResponseError: Error {
     case encoding
     case decoding
@@ -25,23 +23,13 @@ public enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
-
-// MARK: - Endpoints
-
-public enum Endpoints: String {
-//    case getNearbySearch = "nearbysearch/json?location=\(lat),\(long)&radius=\(radius)&type=food&keyword=\(query)"
-    case getDetails = "getUsageSummary"
-}
-
 public class APIManager {
     
-    public static func request<T:GoogleResponse, R: GoogleRequest>(_ httpMethod: HTTPMethod? = .get, responseType: T.Type, request: R, headers: [String:String]? = nil, completion: @escaping ResultCallback<T>) {
+    public static func request<T:GoogleResponse, R: GoogleRequest>(_ httpMethod: HTTPMethod? = .get, request: R, responseType: T.Type, headers: [String:String]? = nil, completion: @escaping ResultCallback<T>) {
         
-        guard let endpoint = URL(string: baseUrl + request.endpoint + "&key=" + .api_key) else {
-            fatalError("Bad endpoint")
-        }
-
-        var urlRequest = URLRequest(url: endpoint)
+        guard let _url = request.url else { return }
+        
+        var urlRequest = URLRequest(url: _url)
         urlRequest.httpMethod = httpMethod?.rawValue
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -62,7 +50,7 @@ public class APIManager {
                     if let statusCode = response.status { //CHECK STATUS CODE HERE
                         completion(.success(response))
                     } else {
-                        completion(.failure( error )) // replace this later
+//                        completion(.failure()) // replace this later
                     }
                 }
             } else if let error = error {
@@ -73,64 +61,64 @@ public class APIManager {
         }.resume()
     }
     
-    func placesRequest(search_term: String, lat: Double, long: Double, radius: Double = 10000, testing: Bool = false, completion: @escaping ResultCallback<[Place]>) {
-        var url: URL?
-        if !testing {
-            let query = search_term.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-            url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(long)&radius=\(radius)&type=food&keyword=\(query)&key=" + .api_key)
-        } else {
-            url = URL(string: "https://samdoggett.com/WingsNearMe/NearbySearch.json")
-        }
-        
-        URLSession.shared.dataTask(with: URLRequest(url: url!), completionHandler: { data, response, error in
-            if let data = data {
-                do {
-                    let response = try JSONDecoder().decode(PlacesResponse.self, from: data)
-                    
-                    if let results = response.results {
-                        completion(.success(results))
-                    } else if let message = response.status {
-                        completion(.failure(ResponseError.server(message: message)))
-                    } else {
-                        completion(.failure(ResponseError.decoding))
-                    }
-                } catch {
-                    completion(.failure(error))
-                }
-            } else if let error = error {
-                completion(.failure(error))
-            }
-        }).resume()
-    }
-    
-    func placeDetailRequest(placeId: String, testing: Bool = false, completion: @escaping ResultCallback<PlaceDetail>) {
-        var url: URL?
-        if !testing {
-            url = URL(string: "https://maps.googleapis.com/maps/api/place/details/json?place_id=\(placeId)&fields=formatted_address,formatted_phone_number,opening_hours/weekday_text,website&key=" + .api_key)
-        } else {
-            url = URL(string: "https://samdoggett.com/WingsNearMe/TestResponses/\(placeId).json")
-        }
-        
-        URLSession.shared.dataTask(with: URLRequest(url: url!), completionHandler: { data, response, error in
-            if let data = data {
-                do {
-                    let response = try JSONDecoder().decode(DetailResponse.self, from: data)
-                    
-                    if let result = response.result {
-                        completion(.success(result))
-                    } else if let message = response.status {
-                        completion(.failure(ResponseError.server(message: message)))
-                    } else {
-                        completion(.failure(ResponseError.decoding))
-                    }
-                } catch {
-                    completion(.failure(error))
-                }
-            } else if let error = error {
-                completion(.failure(error))
-            }
-        }).resume()
-    }
+//    func placesRequest(search_term: String, lat: Double, long: Double, radius: Double = 10000, testing: Bool = false, completion: @escaping ResultCallback<[Place]>) {
+//        var url: URL?
+//        if !testing {
+//            let query = search_term.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
+//            url = URL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(lat),\(long)&radius=\(radius)&type=food&keyword=\(query)&key=" + .api_key)
+//        } else {
+//            url = URL(string: "https://samdoggett.com/WingsNearMe/NearbySearch.json")
+//        }
+//
+//        URLSession.shared.dataTask(with: URLRequest(url: url!), completionHandler: { data, response, error in
+//            if let data = data {
+//                do {
+//                    let response = try JSONDecoder().decode(PlacesResponse.self, from: data)
+//
+//                    if let results = response.results {
+//                        completion(.success(results))
+//                    } else if let message = response.status {
+//                        completion(.failure(ResponseError.server(message: message)))
+//                    } else {
+//                        completion(.failure(ResponseError.decoding))
+//                    }
+//                } catch {
+//                    completion(.failure(error))
+//                }
+//            } else if let error = error {
+//                completion(.failure(error))
+//            }
+//        }).resume()
+//    }
+//
+//    func placeDetailRequest(placeId: String, testing: Bool = false, completion: @escaping ResultCallback<PlaceDetail>) {
+//        var url: URL?
+//        if !testing {
+//            url = URL(string: "https://maps.googleapis.com/maps/api/place/details/json?place_id=\(placeId)&fields=formatted_address,formatted_phone_number,opening_hours/weekday_text,website&key=" + .api_key)
+//        } else {
+//            url = URL(string: "https://samdoggett.com/WingsNearMe/TestResponses/\(placeId).json")
+//        }
+//
+//        URLSession.shared.dataTask(with: URLRequest(url: url!), completionHandler: { data, response, error in
+//            if let data = data {
+//                do {
+//                    let response = try JSONDecoder().decode(DetailResponse.self, from: data)
+//
+//                    if let result = response.result {
+//                        completion(.success(result))
+//                    } else if let message = response.status {
+//                        completion(.failure(ResponseError.server(message: message)))
+//                    } else {
+//                        completion(.failure(ResponseError.decoding))
+//                    }
+//                } catch {
+//                    completion(.failure(error))
+//                }
+//            } else if let error = error {
+//                completion(.failure(error))
+//            }
+//        }).resume()
+//    }
     
     func placePhotoRequest(photoId: String, testing: Bool = false, completion: @escaping ResultCallback<UIImage>) {
         var url: URL?

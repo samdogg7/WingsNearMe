@@ -21,6 +21,8 @@
 		9F3F41352479A99200F00A56 /* RestaurantDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F41342479A99200F00A56 /* RestaurantDetailVC.swift */; };
 		9F3F41372479BC5600F00A56 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F41362479BC5600F00A56 /* Restaurant.swift */; };
 		9F3F413B247B299500F00A56 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F413A247B299500F00A56 /* SideMenuVC.swift */; };
+		9F4A3D2C24899BF3003D6D24 /* PlacesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A3D2B24899BF3003D6D24 /* PlacesRequest.swift */; };
+		9F4A3D2E24899CA4003D6D24 /* DetailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A3D2D24899CA4003D6D24 /* DetailRequest.swift */; };
 		9F71D841247C7535004EF23E /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F71D840247C7535004EF23E /* FilterView.xib */; };
 		9F71D845247C75FD004EF23E /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71D844247C75FD004EF23E /* FilterView.swift */; };
 		9F79152F247DE9F900C0ECE0 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79152E247DE9F900C0ECE0 /* Review.swift */; };
@@ -56,6 +58,8 @@
 		9F3F41342479A99200F00A56 /* RestaurantDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVC.swift; sourceTree = "<group>"; };
 		9F3F41362479BC5600F00A56 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		9F3F413A247B299500F00A56 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
+		9F4A3D2B24899BF3003D6D24 /* PlacesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRequest.swift; sourceTree = "<group>"; };
+		9F4A3D2D24899CA4003D6D24 /* DetailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRequest.swift; sourceTree = "<group>"; };
 		9F71D840247C7535004EF23E /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		9F71D844247C75FD004EF23E /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		9F79152E247DE9F900C0ECE0 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
@@ -143,6 +147,26 @@
 			path = BuffaloChicken;
 			sourceTree = "<group>";
 		};
+		9F4A3D2924899BD0003D6D24 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				9FC6D5E124899549002F8044 /* GoogleResponse.swift */,
+				9F08C42A246914630053CC42 /* PlacesResponse.swift */,
+				9F928759246B7A7200E4DCCC /* DetailResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		9F4A3D2A24899BD6003D6D24 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				9FC6D5E524899815002F8044 /* GoogleRequest.swift */,
+				9F4A3D2B24899BF3003D6D24 /* PlacesRequest.swift */,
+				9F4A3D2D24899CA4003D6D24 /* DetailRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		9F86DB612485A44B00984B42 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,8 +225,8 @@
 		9FC6D5E724899855002F8044 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				9FC6D5E524899815002F8044 /* GoogleRequest.swift */,
-				9FC6D5E124899549002F8044 /* GoogleResponse.swift */,
+				9F4A3D2A24899BD6003D6D24 /* Request */,
+				9F4A3D2924899BD0003D6D24 /* Response */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -213,8 +237,6 @@
 				9F3F41362479BC5600F00A56 /* Restaurant.swift */,
 				9F2334632475895500C06EA3 /* RestaurantAnnotation.swift */,
 				9F79152E247DE9F900C0ECE0 /* Review.swift */,
-				9F08C42A246914630053CC42 /* PlacesResponse.swift */,
-				9F928759246B7A7200E4DCCC /* DetailResponse.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -361,6 +383,7 @@
 				9F9ABFE3247F827800787376 /* LottieSwitch.swift in Sources */,
 				9F08C41724690F900053CC42 /* FindWingsVC.swift in Sources */,
 				9F20E6732485F5A30085E723 /* SettingsVC.swift in Sources */,
+				9F4A3D2E24899CA4003D6D24 /* DetailRequest.swift in Sources */,
 				9FC6D5E624899815002F8044 /* GoogleRequest.swift in Sources */,
 				9F08C41324690F900053CC42 /* AppDelegate.swift in Sources */,
 				9F2334642475895500C06EA3 /* RestaurantAnnotation.swift in Sources */,
@@ -370,6 +393,7 @@
 				9F79152F247DE9F900C0ECE0 /* Review.swift in Sources */,
 				9F9ABFDE247F761400787376 /* Extensions.swift in Sources */,
 				9FC6D5E224899549002F8044 /* GoogleResponse.swift in Sources */,
+				9F4A3D2C24899BF3003D6D24 /* PlacesRequest.swift in Sources */,
 				9F3F41352479A99200F00A56 /* RestaurantDetailVC.swift in Sources */,
 				9F08C42B246914630053CC42 /* PlacesResponse.swift in Sources */,
 				9F71D845247C75FD004EF23E /* FilterView.swift in Sources */,
