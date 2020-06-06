@@ -10,4 +10,5 @@ import Foundation
 
 public protocol GoogleRequest: Encodable {
     var url: URL? { get set }
+    
 }

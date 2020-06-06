@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Hue/Hue.framework
+${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework
+${BUILT_PRODUCTS_DIR}/ViewAnimator/ViewAnimator.framework
+${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework

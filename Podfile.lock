@@ -1,0 +1,28 @@
+PODS:
+  - Hue (5.0.0)
+  - lottie-ios (3.1.8)
+  - SideMenu (6.4.8)
+  - ViewAnimator (2.7.0)
+
+DEPENDENCIES:
+  - Hue
+  - lottie-ios
+  - SideMenu
+  - ViewAnimator
+
+SPEC REPOS:
+  trunk:
+    - Hue
+    - lottie-ios
+    - SideMenu
+    - ViewAnimator
+
+SPEC CHECKSUMS:
+  Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
+  SideMenu: 4a891be552d30bb6fa87ad404d62e485f8450c34
+  ViewAnimator: 5af1c6f3b310f012bf081259c43717aa54fbae73
+
+PODFILE CHECKSUM: d473cb7b771213315527f975e8f4379742b25bbb
+
+COCOAPODS: 1.9.1

@@ -117,50 +117,40 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     
     func getDetails(places: [Place]) {
         var places = places
+        let dispatchGroup = DispatchGroup()
         
-        //Keep track of if a request is complete...
-        var detailRequestComplete = Array(repeating: false, count: places.count)
-        var photoRequestComplete = Array(repeating: false, count: places.count)
-
         //For each place, get the place's detail
         for index in 0..<places.count {
             if let placeID = places[index].placeID {
                 let request = DetailRequest(placeId: placeID, testing: testing_enabled)
                 
-                APIManager.request(request: request, responseType: DetailResponse.self, completion: { response in
-                    detailRequestComplete[index] = true
+                APIManager.request(request: request, responseType: DetailResponse.self, dispatchGroup: dispatchGroup, completion: { response in
                     switch response {
                     case .success(let data):
                         places[index].placeDetail = data.result
-                        //If all detail requests are done loading, add annotations
-                        if !detailRequestComplete.contains(false) { //&& !photoRequestComplete.contains(false)
-                            self.addAnnotations(places: places)
-                        }
                     case .failure(let error):
                         print(error)
                     }
                 })
             }
-//            if let photoID = places[index].photos?.first?.photoReference {
-//                apiManager.placePhotoRequest(photoId: photoID, testing: testing_enabled, completion: { response in
-//                    photoRequestComplete[index] = true
-//                    switch response {
-//                    case .success(let photo):
-//                        DispatchQueue.main.async {
-//                            places[index].downloadedPhoto = photo
-//                            //If all detail requests are done loading, add annotations
-//                            if !detailRequestComplete.contains(false) && !photoRequestComplete.contains(false) {
-//                                self.addAnnotations(places: places)
-//                            }
-//                        }
-//                    case .failure(let error):
-//                        print(error)
-//                    }
-//                })
-//            } else {
-//                photoRequestComplete[index] = true
-//                places[index].downloadedPhoto = UIImage(named: "PlaceholderWing")
-//            }
+            if let photoID = places[index].photos?.first?.photoReference {
+                APIManager.request(request: PhotoRequest(photoId: photoID, testing: testing_enabled), responseType: PhotoResponse.self, dispatchGroup: dispatchGroup, completion: { response in
+                    switch response {
+                    case .success(let photo):
+                        places[index].downloadedPhoto = photo
+                    case .failure(_):
+                        places[index].downloadedPhoto = UIImage(named: "PlaceholderWing")!
+                        print("Decoding issue for restaraunt: " + (places[index].name ?? String(index)))
+                    }
+                })
+            } else {
+                places[index].downloadedPhoto = UIImage(named: "PlaceholderWing")!
+                print("No photo reference for restaraunt: " + (places[index].name ?? String(index)))
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            self.addAnnotations(places: places)
         }
     }
     

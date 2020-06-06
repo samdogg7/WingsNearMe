@@ -41,6 +41,7 @@ class RestaurantTableViewCell: UITableViewCell {
             
             imgView.layer.cornerRadius = imgView.frame.size.width/2
             imgView.clipsToBounds = true
+            imgView.image = restaurant.photo
             
             location.text = restaurant.formattedAddress
             phone.text = restaurant.formattedPhoneNumber
