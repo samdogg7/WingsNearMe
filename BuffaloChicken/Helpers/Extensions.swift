@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import CoreLocation
 import Lottie
+import SideMenu
 
 extension UIColor {
     class var inverse:UIColor {
@@ -23,6 +24,10 @@ extension String {
 
     static var api_key: String {
         return "AIzaSyDnfkzsqLDaN8gBW5uHqq4hOS6JJJElgUo"
+    }
+    
+    static var testing_enabled: String {
+        return "Testing_enabled"
     }
 }
 
@@ -46,29 +51,6 @@ extension UIView {
         let nibName = type(of: self).description().components(separatedBy: ".").last!
         let nib = UINib(nibName: nibName, bundle: bundle)
         return nib.instantiate(withOwner: self, options: nil).first as! UIView
-    }
-}
-
-extension UIViewController {
-    func presentLoadingAlert() -> UIAlertController {
-        let alertController = UIAlertController(title: "Loading tenders...", message: "", preferredStyle: .alert)
-        let animation = AnimationView(animation: Animation.named("loading-tenders"))
-        animation.loopMode = .loop
-        animation.play()
-        
-        alertController.view.addSubview(animation)
-        
-        animation.translatesAutoresizingMaskIntoConstraints = false
-        animation.topAnchor.constraint(equalTo: alertController.view.topAnchor, constant: 45).isActive = true
-        animation.rightAnchor.constraint(equalTo: alertController.view.rightAnchor, constant: -10).isActive = true
-        animation.leftAnchor.constraint(equalTo: alertController.view.leftAnchor, constant: 10).isActive = true
-        animation.heightAnchor.constraint(equalToConstant: 100).isActive = true
-
-        alertController.view.translatesAutoresizingMaskIntoConstraints = false
-        alertController.view.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        
-        self.present(alertController, animated: true, completion: nil)
-        return alertController
     }
 }
 

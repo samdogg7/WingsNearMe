@@ -14,7 +14,6 @@ class RestaurantTableViewCell: UITableViewCell {
     @IBOutlet private weak var phone: UILabel!
     @IBOutlet private weak var location: UILabel!
     @IBOutlet private weak var ratingStack: UIStackView!
-    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet private weak var button: UIButton!
     
     var delegate: FindBuffaloChickenVCDelegate? {
@@ -39,7 +38,7 @@ class RestaurantTableViewCell: UITableViewCell {
             
             updateRating(rating: restaurant.rating)
             
-            imgView.layer.cornerRadius = imgView.frame.size.width/2
+            imgView.layer.cornerRadius = 15
             imgView.clipsToBounds = true
             imgView.image = restaurant.photo
             
@@ -68,8 +67,6 @@ class RestaurantTableViewCell: UITableViewCell {
         
         let rating_int = Int(rating.rounded(.down))
         let decimal = rating - Double(rating_int)
-        
-        ratingLabel.text = String(rating)
         
         for i in 0..<rating_int {
             stars[i]?.image = UIImage(systemName: "star.fill")

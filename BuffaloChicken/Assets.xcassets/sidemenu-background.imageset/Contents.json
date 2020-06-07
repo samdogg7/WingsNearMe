@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "wingsbackground copy-2.png",
+      "filename" : "wingsbackground-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "wingsbackground copy-1.png",
+      "filename" : "wingsbackground-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "wingsbackground copy.png",
+      "filename" : "wingsbackground-3.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

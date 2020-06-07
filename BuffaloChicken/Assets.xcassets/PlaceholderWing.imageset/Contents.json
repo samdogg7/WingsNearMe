@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "chickenwings.png",
+      "filename" : "PlaceholderWings.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "chickenwings-1.png",
+      "filename" : "PlaceholderWings-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "chickenwings-2.png",
+      "filename" : "PlaceholderWings-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

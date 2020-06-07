@@ -6,7 +6,7 @@
 //  Copyright © 2020 Sam Doggett. All rights reserved.
 //
 
-import UIKit.UIImage
+import UIKit
 
 public typealias ResultCallback<Value> = (Result<Value, Error>) -> Void
 
@@ -25,7 +25,7 @@ public enum HTTPMethod: String {
 
 public class APIManager {
     
-    public static func request<ResponseType:GoogleResponse>(_ httpMethod: HTTPMethod? = .get, request: GoogleRequest, responseType: ResponseType.Type, headers: [String:String]? = nil, dispatchGroup: DispatchGroup? = nil, completion: @escaping ResultCallback<ResponseType>) {
+    public static func request<Request:GoogleRequest, Response:GoogleResponse>(_ httpMethod: HTTPMethod? = .get, request: Request, responseType: Response.Type, headers: [String:String]? = nil, dispatchGroup: DispatchGroup? = nil, completion: @escaping ResultCallback<Response>) {
         
         if let _dispatchGroup = dispatchGroup {
             _dispatchGroup.enter()
@@ -35,8 +35,8 @@ public class APIManager {
         
         var urlRequest = URLRequest(url: _url)
         urlRequest.httpMethod = httpMethod?.rawValue
-//        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         
         if let headers = headers {
             for header in headers {
@@ -53,22 +53,18 @@ public class APIManager {
                 //If there is data attempt to decode
                 if let data = data {
                     //Attempt to decode response as a JSON Object
-                    if let decodedModel: ResponseType = try? JSONDecoder().decode(ResponseType.self, from: data), let status = decodedModel.status {
+                    if let decodedModel: Response = try? JSONDecoder().decode(Response.self, from: data), let status = decodedModel.status {
                         if status.contains("200") || status.contains("OK") {
                             completion(.success(decodedModel))
                         } else {
                             completion(.failure(GoogleError(status: status)))
                         }
-                        //Attempt to decode response as an image
+                    //Attempt to decode response as an image
+                    } else if let photoResponse = PhotoResponse(data: data) as? Response {
+                        completion(.success(photoResponse))
+                    //Decoding failed
                     } else {
-                        let encodedData = data.base64EncodedData()
-                        if let image = UIImage(data: encodedData) { //photoResponse = PhotoResponse(data: encodedData) as? ResponseType
-                            DispatchQueue.main.async {
-//                                completion(.success(photoResponse))
-                            }
-                        } else {
-                            completion(.failure(GoogleError(type: .decoding)))
-                        }
+                        completion(.failure(GoogleError(type: .decoding)))
                     }
                 } else if let error = error {
                     completion(.failure(error))

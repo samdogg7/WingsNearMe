@@ -19,7 +19,7 @@ protocol FindBuffaloChickenVCDelegate {
     func switchFilterView()
 }
 
-class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, FindBuffaloChickenVCDelegate, SideMenuVCDelegate {
+class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource, MKMapViewDelegate, CLLocationManagerDelegate, FindBuffaloChickenVCDelegate, SideMenuNavigationControllerDelegate {
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filterButton: UIBarButtonItem!
@@ -31,21 +31,22 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     private var sortedAnnotations: [RestaurantAnnotation] = []
     private var unsortedAnnotations: [RestaurantAnnotation] = []
     private var filter = Filter()
-    private var alertController: UIAlertController?
+    
+    private lazy var loadingAlert = LoadingAlert(title: "Loading Tenders...", message: "", preferredStyle: .alert)
 
     private var lat:Double = .defaultLatitude
     private var long:Double = .defaultLongitude
     private let radius:Double = .defaultRadius
     
-    private let cellSpacingHeight: CGFloat = 5
+    private let cellSpacingHeight: CGFloat = 10
     private let cellId = "RestuarantCell"
-    
-    private let testing_enabled = true
     
     // MARK: - View handler Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.present(loadingAlert, animated: true, completion: nil)
         
         locationManager.delegate = self
         tableView.delegate = self
@@ -54,32 +55,22 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
         filterView.delegate = self
         
         setupSubviews()
+        setupSettings()
     }
     
-    private func setupSideMenu() {
-        // Define the menus
-        SideMenuManager.default.leftMenuNavigationController = storyboard?.instantiateViewController(withIdentifier: "SideMenu") as? SideMenuNavigationController
-        
-        // Enable gestures. The left and/or right menus must be set up above for these to work.
-        // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
-        SideMenuManager.default.addPanGestureToPresent(toView: navigationController!.navigationBar)
-        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: view)
-    }
-    
-    
-    func setupSubviews() {
-        let tableViewNib = UINib(nibName: "RestaurantTableViewCell", bundle: nil)
-        tableView.register(tableViewNib, forCellReuseIdentifier: cellId)
-        tableView.showsVerticalScrollIndicator = false
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestWhenInUseAuthorization()
         }
         locationManager.startMonitoringSignificantLocationChanges()
-
-        sideMenuButton.target = self
-        sideMenuButton.action = #selector(sideMenuPressed)
-        setupSideMenu()
+    }
+    
+    func setupSubviews() {
+        let tableViewNib = UINib(nibName: "RestaurantTableViewCell", bundle: nil)
+        tableView.register(tableViewNib, forCellReuseIdentifier: cellId)
+        tableView.showsVerticalScrollIndicator = false
         
         map.layer.masksToBounds = true
         map.layer.cornerRadius = 10
@@ -90,18 +81,22 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
         filterView.isHidden = true
         filterView.frame = self.view.frame
         filterView.setMaxDistance(d: radius)
-        alertController = presentLoadingAlert()
         self.view.addSubview(filterView)
+    }
+    
+    func setupSettings() {
+        if UserDefaults.standard.object(forKey: .testing_enabled) == nil {
+            UserDefaults.standard.set(true, forKey: .testing_enabled)
+        }
     }
     
     // MARK: - API Request Methods
     
     @objc func getPlaces() {
-        sortedAnnotations.removeAll()
         unsortedAnnotations.removeAll()
         
         //If testing is enabled, use default init. Otherwise, give params.
-        let request = testing_enabled ? PlacesRequest() : PlacesRequest(query: "wings", lat: lat, long: long, radius: radius)
+        let request = UserDefaults.standard.bool(forKey: .testing_enabled) ? PlacesRequest() : PlacesRequest(query: "wings", lat: lat, long: long, radius: radius)
             
         APIManager.request(request: request, responseType: PlacesResponse.self, completion: { response in
             switch response {
@@ -110,7 +105,7 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
                     self.getDetails(places: results)
                 }
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
             }
         })
     }
@@ -122,30 +117,28 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
         //For each place, get the place's detail
         for index in 0..<places.count {
             if let placeID = places[index].placeID {
-                let request = DetailRequest(placeId: placeID, testing: testing_enabled)
+                let request = DetailRequest(placeId: placeID, testing: UserDefaults.standard.bool(forKey: .testing_enabled))
                 
                 APIManager.request(request: request, responseType: DetailResponse.self, dispatchGroup: dispatchGroup, completion: { response in
                     switch response {
                     case .success(let data):
                         places[index].placeDetail = data.result
                     case .failure(let error):
-                        print(error)
+                        print(error.localizedDescription)
                     }
                 })
             }
             if let photoID = places[index].photos?.first?.photoReference {
-                APIManager.request(request: PhotoRequest(photoId: photoID, testing: testing_enabled), responseType: PhotoResponse.self, dispatchGroup: dispatchGroup, completion: { response in
+                APIManager.request(request: PhotoRequest(photoId: photoID, testing: UserDefaults.standard.bool(forKey: .testing_enabled)), responseType: PhotoResponse.self, dispatchGroup: dispatchGroup, completion: { response in
                     switch response {
                     case .success(let photo):
                         places[index].downloadedPhoto = photo
                     case .failure(_):
                         places[index].downloadedPhoto = UIImage(named: "PlaceholderWing")!
-                        print("Decoding issue for restaraunt: " + (places[index].name ?? String(index)))
                     }
                 })
             } else {
                 places[index].downloadedPhoto = UIImage(named: "PlaceholderWing")!
-                print("No photo reference for restaraunt: " + (places[index].name ?? String(index)))
             }
         }
         
@@ -161,14 +154,6 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
             unsortedAnnotations.append(annotation)
         }
         
-        if let _alertController = alertController {
-            _alertController.dismiss(animated: false, completion: {
-                DispatchQueue.main.async {
-                    self.animateTableCells()
-                }
-            })
-        }
-        
         filterAnnotations(filter: filter)
     }
     
@@ -180,14 +165,14 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
                     cells.append(cell)
                 }
             }
-            UIView.animate(views: cells, animations: [AnimationType.from(direction: .left, offset: 30.0)], duration: 1.5)
+            UIView.animate(views: cells, animations: [AnimationType.from(direction: .bottom, offset: 100.0)], duration: 1.5)
         }
     }
     
     // MARK: - FindBuffaloChickenVCDelegate methods
     
     func filterAnnotations(filter: Filter) {
-        sortedAnnotations.removeAll()
+        sortedAnnotations = []
         var sorted = unsortedAnnotations
         
         if(filter.isOpen) {
@@ -216,7 +201,11 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
         map.removeAnnotations(map.annotations)
         map.addAnnotations(sortedAnnotations)
         map.showAnnotations(map.annotations, animated: true)
-        tableView.reloadData()
+        
+        self.dismiss(animated: true, completion: {
+            self.tableView.reloadData()
+            self.animateTableCells()
+        })
     }
     
     @objc func openInMaps(_ sender: AnnotationButton) {
@@ -241,12 +230,12 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let restaurant = sender as? Restaurant else { return }
-//        guard let sideMenuNavigationController = segue.destination as? SideMenuNavigationController else { return }
-
-        
-        if let target = segue.destination as? RestauarantDetailVC {
-            target.restaurant = restaurant
+        if let restaurant = sender as? Restaurant {
+            if let target = segue.destination as? RestauarantDetailVC {
+                target.restaurant = restaurant
+            }
+        } else if let sideMenuNavigationController = segue.destination as? SideMenuNavigationController {
+            sideMenuNavigationController.sideMenuDelegate = self
         }
     }
     
@@ -262,19 +251,13 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
         }
     }
     
-    //MARK: - Side Menu Button helper method
-    @objc func sideMenuPressed() {
-//        guard let nav = storyboard?.instantiateViewController(identifier: "SideMenu") as? SideMenuNavigationController, let vc = nav.visibleViewController else { return }
-//        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     // MARK: - LocationManager Delegate Methods
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let lat = manager.location?.coordinate.latitude, let long = manager.location?.coordinate.longitude {
             self.lat = lat
             self.long = long
-            map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: long), latitudinalMeters: radius*2, longitudinalMeters: radius*2), animated: false)
+            map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: long), latitudinalMeters: radius*2, longitudinalMeters: radius*2), animated: true)
             getPlaces()
         }
     }
@@ -314,6 +297,7 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
             mapsButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
             
             let detailsButton = AnnotationButton(type: .detailDisclosure)
+            detailsButton.annotation = annotation as RestaurantAnnotation
             detailsButton.addTarget(self, action: #selector(self.openRestaurantDetailVC(_:)), for: .touchUpInside)
             
             let stack = UIStackView(arrangedSubviews: [hoursLabel, detailsButton, mapsButton])
@@ -367,7 +351,7 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 175
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -375,16 +359,14 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 150
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.section).")
-        map.setRegion(MKCoordinateRegion(center: sortedAnnotations[indexPath.section].coordinate, latitudinalMeters: radius, longitudinalMeters: radius), animated: true)
+        map.setRegion(MKCoordinateRegion(center:sortedAnnotations[indexPath.section].coordinate, latitudinalMeters: radius, longitudinalMeters: radius), animated: true)
         let annotation = sortedAnnotations[indexPath.section]
         map.selectAnnotation(annotation, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
-        print(annotation.restaurant.placeID)
     }
 }
 

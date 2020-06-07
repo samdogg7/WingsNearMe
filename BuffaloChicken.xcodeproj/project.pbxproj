@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43B779BAE3CF9486741F8041 /* Pods_BuffaloChicken.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F837E01982443BD6CAB6D2BC /* Pods_BuffaloChicken.framework */; };
+		52B2251E5EA5F4D7B1055F09 /* Pods_BuffaloChicken.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F2D46361156EC48213A00A /* Pods_BuffaloChicken.framework */; };
 		9F08C41324690F900053CC42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41224690F900053CC42 /* AppDelegate.swift */; };
 		9F08C41524690F900053CC42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41424690F900053CC42 /* SceneDelegate.swift */; };
 		9F08C41724690F900053CC42 /* FindWingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41624690F900053CC42 /* FindWingsVC.swift */; };
@@ -26,6 +26,7 @@
 		9F4A3D302489AB8D003D6D24 /* PhotoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A3D2F2489AB8D003D6D24 /* PhotoRequest.swift */; };
 		9F4A3D322489AD67003D6D24 /* PhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A3D312489AD67003D6D24 /* PhotoResponse.swift */; };
 		9F4A3D342489B507003D6D24 /* GoogleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A3D332489B507003D6D24 /* GoogleError.swift */; };
+		9F6D458C248C5CFA001B2072 /* LoadingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6D458B248C5CFA001B2072 /* LoadingAlert.swift */; };
 		9F71D841247C7535004EF23E /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F71D840247C7535004EF23E /* FilterView.xib */; };
 		9F71D845247C75FD004EF23E /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71D844247C75FD004EF23E /* FilterView.swift */; };
 		9F79152F247DE9F900C0ECE0 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79152E247DE9F900C0ECE0 /* Review.swift */; };
@@ -45,7 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6BFF46863EFD21005D5672F1 /* Pods-BuffaloChicken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.release.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.release.xcconfig"; sourceTree = "<group>"; };
+		35F2D46361156EC48213A00A /* Pods_BuffaloChicken.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuffaloChicken.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A6D5B989588737D11A40A10 /* Pods-BuffaloChicken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.release.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.release.xcconfig"; sourceTree = "<group>"; };
+		62D034FB1B27CA2E08B1FBDC /* Pods-BuffaloChicken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.debug.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.debug.xcconfig"; sourceTree = "<group>"; };
 		9F08C40F24690F900053CC42 /* Wings Near Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wings Near Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F08C41224690F900053CC42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F08C41424690F900053CC42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 		9F4A3D2F2489AB8D003D6D24 /* PhotoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRequest.swift; sourceTree = "<group>"; };
 		9F4A3D312489AD67003D6D24 /* PhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoResponse.swift; sourceTree = "<group>"; };
 		9F4A3D332489B507003D6D24 /* GoogleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleError.swift; sourceTree = "<group>"; };
+		9F6D458B248C5CFA001B2072 /* LoadingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAlert.swift; sourceTree = "<group>"; };
 		9F71D840247C7535004EF23E /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		9F71D844247C75FD004EF23E /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		9F79152E247DE9F900C0ECE0 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
@@ -82,8 +86,6 @@
 		9FC6D5E124899549002F8044 /* GoogleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleResponse.swift; sourceTree = "<group>"; };
 		9FC6D5E524899815002F8044 /* GoogleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRequest.swift; sourceTree = "<group>"; };
 		9FD2604C246F24E2003E3443 /* loading-tenders.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-tenders.json"; sourceTree = "<group>"; };
-		F1908D0AE2E48D5E98DC1F53 /* Pods-BuffaloChicken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.debug.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.debug.xcconfig"; sourceTree = "<group>"; };
-		F837E01982443BD6CAB6D2BC /* Pods_BuffaloChicken.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuffaloChicken.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43B779BAE3CF9486741F8041 /* Pods_BuffaloChicken.framework in Frameworks */,
+				52B2251E5EA5F4D7B1055F09 /* Pods_BuffaloChicken.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,18 +103,10 @@
 		7057BD79C36779EC41D94EDE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F1908D0AE2E48D5E98DC1F53 /* Pods-BuffaloChicken.debug.xcconfig */,
-				6BFF46863EFD21005D5672F1 /* Pods-BuffaloChicken.release.xcconfig */,
+				62D034FB1B27CA2E08B1FBDC /* Pods-BuffaloChicken.debug.xcconfig */,
+				4A6D5B989588737D11A40A10 /* Pods-BuffaloChicken.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		9E1243F233ED3E9126432D6E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F837E01982443BD6CAB6D2BC /* Pods_BuffaloChicken.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		9F08C40624690F900053CC42 = {
@@ -121,7 +115,7 @@
 				9F08C41124690F900053CC42 /* BuffaloChicken */,
 				9F08C41024690F900053CC42 /* Products */,
 				7057BD79C36779EC41D94EDE /* Pods */,
-				9E1243F233ED3E9126432D6E /* Frameworks */,
+				CC2A6D5B7756077F625575D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				9F9ABFE2247F827800787376 /* LottieSwitch.swift */,
+				9F6D458B248C5CFA001B2072 /* LoadingAlert.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -263,6 +258,14 @@
 			path = LottieAnimations;
 			sourceTree = "<group>";
 		};
+		CC2A6D5B7756077F625575D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				35F2D46361156EC48213A00A /* Pods_BuffaloChicken.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -270,11 +273,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F08C42324690F910053CC42 /* Build configuration list for PBXNativeTarget "BuffaloChicken" */;
 			buildPhases = (
-				2D359DCA61834CA7D49FE525 /* [CP] Check Pods Manifest.lock */,
+				30CFE73DCECA861345105BCA /* [CP] Check Pods Manifest.lock */,
 				9F08C40B24690F900053CC42 /* Sources */,
 				9F08C40C24690F900053CC42 /* Frameworks */,
 				9F08C40D24690F900053CC42 /* Resources */,
-				ED47F34579F443513756960F /* [CP] Embed Pods Frameworks */,
+				E1DEAB5D70D44C5A8164645C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -340,7 +343,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2D359DCA61834CA7D49FE525 /* [CP] Check Pods Manifest.lock */ = {
+		30CFE73DCECA861345105BCA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -362,7 +365,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ED47F34579F443513756960F /* [CP] Embed Pods Frameworks */ = {
+		E1DEAB5D70D44C5A8164645C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -397,6 +400,7 @@
 				9FC6D5E624899815002F8044 /* GoogleRequest.swift in Sources */,
 				9F08C41324690F900053CC42 /* AppDelegate.swift in Sources */,
 				9F2334642475895500C06EA3 /* RestaurantAnnotation.swift in Sources */,
+				9F6D458C248C5CFA001B2072 /* LoadingAlert.swift in Sources */,
 				9F08C41524690F900053CC42 /* SceneDelegate.swift in Sources */,
 				9FB2C03E246B050600650946 /* RestaurantTableViewCell.swift in Sources */,
 				9F3F41372479BC5600F00A56 /* Restaurant.swift in Sources */,
@@ -550,7 +554,7 @@
 		};
 		9F08C42424690F910053CC42 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1908D0AE2E48D5E98DC1F53 /* Pods-BuffaloChicken.debug.xcconfig */;
+			baseConfigurationReference = 62D034FB1B27CA2E08B1FBDC /* Pods-BuffaloChicken.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -570,7 +574,7 @@
 		};
 		9F08C42524690F910053CC42 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BFF46863EFD21005D5672F1 /* Pods-BuffaloChicken.release.xcconfig */;
+			baseConfigurationReference = 4A6D5B989588737D11A40A10 /* Pods-BuffaloChicken.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -10,5 +10,4 @@ target 'BuffaloChicken' do
   pod 'lottie-ios'
   pod 'ViewAnimator'
   pod 'Hue'
-  pod 'SDWebImage'
 end

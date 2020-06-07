@@ -9,18 +9,25 @@
 import UIKit
 import SideMenu
 
-class SettingsVC: UITableViewController, SideMenuVCDelegate {
+class SettingsVC: UITableViewController, SideMenuNavigationControllerDelegate {
     @IBOutlet weak var sideMenuButton: UIBarButtonItem!
+    @IBOutlet weak var testingSwitch: UISwitch!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sideMenuButton.target = self
-        sideMenuButton.action = #selector(sideMenuPressed)
+        testingSwitch.addTarget(self, action: #selector(testingSwitchFlipped(_:)), for: .touchUpInside)
+        testingSwitch.isOn = UserDefaults.standard.bool(forKey: .testing_enabled)
     }
     
-    @objc func sideMenuPressed() {
-        navigationController?.popToRootViewController(animated: true)
+    @objc func testingSwitchFlipped(_ sender: UISwitch) {
+        UserDefaults.standard.set(testingSwitch.isOn, forKey: .testing_enabled)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let sideMenuNavigationController = segue.destination as? SideMenuNavigationController {
+            sideMenuNavigationController.sideMenuDelegate = self
+        }
     }
 }

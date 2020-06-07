@@ -24,6 +24,8 @@ class RestauarantDetailVC: UIViewController {
             hours.text = restaurant.hoursString
             self.location.text = "Location: " + restaurant.formattedAddress
             imageView.image = restaurant.photo
+            imageView.layer.cornerRadius = 40
+            imageView.clipsToBounds = true
         }
     }
 }

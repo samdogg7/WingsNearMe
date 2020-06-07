@@ -13,7 +13,7 @@ class PhotoRequest: GoogleRequest {
     
     init(photoId: String, testing: Bool) {
         if testing {
-            self.url = URL(string: "https://samdoggett.com/WingsNearMe/TestResponses/\(photoId.suffix(5)).json")
+            self.url = URL(string: "https://samdoggett.com/WingsNearMe/TestResponses/\(photoId.suffix(5)).jpg")
         } else {
             self.url = URL(string: .baseUrl + "photo?maxwidth=480&photoreference=\(photoId)&key=" + .api_key)
         }
