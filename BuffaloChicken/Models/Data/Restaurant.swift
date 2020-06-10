@@ -18,7 +18,7 @@ class Restaurant: NSObject {
     var formattedPhoneNumber: String
     var rating: Double
     var placeID: String
-    var photo: UIImage
+    var photos: [UIImage]
     
     init(place: Place) {
         self.name = place.name ?? "Restaurant Name"
@@ -28,11 +28,24 @@ class Restaurant: NSObject {
         } else {
             self.hoursString = "Hours not available"
         }
-        self.photo = place.downloadedPhoto
+        photos = [ UIImage(named: "PlaceholderWing")!, UIImage(named: "PlaceholderWing1")!, UIImage(named: "PlaceholderWing2")!, UIImage(named: "PlaceholderWing3")! ]
         self.coordinate = CLLocationCoordinate2D(latitude: place.geometry?.location?.lat ?? 37.3230, longitude: place.geometry?.location?.lng ?? -122.0322)
-        self.formattedAddress = place.placeDetail?.formattedAddress ?? "No formatted address given"
+        self.formattedAddress = "No formatted address given"
+        self.formattedPhoneNumber = "No phone number given"
         self.rating = place.rating ?? 0.0
-        self.formattedPhoneNumber = place.placeDetail?.formattedPhoneNumber ?? "No phone number given"
         self.placeID = place.placeID ?? "PlaceID"
+    }
+    
+    func addDetails(details: PlaceDetail) {
+        self.formattedAddress = details.formattedAddress ?? self.formattedAddress
+        self.formattedPhoneNumber = details.formattedPhoneNumber ?? self.formattedPhoneNumber
+    }
+    
+    func addPhoto(photo: UIImage, atIndex: Int? = nil) {
+        if let index = atIndex {
+            self.photos.insert(photo, at: index)
+        } else {
+            self.photos.append(photo)
+        }
     }
 }

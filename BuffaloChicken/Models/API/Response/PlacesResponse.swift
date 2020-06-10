@@ -7,7 +7,6 @@
 //
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 //
-import UIKit.UIImage
 
 // MARK: - PlacesResponse
 struct PlacesResponse: GoogleResponse, Codable {
@@ -38,8 +37,6 @@ struct Place: Codable {
     var reference: String?
     var types: [String]?
     var userRatingsTotal: Int?
-    var placeDetail: PlaceDetail?
-    var downloadedPhoto = UIImage(named: "PlaceholderWing")!
 
     enum CodingKeys: String, CodingKey {
         case businessStatus = "business_status"

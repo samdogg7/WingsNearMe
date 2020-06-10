@@ -10,22 +10,29 @@ import UIKit
 
 class RestauarantDetailVC: UIViewController {
     var restaurant: Restaurant?
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var hours: UILabel!
-    @IBOutlet weak var location: UILabel!
-    
+    var mapFrame: CGRect?
+    var detailView = RestaurantDetailView().loadNib() as! RestaurantDetailView
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let restaurant = restaurant {
-            name.text = restaurant.name
-            hours.text = restaurant.hoursString
-            self.location.text = "Location: " + restaurant.formattedAddress
-            imageView.image = restaurant.photo
-            imageView.layer.cornerRadius = 40
-            imageView.clipsToBounds = true
-        }
+        guard let _restaurant = restaurant, let _mapFrame = mapFrame else { return }
+                
+        detailView.restaurant = _restaurant
+        
+        self.view.addSubview(detailView)
+        
+        detailView.translatesAutoresizingMaskIntoConstraints = false
+        
+        detailView.topAnchor.constraint(equalTo: self.view.topAnchor, constant:_mapFrame.height + self.topbarHeight ).isActive = true
+        detailView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0).isActive = true
+        detailView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0).isActive = true
+        detailView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissModal)) )
+    }
+    
+    @objc func dismissModal() {
+        dismiss(animated: true, completion: nil)
     }
 }

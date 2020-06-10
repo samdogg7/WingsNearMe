@@ -29,14 +29,12 @@ class FilterView: UIView {
         maxDistanceSlider.value = 8046.72 //5 miles in meters
         
         backgroundView.layer.masksToBounds = true
-        backgroundView.layer.cornerRadius = 25
-        backgroundView.layer.borderColor = UIColor.systemGray3.cgColor
-        backgroundView.layer.borderWidth = 1.0
+        backgroundView.layer.cornerRadius = .defaultCornerRadius
+        backgroundView.addBorder(color: UIColor.systemGray3, width: 1)
         
         filterButton.layer.masksToBounds = true
         filterButton.layer.cornerRadius = filterButton.frame.height / 2
-        filterButton.layer.borderColor = UIColor.systemGray3.cgColor
-        filterButton.layer.borderWidth = 1.0
+        filterButton.addBorder(color: UIColor.systemGray3, width: 1)
         
         filterBySegment.apportionsSegmentWidthsByContent = false
         isOpenSegment.apportionsSegmentWidthsByContent = false

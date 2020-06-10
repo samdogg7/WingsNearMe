@@ -15,7 +15,6 @@ import SideMenu
 
 protocol FindBuffaloChickenVCDelegate {
     func filterAnnotations(filter: Filter)
-    func openRestaurantDetailVC(restaurant: Restaurant)
     func switchFilterView()
 }
 
@@ -111,18 +110,22 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     }
     
     func getDetails(places: [Place]) {
-        var places = places
+        var restaurants:[Restaurant] = []
         let dispatchGroup = DispatchGroup()
         
         //For each place, get the place's detail
         for index in 0..<places.count {
+            restaurants.append(Restaurant(place: places[index]))
+            
             if let placeID = places[index].placeID {
                 let request = DetailRequest(placeId: placeID, testing: UserDefaults.standard.bool(forKey: .testing_enabled))
                 
                 APIManager.request(request: request, responseType: DetailResponse.self, dispatchGroup: dispatchGroup, completion: { response in
                     switch response {
                     case .success(let data):
-                        places[index].placeDetail = data.result
+                        if let detail = data.result {
+                            restaurants[index].addDetails(details: detail)
+                        }
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
@@ -132,25 +135,25 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
                 APIManager.request(request: PhotoRequest(photoId: photoID, testing: UserDefaults.standard.bool(forKey: .testing_enabled)), responseType: PhotoResponse.self, dispatchGroup: dispatchGroup, completion: { response in
                     switch response {
                     case .success(let photo):
-                        places[index].downloadedPhoto = photo
+                        restaurants[index].addPhoto(photo: photo, atIndex: 0)
                     case .failure(_):
-                        places[index].downloadedPhoto = UIImage(named: "PlaceholderWing")!
+                        restaurants[index].addPhoto(photo: UIImage(named: "PlaceholderWing")!)
                     }
                 })
             } else {
-                places[index].downloadedPhoto = UIImage(named: "PlaceholderWing")!
+                restaurants[index].addPhoto(photo: UIImage(named: "PlaceholderWing")!)
             }
         }
         
         dispatchGroup.notify(queue: .main) {
-            self.addAnnotations(places: places)
+            self.addAnnotations(retaurants: restaurants)
         }
     }
     
     
-    func addAnnotations(places: [Place]) {
-        for (index, place) in places.enumerated() {
-            let annotation = RestaurantAnnotation(id: index, restaurant: Restaurant(place: place), userLocation: CLLocation(latitude: lat, longitude: long) )
+    func addAnnotations(retaurants: [Restaurant]) {
+        for (index, restaurant) in retaurants.enumerated() {
+            let annotation = RestaurantAnnotation(id: index, restaurant: restaurant, userLocation: CLLocation(latitude: lat, longitude: long) )
             unsortedAnnotations.append(annotation)
         }
         
@@ -221,19 +224,14 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     
     //MARK: - Segue methods
     
-    func openRestaurantDetailVC(restaurant: Restaurant) {
-        performSegue(withIdentifier: "ShowRestaurantDetail", sender: restaurant)
-    }
-    
     @objc func openRestaurantDetailVC(_ sender: AnnotationButton) {
         performSegue(withIdentifier: "ShowRestaurantDetail", sender: sender.annotation?.restaurant)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let restaurant = sender as? Restaurant {
-            if let target = segue.destination as? RestauarantDetailVC {
-                target.restaurant = restaurant
-            }
+        if let target = segue.destination as? RestauarantDetailVC, let restaurant = sender as? Restaurant {
+            target.restaurant = restaurant
+            target.mapFrame = map.frame
         } else if let sideMenuNavigationController = segue.destination as? SideMenuNavigationController {
             sideMenuNavigationController.sideMenuDelegate = self
         }
@@ -259,6 +257,9 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
             self.long = long
             map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: lat, longitude: long), latitudinalMeters: radius*2, longitudinalMeters: radius*2), animated: true)
             getPlaces()
+            
+            //Stop updating location. Ideally we do not want this, but do not want to get charged for billing
+            manager.stopUpdatingLocation()
         }
     }
     
@@ -340,18 +341,10 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RestaurantTableViewCell
         cell.restaurant = restaurant
         
-        cell.layer.borderColor = UIColor(named: "InverseSystem")?.cgColor
-        cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 8
+        cell.addRoundedCorners(borderColor: .separator, borderWidth: 1)
         cell.clipsToBounds = true
-        
-        cell.delegate = self
-        
+                
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 175
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -359,14 +352,15 @@ class FindWingsVC: UIViewController, UITableViewDelegate,  UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 115
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        map.setRegion(MKCoordinateRegion(center:sortedAnnotations[indexPath.section].coordinate, latitudinalMeters: radius, longitudinalMeters: radius), animated: true)
         let annotation = sortedAnnotations[indexPath.section]
+        map.setRegion(MKCoordinateRegion(center:annotation.coordinate, latitudinalMeters: radius, longitudinalMeters: radius), animated: true)
         map.selectAnnotation(annotation, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "ShowRestaurantDetail", sender: annotation.restaurant)
     }
 }
 

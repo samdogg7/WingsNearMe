@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RestaurantDetailView" customModule="Wings_Near_Me" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RestaurantDetailView" customModule="Wings_Near_Me" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="445"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooJ-dl-mef">
+                    <rect key="frame" x="10" y="0.0" width="394" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="5xE-mi-xna"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="XWA-CO-BNz"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="1sP-MG-IDD"/>
+                </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Z0R-ks-Czs">
+                    <rect key="frame" x="187.5" y="198" width="39" height="37"/>
+                </pageControl>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Js9-HK-sGe">
+                    <rect key="frame" x="10" y="235" width="394" height="91.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe Vesuvius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90F-RS-8rI">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="50.5"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00am - 5:00pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uFq-e6-HVf">
+                            <rect key="frame" x="0.0" y="50.5" width="394" height="20.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 Bessom St, Marblehead, MA 01945" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DpT-OY-ZOI">
+                            <rect key="frame" x="0.0" y="71" width="394" height="20.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="ooJ-dl-mef" firstAttribute="trailing" secondItem="Js9-HK-sGe" secondAttribute="trailing" id="0XD-ka-SfO"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Js9-HK-sGe" secondAttribute="bottom" id="J2G-MY-ihF"/>
+                <constraint firstItem="Z0R-ks-Czs" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Jy5-45-6ce"/>
+                <constraint firstAttribute="trailing" secondItem="ooJ-dl-mef" secondAttribute="trailing" constant="10" id="RZp-1j-hQ7"/>
+                <constraint firstItem="Js9-HK-sGe" firstAttribute="top" secondItem="ooJ-dl-mef" secondAttribute="bottom" constant="10" id="V4g-Xt-cYi"/>
+                <constraint firstItem="ooJ-dl-mef" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="XIy-9Q-FeK"/>
+                <constraint firstItem="Js9-HK-sGe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Ysf-ah-jzg"/>
+                <constraint firstItem="ooJ-dl-mef" firstAttribute="bottom" secondItem="Z0R-ks-Czs" secondAttribute="bottom" constant="-10" id="vRH-KF-gIb"/>
+                <constraint firstItem="ooJ-dl-mef" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="vTL-kl-tPq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="hours" destination="uFq-e6-HVf" id="8zq-mZ-8zF"/>
+                <outlet property="location" destination="DpT-OY-ZOI" id="WRn-wm-8Ac"/>
+                <outlet property="name" destination="90F-RS-8rI" id="zUY-Eh-mEp"/>
+                <outlet property="pageControl" destination="Z0R-ks-Czs" id="lY6-TP-IY6"/>
+                <outlet property="scrollView" destination="ooJ-dl-mef" id="Ccl-bF-JyS"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="-34.486607142857139"/>
+        </view>
+    </objects>
+</document>

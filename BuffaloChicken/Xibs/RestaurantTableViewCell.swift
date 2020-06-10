@@ -14,13 +14,6 @@ class RestaurantTableViewCell: UITableViewCell {
     @IBOutlet private weak var phone: UILabel!
     @IBOutlet private weak var location: UILabel!
     @IBOutlet private weak var ratingStack: UIStackView!
-    @IBOutlet private weak var button: UIButton!
-    
-    var delegate: FindBuffaloChickenVCDelegate? {
-        didSet {
-            button.addTarget(self, action: #selector(openDetailVC), for: .touchUpInside)
-        }
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -38,18 +31,12 @@ class RestaurantTableViewCell: UITableViewCell {
             
             updateRating(rating: restaurant.rating)
             
-            imgView.layer.cornerRadius = 15
-            imgView.clipsToBounds = true
-            imgView.image = restaurant.photo
+            imgView.addRoundedCorners(corners: [ .topLeft, .bottomLeft ])
+            imgView.image = restaurant.photos.first
             
             location.text = restaurant.formattedAddress
             phone.text = restaurant.formattedPhoneNumber
         }
-    }
-    
-    @objc func openDetailVC() {
-        guard let delegate = delegate, let restaurant = restaurant else { return }
-        delegate.openRestaurantDetailVC(restaurant: restaurant)
     }
     
     func updateRating(rating: Double) {

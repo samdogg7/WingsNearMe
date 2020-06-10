@@ -40,7 +40,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QIf-Z5-9xd"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Wings Near Me" id="XGQ-jC-eDm">
+                    <navigationItem key="navigationItem" title="Wings Near Me" largeTitleDisplayMode="always" id="XGQ-jC-eDm">
                         <barButtonItem key="leftBarButtonItem" title="Side Menu" image="list.bullet" catalog="system" id="zwk-Qm-Iy7">
                             <connections>
                                 <segue destination="Ke4-yL-2oX" kind="presentation" identifier="SideMenuSegue" id="al6-67-tZ8"/>
@@ -53,12 +53,26 @@
                         <outlet property="map" destination="XUw-kE-Nlq" id="ufd-4Y-2Vv"/>
                         <outlet property="sideMenuButton" destination="zwk-Qm-Iy7" id="M2M-p3-ocY"/>
                         <outlet property="tableView" destination="gNQ-Fn-ewk" id="TQA-42-mYk"/>
-                        <segue destination="bSs-wC-H6e" kind="showDetail" identifier="ShowRestaurantDetail" id="KcH-e5-up6"/>
+                        <segue destination="ERs-qq-uuH" kind="presentation" identifier="ShowRestaurantDetail" modalPresentationStyle="overCurrentContext" id="bit-v0-hbk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Yn-13-U8Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="62.318840579710148" y="-1071.4285714285713"/>
+        </scene>
+        <!--Restauarant DetailVC-->
+        <scene sceneID="Jxa-SN-bmL">
+            <objects>
+                <viewController id="ERs-qq-uuH" customClass="RestauarantDetailVC" customModule="Wings_Near_Me" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4cm-tZ-fVI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4jE-Vw-VL8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="941" y="-1071"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Ay8-DH-Tcf">
@@ -124,68 +138,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rB-JZ-vDq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="37.681159420289859" y="-344.19642857142856"/>
-        </scene>
-        <!--Restauarant DetailVC-->
-        <scene sceneID="NxU-pd-yvt">
-            <objects>
-                <viewController storyboardIdentifier="RestaurantDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bSs-wC-H6e" customClass="RestauarantDetailVC" customModule="Wings_Near_Me" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="amg-wi-A7c">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AfO-oR-s6H">
-                                <rect key="frame" x="50" y="50" width="414" height="818"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlaceholderWing" translatesAutoresizingMaskIntoConstraints="NO" id="vLC-O2-4mm">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="UrA-tV-44P"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe Vesuvius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7P-1I-xla">
-                                        <rect key="frame" x="0.0" y="200" width="414" height="577"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours: 9:00am - 5:00pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U2d-0f-sqS">
-                                        <rect key="frame" x="0.0" y="777" width="414" height="20.5"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location: 18 Bessom St, Marblehead, MA 01945" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qxN-xA-AQ9">
-                                        <rect key="frame" x="0.0" y="797.5" width="414" height="20.5"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="ch0-Vw-Jwj" firstAttribute="bottom" secondItem="AfO-oR-s6H" secondAttribute="bottom" constant="100" id="DkZ-2U-IIw"/>
-                            <constraint firstItem="ch0-Vw-Jwj" firstAttribute="trailing" secondItem="AfO-oR-s6H" secondAttribute="trailing" constant="50" id="Lxo-Pw-5ap"/>
-                            <constraint firstItem="AfO-oR-s6H" firstAttribute="leading" secondItem="ch0-Vw-Jwj" secondAttribute="leading" constant="50" id="adx-dz-IUK"/>
-                            <constraint firstItem="AfO-oR-s6H" firstAttribute="top" secondItem="ch0-Vw-Jwj" secondAttribute="top" constant="50" id="xih-Ck-vNv"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="ch0-Vw-Jwj"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="TBU-Oz-wtq"/>
-                    <value key="contentSizeForViewInPopover" type="size" width="414" height="400"/>
-                    <connections>
-                        <outlet property="hours" destination="U2d-0f-sqS" id="wTD-mb-vvg"/>
-                        <outlet property="imageView" destination="vLC-O2-4mm" id="M9P-Nd-H40"/>
-                        <outlet property="location" destination="qxN-xA-AQ9" id="Yk9-Aq-qag"/>
-                        <outlet property="name" destination="r7P-1I-xla" id="s0s-Rp-voh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LT4-Fo-0vu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="901.44927536231887" y="-1071.4285714285713"/>
         </scene>
         <!--Side MenuVC-->
         <scene sceneID="2CN-CJ-gq9">
@@ -384,10 +336,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FTM-nC-lih"/>
+        <segue reference="al6-67-tZ8"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="PlaceholderWing" width="1256" height="630"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
     </resources>
 </document>
