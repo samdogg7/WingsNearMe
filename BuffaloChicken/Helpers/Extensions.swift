@@ -21,7 +21,7 @@ extension String {
     static var baseUrl: String {
         return "https://maps.googleapis.com/maps/api/place/"
     }
-
+    
     static var api_key: String {
         return "AIzaSyDnfkzsqLDaN8gBW5uHqq4hOS6JJJElgUo"
     }
@@ -33,11 +33,11 @@ extension String {
 
 extension Double {
     static var defaultLatitude:Double {
-        return 37.3230
+        return 42.613171
     }
     
     static var defaultLongitude:Double {
-        return -122.0322
+        return -70.872139
     }
     
     static var defaultRadius:Double {
@@ -59,7 +59,7 @@ extension UIView {
         return nib.instantiate(withOwner: self, options: nil).first as! UIView
     }
     
-    func addRoundedCorners(radius: CGFloat = .defaultCornerRadius, corners: UIRectCorner = [ .allCorners ], borderColor: UIColor = UIColor.systemGray, borderWidth: CGFloat = 0) {
+    @discardableResult func addRoundedCorners(radius: CGFloat = .defaultCornerRadius, corners: UIRectCorner = [ .allCorners ], borderWidth: CGFloat = 0, borderColor: UIColor = .inverse) -> CAShapeLayer? {
         let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         
         // Add rounded corners
@@ -67,18 +67,21 @@ extension UIView {
         maskLayer.frame = self.bounds
         maskLayer.path = maskPath.cgPath
         self.layer.mask = maskLayer
-
         
-        // Add border
+        //Add rounded borders
         if borderWidth > 0 {
             let borderLayer = CAShapeLayer()
-            borderLayer.path = maskPath.cgPath // Reuse the Bezier path
+            borderLayer.path = maskPath.cgPath
             borderLayer.fillColor = UIColor.clear.cgColor
             borderLayer.strokeColor = borderColor.cgColor
             borderLayer.lineWidth = borderWidth
             borderLayer.frame = self.bounds
             self.layer.addSublayer(borderLayer)
+            //We do not want to add multiple borders if this is called with a view that uses layoutSubviews.
+            //Allows that view to handle removing previous border
+            return borderLayer
         }
+        return nil
     }
     
     func addBorder(color: UIColor = UIColor.systemGray, width: CGFloat = 1) {
@@ -86,20 +89,28 @@ extension UIView {
         self.layer.borderWidth = width
         self.clipsToBounds = true
     }
+    
+    func hideAnimated(duration: Double = 0.25){
+        UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
+            self.layoutIfNeeded()
+            self.center.y += self.bounds.height
+        },  completion: {(_ completed: Bool) -> Void in
+            self.isHidden = true
+        })
+    }
 }
 
 extension UIImageView
 {
-    func roundCornersForAspectFit(radius: CGFloat)
-    {
+    func roundCornersForAspectFit(radius: CGFloat) {
         if let image = self.image {
-
+            
             //calculate drawingRect
             let boundsScale = self.bounds.size.width / self.bounds.size.height
             let imageScale = image.size.width / image.size.height
-
+            
             var drawingRect: CGRect = self.bounds
-
+            
             if boundsScale > imageScale {
                 drawingRect.size.width =  drawingRect.size.height * imageScale
                 drawingRect.origin.x = (self.bounds.size.width - drawingRect.size.width) / 2
@@ -115,11 +126,6 @@ extension UIImageView
     }
 }
 extension UIViewController {
-
-    /**
-     *  Height of status bar + navigation bar (if navigation bar exist)
-     */
-
     var topbarHeight: CGFloat {
         return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 22) +
             (self.navigationController?.navigationBar.frame.height ?? 80)

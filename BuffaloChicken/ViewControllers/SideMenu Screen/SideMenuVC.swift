@@ -27,12 +27,11 @@ class SideMenuVC: UITableViewController {
         delegate = menu.sideMenuDelegate
         
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "sidemenu-background") ?? UIImage(systemName: "star")
+        imageView.image = UIImage(named: "sidemenu-background")
         imageView.backgroundColor = .clear
         self.view.addSubview(imageView)
         imageView.frame = tableView.bounds
         imageView.contentMode = .scaleAspectFit
-//        tableView.backgroundView = imageView
     }
         
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -40,26 +39,24 @@ class SideMenuVC: UITableViewController {
         switch indexPath.row {
         //FindWingsVC
         case 0:
-            guard let vc = storyboard?.instantiateViewController(identifier: "FindWings") as? FindWingsVC else { return }
-            if let _delegate = delegate as? UIViewController, vc.restorationIdentifier != _delegate.restorationIdentifier {
-                navigationController?.pushViewController(vc, animated: true)
-            } else {
-                navigationController?.dismiss(animated: true, completion: nil)
-            }
+            loadViewController(id: "FindWings")
         //Social
         case 1:
-           break
+           loadViewController(id: "WebviewTest")
         //Settings
         case 2:
-            guard let vc = storyboard?.instantiateViewController(identifier: "Settings") else { return }
-            if let _delegate = delegate as? UIViewController, vc.restorationIdentifier != _delegate.restorationIdentifier {
-                navigationController?.pushViewController(vc, animated: false)
-            } else {
-                navigationController?.dismiss(animated: true, completion: nil)
-            }
-            break
+            loadViewController(id: "Settings")
         default:
             break
+        }
+    }
+    
+    func loadViewController(id: String) {
+        guard let vc = storyboard?.instantiateViewController(identifier: id) else { return }
+        if let _delegate = delegate as? UIViewController, vc.restorationIdentifier != _delegate.restorationIdentifier {
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            navigationController?.dismiss(animated: true, completion: nil)
         }
     }
 }

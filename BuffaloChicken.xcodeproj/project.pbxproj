@@ -10,7 +10,7 @@
 		52B2251E5EA5F4D7B1055F09 /* Pods_BuffaloChicken.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F2D46361156EC48213A00A /* Pods_BuffaloChicken.framework */; };
 		9F08C41324690F900053CC42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41224690F900053CC42 /* AppDelegate.swift */; };
 		9F08C41524690F900053CC42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41424690F900053CC42 /* SceneDelegate.swift */; };
-		9F08C41724690F900053CC42 /* FindWingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41624690F900053CC42 /* FindWingsVC.swift */; };
+		9F08C41724690F900053CC42 /* FindWingsParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41624690F900053CC42 /* FindWingsParentVC.swift */; };
 		9F08C41A24690F900053CC42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F08C41824690F900053CC42 /* Main.storyboard */; };
 		9F08C41C24690F910053CC42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F08C41B24690F910053CC42 /* Assets.xcassets */; };
 		9F08C41F24690F910053CC42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F08C41D24690F910053CC42 /* LaunchScreen.storyboard */; };
@@ -18,7 +18,8 @@
 		9F08C42B246914630053CC42 /* PlacesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C42A246914630053CC42 /* PlacesResponse.swift */; };
 		9F20E6732485F5A30085E723 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F20E6722485F5A30085E723 /* SettingsVC.swift */; };
 		9F2334642475895500C06EA3 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2334632475895500C06EA3 /* RestaurantAnnotation.swift */; };
-		9F3F41352479A99200F00A56 /* RestaurantDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F41342479A99200F00A56 /* RestaurantDetailVC.swift */; };
+		9F274C19249540EA004F3A4A /* FindWingsMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F274C18249540EA004F3A4A /* FindWingsMapVC.swift */; };
+		9F274C1B24954107004F3A4A /* FindWingsTableviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F274C1A24954107004F3A4A /* FindWingsTableviewVC.swift */; };
 		9F3F41372479BC5600F00A56 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F41362479BC5600F00A56 /* Restaurant.swift */; };
 		9F3F413B247B299500F00A56 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F413A247B299500F00A56 /* SideMenuVC.swift */; };
 		9F4A3D2C24899BF3003D6D24 /* PlacesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A3D2B24899BF3003D6D24 /* PlacesRequest.swift */; };
@@ -44,6 +45,8 @@
 		9FB2C03E246B050600650946 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */; };
 		9FC6D5E224899549002F8044 /* GoogleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC6D5E124899549002F8044 /* GoogleResponse.swift */; };
 		9FC6D5E624899815002F8044 /* GoogleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC6D5E524899815002F8044 /* GoogleRequest.swift */; };
+		9FC8A7112492BD990058E807 /* WebviewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8A7102492BD990058E807 /* WebviewTest.swift */; };
+		9FC8A7152492C10D0058E807 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC8A7142492C10D0058E807 /* WebKit.framework */; };
 		9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2604C246F24E2003E3443 /* loading-tenders.json */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +57,7 @@
 		9F08C40F24690F900053CC42 /* Wings Near Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wings Near Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F08C41224690F900053CC42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F08C41424690F900053CC42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9F08C41624690F900053CC42 /* FindWingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindWingsVC.swift; sourceTree = "<group>"; };
+		9F08C41624690F900053CC42 /* FindWingsParentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindWingsParentVC.swift; sourceTree = "<group>"; };
 		9F08C41924690F900053CC42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F08C41B24690F910053CC42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F08C41E24690F910053CC42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,7 +66,8 @@
 		9F08C42A246914630053CC42 /* PlacesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesResponse.swift; sourceTree = "<group>"; };
 		9F20E6722485F5A30085E723 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		9F2334632475895500C06EA3 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
-		9F3F41342479A99200F00A56 /* RestaurantDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVC.swift; sourceTree = "<group>"; };
+		9F274C18249540EA004F3A4A /* FindWingsMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindWingsMapVC.swift; sourceTree = "<group>"; };
+		9F274C1A24954107004F3A4A /* FindWingsTableviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindWingsTableviewVC.swift; sourceTree = "<group>"; };
 		9F3F41362479BC5600F00A56 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		9F3F413A247B299500F00A56 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		9F4A3D2B24899BF3003D6D24 /* PlacesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesRequest.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 		9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		9FC6D5E124899549002F8044 /* GoogleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleResponse.swift; sourceTree = "<group>"; };
 		9FC6D5E524899815002F8044 /* GoogleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRequest.swift; sourceTree = "<group>"; };
+		9FC8A7102492BD990058E807 /* WebviewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewTest.swift; sourceTree = "<group>"; };
+		9FC8A7142492C10D0058E807 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9FD2604C246F24E2003E3443 /* loading-tenders.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-tenders.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FC8A7152492C10D0058E807 /* WebKit.framework in Frameworks */,
 				52B2251E5EA5F4D7B1055F09 /* Pods_BuffaloChicken.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +158,16 @@
 			path = BuffaloChicken;
 			sourceTree = "<group>";
 		};
+		9F274C17249540CC004F3A4A /* Find Wings Screen */ = {
+			isa = PBXGroup;
+			children = (
+				9F08C41624690F900053CC42 /* FindWingsParentVC.swift */,
+				9F274C18249540EA004F3A4A /* FindWingsMapVC.swift */,
+				9F274C1A24954107004F3A4A /* FindWingsTableviewVC.swift */,
+			);
+			path = "Find Wings Screen";
+			sourceTree = "<group>";
+		};
 		9F4A3D2924899BD0003D6D24 /* Response */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,10 +212,10 @@
 		9F92875C246B7B0800E4DCCC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9F08C41624690F900053CC42 /* FindWingsVC.swift */,
-				9F3F41342479A99200F00A56 /* RestaurantDetailVC.swift */,
-				9F3F413A247B299500F00A56 /* SideMenuVC.swift */,
-				9F20E6722485F5A30085E723 /* SettingsVC.swift */,
+				9F274C17249540CC004F3A4A /* Find Wings Screen */,
+				9F92E5DF2496D5520085563F /* Settings Screen */,
+				9F92E5E02496D55E0085563F /* SideMenu Screen */,
+				9F92E5E12496D57E0085563F /* AwareX Screens */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -216,12 +233,36 @@
 			children = (
 				9F71D840247C7535004EF23E /* FilterView.xib */,
 				9F71D844247C75FD004EF23E /* FilterView.swift */,
-				9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */,
 				9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */,
+				9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */,
 				9F6D458D248CA1D4001B2072 /* RestaurantDetailView.xib */,
 				9F6D458F248CA1E0001B2072 /* RestaurantDetailView.swift */,
 			);
 			path = Xibs;
+			sourceTree = "<group>";
+		};
+		9F92E5DF2496D5520085563F /* Settings Screen */ = {
+			isa = PBXGroup;
+			children = (
+				9F20E6722485F5A30085E723 /* SettingsVC.swift */,
+			);
+			path = "Settings Screen";
+			sourceTree = "<group>";
+		};
+		9F92E5E02496D55E0085563F /* SideMenu Screen */ = {
+			isa = PBXGroup;
+			children = (
+				9F3F413A247B299500F00A56 /* SideMenuVC.swift */,
+			);
+			path = "SideMenu Screen";
+			sourceTree = "<group>";
+		};
+		9F92E5E12496D57E0085563F /* AwareX Screens */ = {
+			isa = PBXGroup;
+			children = (
+				9FC8A7102492BD990058E807 /* WebviewTest.swift */,
+			);
+			path = "AwareX Screens";
 			sourceTree = "<group>";
 		};
 		9F9ABFDF247F76E200787376 /* Helpers */ = {
@@ -267,6 +308,7 @@
 		CC2A6D5B7756077F625575D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FC8A7142492C10D0058E807 /* WebKit.framework */,
 				35F2D46361156EC48213A00A /* Pods_BuffaloChicken.framework */,
 			);
 			name = Frameworks;
@@ -400,8 +442,9 @@
 				9F08C42924690FAD0053CC42 /* APIManager.swift in Sources */,
 				9F92875A246B7A7200E4DCCC /* DetailResponse.swift in Sources */,
 				9F9ABFE3247F827800787376 /* LottieSwitch.swift in Sources */,
-				9F08C41724690F900053CC42 /* FindWingsVC.swift in Sources */,
+				9F08C41724690F900053CC42 /* FindWingsParentVC.swift in Sources */,
 				9F4A3D322489AD67003D6D24 /* PhotoResponse.swift in Sources */,
+				9F274C1B24954107004F3A4A /* FindWingsTableviewVC.swift in Sources */,
 				9F20E6732485F5A30085E723 /* SettingsVC.swift in Sources */,
 				9F4A3D2E24899CA4003D6D24 /* DetailRequest.swift in Sources */,
 				9FC6D5E624899815002F8044 /* GoogleRequest.swift in Sources */,
@@ -413,12 +456,13 @@
 				9F3F41372479BC5600F00A56 /* Restaurant.swift in Sources */,
 				9F4A3D342489B507003D6D24 /* GoogleError.swift in Sources */,
 				9F6D4590248CA1E0001B2072 /* RestaurantDetailView.swift in Sources */,
+				9F274C19249540EA004F3A4A /* FindWingsMapVC.swift in Sources */,
 				9F79152F247DE9F900C0ECE0 /* Review.swift in Sources */,
 				9F9ABFDE247F761400787376 /* Extensions.swift in Sources */,
 				9FC6D5E224899549002F8044 /* GoogleResponse.swift in Sources */,
 				9F4A3D2C24899BF3003D6D24 /* PlacesRequest.swift in Sources */,
-				9F3F41352479A99200F00A56 /* RestaurantDetailVC.swift in Sources */,
 				9F08C42B246914630053CC42 /* PlacesResponse.swift in Sources */,
+				9FC8A7112492BD990058E807 /* WebviewTest.swift in Sources */,
 				9F4A3D302489AB8D003D6D24 /* PhotoRequest.swift in Sources */,
 				9F71D845247C75FD004EF23E /* FilterView.swift in Sources */,
 			);

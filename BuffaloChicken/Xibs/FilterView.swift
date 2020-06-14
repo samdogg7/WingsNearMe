@@ -17,7 +17,7 @@ class FilterView: UIView {
     @IBOutlet weak var isOpenSegment: UISegmentedControl!
     @IBOutlet weak var distanceLabel: UILabel!
     
-    var delegate: FindBuffaloChickenVCDelegate?
+    var delegate: FindWingsParentDelegate?
     
     private let filter = Filter()
         
@@ -63,10 +63,10 @@ class FilterView: UIView {
         filter.maxDistance = Double(round(maxDistanceSlider.value))
         filter.isOpen = isOpenSegment.selectedSegmentIndex == 0
         
-        guard let delegate = delegate else { return }
+        guard let _delegate = delegate else { return }
         
-        delegate.filterAnnotations(filter: filter)
-        delegate.switchFilterView()
+        _delegate.filterAnnotations(filter: filter)
+        _delegate.switchFilterView()
     }
     
     @objc func sliderValueChanged() {
@@ -114,7 +114,7 @@ enum FilterBy: String, CaseIterable {
     case rating = "Rating"
 }
 
-class Filter {
+@objcMembers class Filter {
     var filterBy: FilterBy = .nearest
     var isOpen = true
     var maxDistance: Double = 10000.0

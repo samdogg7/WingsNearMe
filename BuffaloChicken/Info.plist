@@ -24,6 +24,8 @@
 	<string>Allow Wings Near Me to access your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow Wings Near Me to access your location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow Wings Near Me to access your camera</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

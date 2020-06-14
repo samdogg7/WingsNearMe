@@ -31,9 +31,11 @@ public class APIManager {
             _dispatchGroup.enter()
         }
         
-        guard let _url = request.url else { return }
+        guard let url = request.url else {
+            fatalError("Missing endpoint")
+        }
         
-        var urlRequest = URLRequest(url: _url)
+        var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = httpMethod?.rawValue
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -47,30 +49,31 @@ public class APIManager {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = 10.0
         sessionConfig.timeoutIntervalForResource = 10.0
-        
+                
         URLSession(configuration: sessionConfig).dataTask(with: urlRequest) { data, response, error in
             DispatchQueue.main.async {
-                //If there is data attempt to decode
-                if let data = data {
-                    //Attempt to decode response as a JSON Object
-                    if let decodedModel: Response = try? JSONDecoder().decode(Response.self, from: data), let status = decodedModel.status {
-                        if status.contains("200") || status.contains("OK") {
-                            completion(.success(decodedModel))
-                        } else {
-                            completion(.failure(GoogleError(status: status)))
-                        }
-                    //Attempt to decode response as an image
-                    } else if let photoResponse = PhotoResponse(data: data) as? Response {
-                        completion(.success(photoResponse))
-                    //Decoding failed
+                var err: GoogleError? = error != nil ? GoogleError(status: error?.localizedDescription ?? "URLSession datatask error") : nil
+
+                //Attempt to decode data as a JSON Object
+                if let data = data, let decodedModel: Response = try? JSONDecoder().decode(Response.self, from: data), let status = decodedModel.status {
+                    if status.contains("200") || status.contains("OK") {
+                        completion(.success(decodedModel))
                     } else {
-                        completion(.failure(GoogleError(type: .decoding)))
+                        err = GoogleError(status: status)
                     }
-                } else if let error = error {
-                    completion(.failure(error))
+                //Attempt to decode data as an image
+                } else if let data = data, let photoResponse = PhotoResponse(data: data) as? Response {
+                    completion(.success(photoResponse))
+                //Decoding failed
                 } else {
-                    completion(.failure(GoogleError(type: .unknown)))
+                    err = GoogleError(type: .decoding)
                 }
+                
+                //Called only if there was an error during exectution
+                if let _err = err {
+                    completion(.failure(_err))
+                }
+            
                 if let _dispatchGroup = dispatchGroup {
                     _dispatchGroup.leave()
                 }

@@ -9,12 +9,15 @@
 import UIKit
 
 class RestaurantDetailView: UIView, UIScrollViewDelegate {
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var scrollViewContentView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var hours: UILabel!
     @IBOutlet weak var location: UILabel!
+    
+    var tableViewDelegate: FindWingsTableviewDelegate?
+    var previousBorderLayer: CAShapeLayer?
     
     var restaurant: Restaurant? {
         didSet {
@@ -27,13 +30,18 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
+        
+        self.closeButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.addRoundedCorners(radius: .defaultCornerRadius + 5, corners: [ .topLeft, .topRight ])
+        previousBorderLayer?.removeFromSuperlayer()
+        previousBorderLayer = self.addRoundedCorners(radius: .defaultCornerRadius + 5, corners: [ .topLeft, .topRight ], borderWidth: 1, borderColor: .separator)
+
         self.bringSubviewToFront(pageControl)
+        self.bringSubviewToFront(closeButton)
     }
     
     func setup() {
@@ -58,6 +66,12 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         }
         self.scrollView.contentSize = CGSize(width:self.scrollView.frame.size.width * CGFloat(_restaurant.photos.count), height: self.scrollView.frame.size.height)
         self.pageControl.addTarget(self, action: #selector(self.pageChanged(sender:)), for: UIControl.Event.valueChanged)
+    }
+    
+    @objc func closeView() {
+        if let delegate = tableViewDelegate {
+            delegate.hideRestaurantDetail(completion: nil)
+        }
     }
     
     @objc func pageChanged(sender:AnyObject) {
