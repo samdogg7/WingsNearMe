@@ -47,7 +47,7 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        detailView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 2).isActive = true
+        detailView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 2.5).isActive = true
         detailView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
         detailView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10).isActive = true
         detailView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
@@ -56,6 +56,11 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
     func showRestaurantDetail(restaurant: Restaurant) {
         detailView.restaurant = restaurant
         detailView.isHidden = false
+        
+        if let topCellIndexPath = self.tableView.indexPathsForVisibleRows?[0] {
+            self.tableView.scrollToRow(at: topCellIndexPath, at: .top, animated: true)
+        }
+        
         detailView.animate(animations: [AnimationType.from(direction: .bottom, offset: self.view.frame.height)], reversed: false, initialAlpha: 1, duration: 0.5)
     }
     
@@ -76,10 +81,10 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
     func scrollToCell(indexPath: IndexPath) {
         if !detailView.isHidden {
             hideRestaurantDetail() {
-                self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
         } else {
-            tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
     }
     

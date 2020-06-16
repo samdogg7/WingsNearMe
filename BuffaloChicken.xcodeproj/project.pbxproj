@@ -47,6 +47,7 @@
 		9FC6D5E624899815002F8044 /* GoogleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC6D5E524899815002F8044 /* GoogleRequest.swift */; };
 		9FC8A7112492BD990058E807 /* WebviewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8A7102492BD990058E807 /* WebviewTest.swift */; };
 		9FC8A7152492C10D0058E807 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC8A7142492C10D0058E807 /* WebKit.framework */; };
+		9FCA43F0249801A40058F5AD /* TestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA43EF249801A40058F5AD /* TestCollectionViewController.swift */; };
 		9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2604C246F24E2003E3443 /* loading-tenders.json */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		9FC6D5E524899815002F8044 /* GoogleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRequest.swift; sourceTree = "<group>"; };
 		9FC8A7102492BD990058E807 /* WebviewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewTest.swift; sourceTree = "<group>"; };
 		9FC8A7142492C10D0058E807 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		9FCA43EF249801A40058F5AD /* TestCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewController.swift; sourceTree = "<group>"; };
 		9FD2604C246F24E2003E3443 /* loading-tenders.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-tenders.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				9FC8A7102492BD990058E807 /* WebviewTest.swift */,
+				9FCA43EF249801A40058F5AD /* TestCollectionViewController.swift */,
 			);
 			path = "AwareX Screens";
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				9F6D4590248CA1E0001B2072 /* RestaurantDetailView.swift in Sources */,
 				9F274C19249540EA004F3A4A /* FindWingsMapVC.swift in Sources */,
 				9F79152F247DE9F900C0ECE0 /* Review.swift in Sources */,
+				9FCA43F0249801A40058F5AD /* TestCollectionViewController.swift in Sources */,
 				9F9ABFDE247F761400787376 /* Extensions.swift in Sources */,
 				9FC6D5E224899549002F8044 /* GoogleResponse.swift in Sources */,
 				9F4A3D2C24899BF3003D6D24 /* PlacesRequest.swift in Sources */,
@@ -612,6 +616,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8L782G9K5P;
 				INFOPLIST_FILE = BuffaloChicken/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -632,6 +637,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8L782G9K5P;
 				INFOPLIST_FILE = BuffaloChicken/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

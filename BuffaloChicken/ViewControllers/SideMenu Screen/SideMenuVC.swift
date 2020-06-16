@@ -40,12 +40,13 @@ class SideMenuVC: UITableViewController {
         //FindWingsVC
         case 0:
             loadViewController(id: "FindWings")
-        //Social
-        case 1:
-           loadViewController(id: "WebviewTest")
         //Settings
-        case 2:
+        case 1:
             loadViewController(id: "Settings")
+        case 2:
+            loadViewController(id: "WebviewTest")
+        case 3:
+            loadViewController(id: "CollectionViewTest")
         default:
             break
         }

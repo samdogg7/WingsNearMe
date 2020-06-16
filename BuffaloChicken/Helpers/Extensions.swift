@@ -29,6 +29,10 @@ extension String {
     static var testing_enabled: String {
         return "Testing_enabled"
     }
+    
+    func matches(_ regex: String) -> Bool {
+        return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
+    }
 }
 
 extension Double {

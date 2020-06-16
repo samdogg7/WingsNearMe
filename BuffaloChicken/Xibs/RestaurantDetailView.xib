@@ -30,12 +30,12 @@
                     <viewLayoutGuide key="frameLayoutGuide" id="1sP-MG-IDD"/>
                 </scrollView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Z0R-ks-Czs">
-                    <rect key="frame" x="187.5" y="198" width="39" height="37"/>
-                    <color key="pageIndicatorTintColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="187.5" y="178" width="39" height="37"/>
+                    <color key="pageIndicatorTintColor" red="0.97309283712038974" green="1" blue="0.97000241072962978" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                     <color key="currentPageIndicatorTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </pageControl>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Js9-HK-sGe">
-                    <rect key="frame" x="10" y="235" width="394" height="91.5"/>
+                    <rect key="frame" x="10" y="215" width="394" height="91.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe Vesuvius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90F-RS-8rI">
                             <rect key="frame" x="0.0" y="0.0" width="394" height="50.5"/>
@@ -43,7 +43,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00am - 5:00pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uFq-e6-HVf">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open weekdays 9-5" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uFq-e6-HVf">
                             <rect key="frame" x="0.0" y="50.5" width="394" height="20.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -65,8 +65,9 @@
                 <constraint firstItem="ooJ-dl-mef" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-10" id="0XD-ka-SfO"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Js9-HK-sGe" secondAttribute="bottom" id="J2G-MY-ihF"/>
                 <constraint firstItem="Z0R-ks-Czs" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Jy5-45-6ce"/>
+                <constraint firstAttribute="trailing" secondItem="Js9-HK-sGe" secondAttribute="trailing" constant="10" id="RtD-yD-ejd"/>
                 <constraint firstItem="Js9-HK-sGe" firstAttribute="top" secondItem="ooJ-dl-mef" secondAttribute="bottom" constant="10" id="V4g-Xt-cYi"/>
-                <constraint firstItem="ooJ-dl-mef" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="XIy-9Q-FeK"/>
+                <constraint firstItem="ooJ-dl-mef" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="XIy-9Q-FeK"/>
                 <constraint firstItem="Js9-HK-sGe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Ysf-ah-jzg"/>
                 <constraint firstItem="zkc-fZ-4zv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="ZAC-sJ-tA7"/>
                 <constraint firstItem="zkc-fZ-4zv" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-5" id="elF-cN-xMN"/>

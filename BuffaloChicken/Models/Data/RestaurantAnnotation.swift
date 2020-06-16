@@ -21,7 +21,7 @@ class RestaurantAnnotation: NSObject, MKAnnotation {
         self.id = id
         self.restaurant = restaurant
         self.title = restaurant.name
-        self.subtitle = restaurant.hoursString
+        self.subtitle = restaurant.isOpenString
         self.coordinate = restaurant.coordinate
         self.distance = userLocation.distance(from: CLLocation(latitude: restaurant.coordinate.latitude, longitude: restaurant.coordinate.longitude))
         

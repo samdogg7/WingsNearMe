@@ -25,6 +25,8 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         }
     }
     
+    var scrollViewImages: [UIImage] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -49,23 +51,33 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         
         pageControl.numberOfPages = _restaurant.photos.count
         
-        name.text = _restaurant.name
+        name.text = _restaurant.name + " - " + _restaurant.isOpenString
         hours.text = _restaurant.hoursString
         self.location.text = _restaurant.formattedAddress
+        
+        setPage(index: 0, animated: false)
+        
+        for subview in scrollView.subviews {
+            subview.removeFromSuperview()
+        }
+        
+        var frame = CGRect.zero
         
         for index in 0..<_restaurant.photos.count {
             frame.origin.x = self.scrollView.frame.size.width * CGFloat(index)
             frame.size = self.scrollView.frame.size
 
+
             let imgView = UIImageView(image: _restaurant.photos[index])
             imgView.contentMode = .scaleAspectFit
             imgView.frame = frame
             imgView.roundCornersForAspectFit(radius: .defaultCornerRadius)
-            
+
             scrollView.addSubview(imgView)
         }
+        
         self.scrollView.contentSize = CGSize(width:self.scrollView.frame.size.width * CGFloat(_restaurant.photos.count), height: self.scrollView.frame.size.height)
-        self.pageControl.addTarget(self, action: #selector(self.pageChanged(sender:)), for: UIControl.Event.valueChanged)
+        self.pageControl.addTarget(self, action: #selector(pageChanged), for: UIControl.Event.valueChanged)
     }
     
     @objc func closeView() {
@@ -74,7 +86,13 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         }
     }
     
-    @objc func pageChanged(sender:AnyObject) {
+    func setPage(index: Int, animated: Bool = true) {
+        pageControl.currentPage = index
+        let xVal = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
+        scrollView.setContentOffset(CGPoint(x: xVal, y: 0), animated: animated)
+    }
+    
+    @objc func pageChanged() {
         let xVal = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
         scrollView.setContentOffset(CGPoint(x: xVal, y: 0), animated: true)
     }

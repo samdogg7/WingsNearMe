@@ -77,7 +77,7 @@ class FindWingsMapVC: UIViewController, MKMapViewDelegate, FindWingsMapDelegate 
             view.calloutOffset = CGPoint(x: 0, y: 0)
             
             let hoursLabel = UILabel()
-            hoursLabel.text = annotation.restaurant.hoursString
+            hoursLabel.text = annotation.restaurant.isOpenString
             
             let mapsButton = AnnotationButton()
             mapsButton.setBackgroundImage(UIImage(named: "MapIcon"), for: .normal)
