@@ -14,8 +14,8 @@ class DetailRequest: GoogleRequest {
     init(placeId: String, testing: Bool) {
         if testing {
             self.url = URL(string: "https://samdoggett.com/WingsNearMe/TestResponses/\(placeId).json")
-        } else {
-            self.url = URL(string: .baseUrl + "details/json?place_id=\(placeId)&fields=formatted_address,formatted_phone_number,opening_hours/weekday_text,website&key=" + .api_key)
+        } else if let keys = PlistHandler.getPlist(named: .api, fileType: ApiKeysModel.self), let mapKey = keys.mapsKey {
+            self.url = URL(string: .placeUrl + "details/json?place_id=\(placeId)&fields=formatted_address,formatted_phone_number,opening_hours/weekday_text,website&key=" + mapKey)
         }
     }
 }

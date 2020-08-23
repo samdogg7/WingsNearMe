@@ -8,72 +8,74 @@
 
 import UIKit
 
-class TestCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class TestCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    
-    let images = [
-        UIImage(named: "PlaceholderWing1"),
-        UIImage(named: "PlaceholderWing2"),
-        UIImage(named: "PlaceholderWing3"),
-    ]
-    
-    let items = [
-        [
-            "Lorem ipsum dolor sit amet.",
-        ],
-        [
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        ],
-        [
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "Lorem ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-        ],
         
-    ]
+    lazy var imageViews: [UIImageView] = {
+        return [UIImageView]()
+    }()
+    
     let customFlowLayout = CustomFlowLayout()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let imageView = UIImageView(image: UIImage(named: "PlaceholderWing")!)
+        let imageView1 = UIImageView(image: UIImage(named: "PlaceholderWing1")!)
+        let imageView2 = UIImageView(image: UIImage(named: "PlaceholderWing2")!)
+        let imageView3 = UIImageView(image: UIImage(named: "PlaceholderWing3")!)
+        let imageView4 = UIImageView(image: UIImage(named: "PlaceholderWing4")!)
+        let imageView5 = UIImageView(image: UIImage(named: "PlaceholderWing5")!)
+        let imageView6 = UIImageView(image: UIImage(named: "PlaceholderWing6")!)
+        
+        imageView.contentMode = .scaleAspectFill
+        imageView1.contentMode = .scaleAspectFill
+        imageView2.contentMode = .scaleAspectFill
+        imageView3.contentMode = .scaleAspectFill
+        imageView4.contentMode = .scaleAspectFill
+        imageView5.contentMode = .scaleAspectFill
+        imageView6.contentMode = .scaleAspectFill
+        
+        imageViews.append(imageView)
+        imageViews.append(imageView1)
+        imageViews.append(imageView2)
+        imageViews.append(imageView3)
+        imageViews.append(imageView4)
+        imageViews.append(imageView5)
+        imageViews.append(imageView6)
+        
         customFlowLayout.sectionInsetReference = .fromContentInset // .fromContentInset is default
         customFlowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         customFlowLayout.minimumInteritemSpacing = 10
-        customFlowLayout.minimumLineSpacing = 10
-        customFlowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        customFlowLayout.minimumLineSpacing = 0
+        customFlowLayout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         customFlowLayout.headerReferenceSize = CGSize(width: 0, height: 40)
         
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = customFlowLayout
         collectionView.contentInsetAdjustmentBehavior = .always
-        collectionView.register(CustomCell.self, forCellWithReuseIdentifier: "CustomCell")
-        collectionView.register(HeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
+        collectionView.register(AWXSwipeableCollectionViewCellWithHeaders.self, forCellWithReuseIdentifier: AWXSwipeableCollectionViewCellWithHeaders.reuseIdentifier)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return items.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items[section].count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! CustomCell
-        cell.imageView.image = images[items[indexPath.section].count-1]
-        cell.label.text = items[indexPath.section][indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AWXSwipeableCollectionViewCellWithHeaders.reuseIdentifier, for: indexPath) as! AWXSwipeableCollectionViewCellWithHeaders
+        let headers = [AWXSectionHeader(range: 0...0, sectionTitle: "Section 1"), AWXSectionHeader(range: 1...1, sectionTitle: "Section 2"), AWXSectionHeader(range: 2...2, sectionTitle: "Section 3"), AWXSectionHeader(range: 3...3, sectionTitle: "Section 4"), AWXSectionHeader(range: 4...4, sectionTitle: "Section 5"), AWXSectionHeader(range: 5...5, sectionTitle: "Section 6"), AWXSectionHeader(range: 6...6, sectionTitle: "Section 7")]
+        cell.addSubviewsAndSectionHeaders(views: imageViews, headers: headers)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as! HeaderView
-        headerView.label.text = "Header"
-        return headerView
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 0, height: 300)
     }
-    
 }
 
 //CustomFlowLayout is used for computing the cells width
@@ -100,77 +102,6 @@ final class CustomFlowLayout: UICollectionViewFlowLayout {
         
         layoutAttributes.frame.origin.x = sectionInset.left
         layoutAttributes.frame.size.width = collectionView.safeAreaLayoutGuide.layoutFrame.width - sectionInset.left - sectionInset.right
-        return layoutAttributes
-    }
-    
-}
-
-class HeaderView: UICollectionReusableView {
-    let label = UILabel()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .magenta
-
-        addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-}
-
-class CustomCell: UICollectionViewCell {
-
-    let stack: UIStackView = {
-        let s = UIStackView()
-        s.spacing = 10
-        s.axis = .vertical
-        return s
-    }()
-    let button: UIButton = {
-        let b = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        b.setTitle("Button", for: .normal)
-        b.backgroundColor = .red
-        return b
-    }()
-    
-    var imageView = UIImageView()
-    let label = UILabel()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        label.numberOfLines = 0
-        backgroundColor = .orange
-        imageView.contentMode = .scaleAspectFit
-        
-        contentView.addSubview(stack)
-        
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        
-        stack.addArrangedSubview(imageView)
-        stack.addArrangedSubview(label)
-        stack.addArrangedSubview(button)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    //Calculates the cells height
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let layoutAttributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-        layoutIfNeeded()
-        layoutAttributes.frame.size = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
         return layoutAttributes
     }
 }

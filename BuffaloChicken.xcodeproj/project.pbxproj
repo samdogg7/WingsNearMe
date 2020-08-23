@@ -34,6 +34,10 @@
 		9F71D845247C75FD004EF23E /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71D844247C75FD004EF23E /* FilterView.swift */; };
 		9F79152F247DE9F900C0ECE0 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79152E247DE9F900C0ECE0 /* Review.swift */; };
 		9F791531247EDB4600C0ECE0 /* sidemenu-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F791530247EDB4600C0ECE0 /* sidemenu-icon.json */; };
+		9F8691B324A447D1001C418D /* GeocodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8691B224A447D1001C418D /* GeocodeRequest.swift */; };
+		9F8691B524A449D1001C418D /* GeocodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8691B424A449D1001C418D /* GeocodeResponse.swift */; };
+		9F8691C124A525D9001C418D /* AWXSwipableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8691C024A525D9001C418D /* AWXSwipableCollectionViewCell.swift */; };
+		9F8691C324A5261D001C418D /* ReusableIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8691C224A5261D001C418D /* ReusableIdentifier.swift */; };
 		9F928758246B578D00E4DCCC /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */; };
 		9F92875A246B7A7200E4DCCC /* DetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F928759246B7A7200E4DCCC /* DetailResponse.swift */; };
 		9F9ABFD9247F6CE500787376 /* fries-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F9ABFD5247F6CE500787376 /* fries-icon.json */; };
@@ -42,13 +46,21 @@
 		9F9ABFDC247F6CE500787376 /* chicken-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F9ABFD8247F6CE500787376 /* chicken-icon.json */; };
 		9F9ABFDE247F761400787376 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9ABFDD247F761400787376 /* Extensions.swift */; };
 		9F9ABFE3247F827800787376 /* LottieSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9ABFE2247F827800787376 /* LottieSwitch.swift */; };
+		9F9F899624AA70F70079A1B5 /* AWXCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F899524AA70F70079A1B5 /* AWXCheckbox.swift */; };
+		9F9F899824AA71A50079A1B5 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F899724AA71A50079A1B5 /* TestViewController.swift */; };
 		9FB2C03E246B050600650946 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */; };
+		9FB528EB24F2CF0F00F6108C /* PlistHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB528EA24F2CF0F00F6108C /* PlistHandler.swift */; };
+		9FB528ED24F2CFAE00F6108C /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FB528EC24F2CFAE00F6108C /* ApiKeys.plist */; };
+		9FB528F124F2D28800F6108C /* ApiKeysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB528F024F2D28800F6108C /* ApiKeysModel.swift */; };
+		9FB528F324F2D3C800F6108C /* PlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB528F224F2D3C800F6108C /* PlistModel.swift */; };
+		9FB528F524F2D64D00F6108C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9FB528F424F2D64D00F6108C /* .gitignore */; };
 		9FC6D5E224899549002F8044 /* GoogleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC6D5E124899549002F8044 /* GoogleResponse.swift */; };
 		9FC6D5E624899815002F8044 /* GoogleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC6D5E524899815002F8044 /* GoogleRequest.swift */; };
 		9FC8A7112492BD990058E807 /* WebviewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8A7102492BD990058E807 /* WebviewTest.swift */; };
 		9FC8A7152492C10D0058E807 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC8A7142492C10D0058E807 /* WebKit.framework */; };
 		9FCA43F0249801A40058F5AD /* TestCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA43EF249801A40058F5AD /* TestCollectionViewController.swift */; };
 		9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2604C246F24E2003E3443 /* loading-tenders.json */; };
+		9FE852FA24AE50050048AAD3 /* AWXSwipeableCollectionViewCellWithHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE852F924AE50050048AAD3 /* AWXSwipeableCollectionViewCellWithHeaders.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +95,10 @@
 		9F71D844247C75FD004EF23E /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		9F79152E247DE9F900C0ECE0 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		9F791530247EDB4600C0ECE0 /* sidemenu-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sidemenu-icon.json"; sourceTree = "<group>"; };
+		9F8691B224A447D1001C418D /* GeocodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeRequest.swift; sourceTree = "<group>"; };
+		9F8691B424A449D1001C418D /* GeocodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeResponse.swift; sourceTree = "<group>"; };
+		9F8691C024A525D9001C418D /* AWXSwipableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWXSwipableCollectionViewCell.swift; sourceTree = "<group>"; };
+		9F8691C224A5261D001C418D /* ReusableIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableIdentifier.swift; sourceTree = "<group>"; };
 		9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		9F928759246B7A7200E4DCCC /* DetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponse.swift; sourceTree = "<group>"; };
 		9F9ABFD5247F6CE500787376 /* fries-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "fries-icon.json"; sourceTree = "<group>"; };
@@ -91,13 +107,21 @@
 		9F9ABFD8247F6CE500787376 /* chicken-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "chicken-icon.json"; sourceTree = "<group>"; };
 		9F9ABFDD247F761400787376 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9F9ABFE2247F827800787376 /* LottieSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieSwitch.swift; sourceTree = "<group>"; };
+		9F9F899524AA70F70079A1B5 /* AWXCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWXCheckbox.swift; sourceTree = "<group>"; };
+		9F9F899724AA71A50079A1B5 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		9FB528EA24F2CF0F00F6108C /* PlistHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistHandler.swift; sourceTree = "<group>"; };
+		9FB528EC24F2CFAE00F6108C /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
+		9FB528F024F2D28800F6108C /* ApiKeysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeysModel.swift; sourceTree = "<group>"; };
+		9FB528F224F2D3C800F6108C /* PlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistModel.swift; sourceTree = "<group>"; };
+		9FB528F424F2D64D00F6108C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9FC6D5E124899549002F8044 /* GoogleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleResponse.swift; sourceTree = "<group>"; };
 		9FC6D5E524899815002F8044 /* GoogleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRequest.swift; sourceTree = "<group>"; };
 		9FC8A7102492BD990058E807 /* WebviewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewTest.swift; sourceTree = "<group>"; };
 		9FC8A7142492C10D0058E807 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9FCA43EF249801A40058F5AD /* TestCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewController.swift; sourceTree = "<group>"; };
 		9FD2604C246F24E2003E3443 /* loading-tenders.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-tenders.json"; sourceTree = "<group>"; };
+		9FE852F924AE50050048AAD3 /* AWXSwipeableCollectionViewCellWithHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWXSwipeableCollectionViewCellWithHeaders.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +172,7 @@
 				9F92875C246B7B0800E4DCCC /* ViewControllers */,
 				9F92875B246B7AF900E4DCCC /* Models */,
 				9F92875E246B7B3000E4DCCC /* Xibs */,
+				9F8691BF24A525C6001C418D /* CollectionViewCells */,
 				9F86DB612485A44B00984B42 /* Controls */,
 				9F9ABFDF247F76E200787376 /* Helpers */,
 				9F08C41224690F900053CC42 /* AppDelegate.swift */,
@@ -156,6 +181,8 @@
 				9F08C41B24690F910053CC42 /* Assets.xcassets */,
 				9F08C41D24690F910053CC42 /* LaunchScreen.storyboard */,
 				9F08C42024690F910053CC42 /* Info.plist */,
+				9FB528EC24F2CFAE00F6108C /* ApiKeys.plist */,
+				9FB528F424F2D64D00F6108C /* .gitignore */,
 			);
 			path = BuffaloChicken;
 			sourceTree = "<group>";
@@ -178,6 +205,7 @@
 				9F928759246B7A7200E4DCCC /* DetailResponse.swift */,
 				9F4A3D312489AD67003D6D24 /* PhotoResponse.swift */,
 				9F4A3D332489B507003D6D24 /* GoogleError.swift */,
+				9F8691B424A449D1001C418D /* GeocodeResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -189,8 +217,19 @@
 				9F4A3D2B24899BF3003D6D24 /* PlacesRequest.swift */,
 				9F4A3D2D24899CA4003D6D24 /* DetailRequest.swift */,
 				9F4A3D2F2489AB8D003D6D24 /* PhotoRequest.swift */,
+				9F8691B224A447D1001C418D /* GeocodeRequest.swift */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		9F8691BF24A525C6001C418D /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				9F8691C024A525D9001C418D /* AWXSwipableCollectionViewCell.swift */,
+				9F8691C224A5261D001C418D /* ReusableIdentifier.swift */,
+				9FE852F924AE50050048AAD3 /* AWXSwipeableCollectionViewCellWithHeaders.swift */,
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 		9F86DB612485A44B00984B42 /* Controls */ = {
@@ -198,6 +237,7 @@
 			children = (
 				9F9ABFE2247F827800787376 /* LottieSwitch.swift */,
 				9F6D458B248C5CFA001B2072 /* LoadingAlert.swift */,
+				9F9F899524AA70F70079A1B5 /* AWXCheckbox.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -214,9 +254,7 @@
 		9F92875C246B7B0800E4DCCC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9F274C17249540CC004F3A4A /* Find Wings Screen */,
-				9F92E5DF2496D5520085563F /* Settings Screen */,
-				9F92E5E02496D55E0085563F /* SideMenu Screen */,
+				9F9F899924AA75CC0079A1B5 /* WingsNearMe Screens */,
 				9F92E5E12496D57E0085563F /* AwareX Screens */,
 			);
 			path = ViewControllers;
@@ -264,6 +302,7 @@
 			children = (
 				9FC8A7102492BD990058E807 /* WebviewTest.swift */,
 				9FCA43EF249801A40058F5AD /* TestCollectionViewController.swift */,
+				9F9F899724AA71A50079A1B5 /* TestViewController.swift */,
 			);
 			path = "AwareX Screens";
 			sourceTree = "<group>";
@@ -271,9 +310,20 @@
 		9F9ABFDF247F76E200787376 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9FB528EA24F2CF0F00F6108C /* PlistHandler.swift */,
 				9F9ABFDD247F761400787376 /* Extensions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		9F9F899924AA75CC0079A1B5 /* WingsNearMe Screens */ = {
+			isa = PBXGroup;
+			children = (
+				9F274C17249540CC004F3A4A /* Find Wings Screen */,
+				9F92E5DF2496D5520085563F /* Settings Screen */,
+				9F92E5E02496D55E0085563F /* SideMenu Screen */,
+			);
+			path = "WingsNearMe Screens";
 			sourceTree = "<group>";
 		};
 		9FC6D5E724899855002F8044 /* API */ = {
@@ -290,7 +340,9 @@
 			children = (
 				9F3F41362479BC5600F00A56 /* Restaurant.swift */,
 				9F2334632475895500C06EA3 /* RestaurantAnnotation.swift */,
+				9FB528F024F2D28800F6108C /* ApiKeysModel.swift */,
 				9F79152E247DE9F900C0ECE0 /* Review.swift */,
+				9FB528F224F2D3C800F6108C /* PlistModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -378,12 +430,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F6D458E248CA1D4001B2072 /* RestaurantDetailView.xib in Resources */,
+				9FB528ED24F2CFAE00F6108C /* ApiKeys.plist in Resources */,
 				9F71D841247C7535004EF23E /* FilterView.xib in Resources */,
 				9F928758246B578D00E4DCCC /* RestaurantTableViewCell.xib in Resources */,
 				9F9ABFDA247F6CE500787376 /* sauce-icon.json in Resources */,
 				9F08C41F24690F910053CC42 /* LaunchScreen.storyboard in Resources */,
 				9F9ABFDC247F6CE500787376 /* chicken-icon.json in Resources */,
 				9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */,
+				9FB528F524F2D64D00F6108C /* .gitignore in Resources */,
 				9F9ABFDB247F6CE500787376 /* spice-icon.json in Resources */,
 				9F08C41C24690F910053CC42 /* Assets.xcassets in Resources */,
 				9F9ABFD9247F6CE500787376 /* fries-icon.json in Resources */,
@@ -441,21 +495,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F9F899824AA71A50079A1B5 /* TestViewController.swift in Sources */,
+				9FE852FA24AE50050048AAD3 /* AWXSwipeableCollectionViewCellWithHeaders.swift in Sources */,
+				9F8691B324A447D1001C418D /* GeocodeRequest.swift in Sources */,
 				9F3F413B247B299500F00A56 /* SideMenuVC.swift in Sources */,
 				9F08C42924690FAD0053CC42 /* APIManager.swift in Sources */,
+				9FB528F124F2D28800F6108C /* ApiKeysModel.swift in Sources */,
 				9F92875A246B7A7200E4DCCC /* DetailResponse.swift in Sources */,
 				9F9ABFE3247F827800787376 /* LottieSwitch.swift in Sources */,
 				9F08C41724690F900053CC42 /* FindWingsParentVC.swift in Sources */,
 				9F4A3D322489AD67003D6D24 /* PhotoResponse.swift in Sources */,
+				9FB528EB24F2CF0F00F6108C /* PlistHandler.swift in Sources */,
+				9F8691C324A5261D001C418D /* ReusableIdentifier.swift in Sources */,
 				9F274C1B24954107004F3A4A /* FindWingsTableviewVC.swift in Sources */,
 				9F20E6732485F5A30085E723 /* SettingsVC.swift in Sources */,
+				9F8691B524A449D1001C418D /* GeocodeResponse.swift in Sources */,
 				9F4A3D2E24899CA4003D6D24 /* DetailRequest.swift in Sources */,
 				9FC6D5E624899815002F8044 /* GoogleRequest.swift in Sources */,
+				9F8691C124A525D9001C418D /* AWXSwipableCollectionViewCell.swift in Sources */,
 				9F08C41324690F900053CC42 /* AppDelegate.swift in Sources */,
 				9F2334642475895500C06EA3 /* RestaurantAnnotation.swift in Sources */,
 				9F6D458C248C5CFA001B2072 /* LoadingAlert.swift in Sources */,
+				9F9F899624AA70F70079A1B5 /* AWXCheckbox.swift in Sources */,
 				9F08C41524690F900053CC42 /* SceneDelegate.swift in Sources */,
 				9FB2C03E246B050600650946 /* RestaurantTableViewCell.swift in Sources */,
+				9FB528F324F2D3C800F6108C /* PlistModel.swift in Sources */,
 				9F3F41372479BC5600F00A56 /* Restaurant.swift in Sources */,
 				9F4A3D342489B507003D6D24 /* GoogleError.swift in Sources */,
 				9F6D4590248CA1E0001B2072 /* RestaurantDetailView.swift in Sources */,

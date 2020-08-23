@@ -18,15 +18,15 @@ extension UIColor {
 }
 
 extension String {
-    static var baseUrl: String {
+    static var placeUrl: String {
         return "https://maps.googleapis.com/maps/api/place/"
     }
     
-    static var api_key: String {
-        return "AIzaSyDnfkzsqLDaN8gBW5uHqq4hOS6JJJElgUo"
+    static var geoCodeUrl: String {
+        return "https://maps.googleapis.com/maps/api/geocode/json?"
     }
     
-    static var testing_enabled: String {
+    static var isTestingKey: String {
         return "Testing_enabled"
     }
     

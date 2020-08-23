@@ -13,7 +13,9 @@ class PlacesRequest: GoogleRequest {
     
     init(query: String, lat: Double, long: Double, radius: Double) {
         let _query = query.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
-        self.url = URL(string: .baseUrl + "nearbysearch/json?location=\(lat),\(long)&radius=\(radius)&type=food&keyword=\(_query)&key=" + .api_key)
+        if let keys = PlistHandler.getPlist(named: .api, fileType: ApiKeysModel.self), let mapKey = keys.mapsKey {
+            self.url = URL(string: .placeUrl + "nearbysearch/json?location=\(lat),\(long)&radius=\(radius)&type=food&keyword=\(_query)&key=" + mapKey)
+        }
     }
     
     init() {

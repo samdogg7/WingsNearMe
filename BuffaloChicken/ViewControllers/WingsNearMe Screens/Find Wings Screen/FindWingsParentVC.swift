@@ -28,6 +28,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
     private let filterView = FilterView().loadNib() as! FilterView
     
     private var unsortedAnnotations: [RestaurantAnnotation] = []
+    private var nearestLocation: RestaurantAnnotation?
     private var filter = Filter()
     
     private lazy var loadingAlert = LoadingAlert(title: "Loading Tenders...", message: "", preferredStyle: .alert)
@@ -55,7 +56,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         #if targetEnvironment(simulator)
         self.getPlaces()
         #else
-        if UserDefaults.standard.bool(forKey: .testing_enabled), CLLocationManager.authorizationStatus() == .notDetermined {
+        if UserDefaults.standard.bool(forKey: .isTestingKey), CLLocationManager.authorizationStatus() == .notDetermined {
             self.locationManager.requestWhenInUseAuthorization()
         }
         self.locationManager.startMonitoringSignificantLocationChanges()
@@ -74,11 +75,11 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
     }
     
     func setupSettings() {
-        if UserDefaults.standard.object(forKey: .testing_enabled) == nil {
-            UserDefaults.standard.set(true, forKey: .testing_enabled)
+        if UserDefaults.standard.object(forKey: .isTestingKey) == nil {
+            UserDefaults.standard.set(true, forKey: .isTestingKey)
         }
         
-        print("API testing enabled: \(UserDefaults.standard.bool(forKey: .testing_enabled))")
+        print("API testing enabled: \(UserDefaults.standard.bool(forKey: .isTestingKey))")
     }
     
     // MARK: - API Request Methods
@@ -87,7 +88,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         unsortedAnnotations.removeAll()
         
         //If testing is enabled, use default init. Otherwise, give params.
-        let request = UserDefaults.standard.bool(forKey: .testing_enabled) ? PlacesRequest() : PlacesRequest(query: "wings", lat: lat, long: long, radius: .defaultRadius)
+        let request = UserDefaults.standard.bool(forKey: .isTestingKey) ? PlacesRequest() : PlacesRequest(query: "wings", lat: lat, long: long, radius: .defaultRadius)
             
         APIManager.request(request: request, responseType: PlacesResponse.self, completion: { response in
             switch response {
@@ -110,7 +111,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
             restaurants.append(Restaurant(place: places[index]))
             
             if let placeID = places[index].placeID {
-                let request = DetailRequest(placeId: placeID, testing: UserDefaults.standard.bool(forKey: .testing_enabled))
+                let request = DetailRequest(placeId: placeID, testing: UserDefaults.standard.bool(forKey: .isTestingKey))
                 
                 APIManager.request(request: request, responseType: DetailResponse.self, dispatchGroup: dispatchGroup, completion: { response in
                     switch response {
@@ -124,7 +125,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
                 })
             }
             if let photoID = places[index].photos?.first?.photoReference {
-                APIManager.request(request: PhotoRequest(photoId: photoID, testing: UserDefaults.standard.bool(forKey: .testing_enabled)), responseType: PhotoResponse.self, dispatchGroup: dispatchGroup, completion: { response in
+                APIManager.request(request: PhotoRequest(photoId: photoID, testing: UserDefaults.standard.bool(forKey: .isTestingKey)), responseType: PhotoResponse.self, dispatchGroup: dispatchGroup, completion: { response in
                     switch response {
                     case .success(let photo):
                         restaurants[index].addPhoto(photo: photo, atIndex: 0)
@@ -161,6 +162,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
             sorted = sorted.filter({ $0.restaurant.isOpen })
         }
         sorted = sorted.filter({ $0.distance <= filter.maxDistance })
+        nearestLocation = sorted.first
         sorted = sorted.filter({ $0.restaurant.rating >= filter.minRating })
 
         switch filter.filterBy {

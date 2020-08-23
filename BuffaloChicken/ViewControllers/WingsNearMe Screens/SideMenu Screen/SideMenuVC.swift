@@ -47,6 +47,8 @@ class SideMenuVC: UITableViewController {
             loadViewController(id: "WebviewTest")
         case 3:
             loadViewController(id: "CollectionViewTest")
+        case 4:
+            loadViewController(id: "TestViewController")
         default:
             break
         }

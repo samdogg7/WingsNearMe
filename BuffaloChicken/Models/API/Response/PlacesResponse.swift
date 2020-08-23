@@ -52,22 +52,6 @@ struct Place: Codable {
     }
 }
 
-// MARK: - Geometry
-struct Geometry: Codable {
-    var location: Location?
-    var viewport: Viewport?
-}
-
-// MARK: - Location
-struct Location: Codable {
-    var lat, lng: Double?
-}
-
-// MARK: - Viewport
-struct Viewport: Codable {
-    var northeast, southwest: Location?
-}
-
 // MARK: - OpeningHours
 struct OpeningHours: Codable {
     var openNow: Bool?

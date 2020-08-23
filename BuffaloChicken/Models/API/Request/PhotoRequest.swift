@@ -14,8 +14,8 @@ class PhotoRequest: GoogleRequest {
     init(photoId: String, testing: Bool) {
         if testing {
             self.url = URL(string: "https://samdoggett.com/WingsNearMe/TestResponses/\(photoId.suffix(5)).jpg")
-        } else {
-            self.url = URL(string: .baseUrl + "photo?maxwidth=480&photoreference=\(photoId)&key=" + .api_key)
+        } else if let keys = PlistHandler.getPlist(named: .api, fileType: ApiKeysModel.self), let mapKey = keys.mapsKey {
+            self.url = URL(string: .placeUrl + "photo?maxwidth=480&photoreference=\(photoId)&key=" + mapKey)
         }
     }
 }

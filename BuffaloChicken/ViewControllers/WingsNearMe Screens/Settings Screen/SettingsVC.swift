@@ -18,11 +18,11 @@ class SettingsVC: UITableViewController, SideMenuNavigationControllerDelegate {
         super.viewDidLoad()
         
         testingSwitch.addTarget(self, action: #selector(testingSwitchFlipped(_:)), for: .touchUpInside)
-        testingSwitch.isOn = UserDefaults.standard.bool(forKey: .testing_enabled)
+        testingSwitch.isOn = UserDefaults.standard.bool(forKey: .isTestingKey)
     }
     
     @objc func testingSwitchFlipped(_ sender: UISwitch) {
-        UserDefaults.standard.set(testingSwitch.isOn, forKey: .testing_enabled)
+        UserDefaults.standard.set(testingSwitch.isOn, forKey: .isTestingKey)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
