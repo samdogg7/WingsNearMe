@@ -11,6 +11,7 @@ Some of the highlights of the project include:
 
 <figure class="video_container">
   <video controls="true" allowfullscreen="true" poster="https://samdoggett.com/WingsNearMePic.jpg">
-    <source src="DemoVideo.mp4" type="video/mp4">
+    <source src="https://samdoggett.com/WingsNearMe/DemoVideo.mp4" type="video/mp4">
   </video>
 </figure>
+
