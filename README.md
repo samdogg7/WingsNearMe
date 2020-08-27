@@ -9,4 +9,9 @@ Some of the highlights of the project include:
 - Lottie Animations
 - MapKit
 
+<video width="600" height="500" autoplay loop>
+   <source src="https://samdoggett.com/WingsNearMe/DemoVideo.mp4" type="video/mp4" />
+   Your browser does not support the video element.
+</video>
+
 <img src="https://samdoggett.com/WingsNearMePic.jpg" width="300">
