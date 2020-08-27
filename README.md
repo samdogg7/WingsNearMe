@@ -9,4 +9,4 @@ Some of the highlights of the project include:
 - Lottie Animations
 - MapKit
 
-![](https://samdoggett.com/WingsNearMe/DemoVideo.gif)
+![Alt Text](https://samdoggett.com/WingsNearMe/DemoVideo.gif)
