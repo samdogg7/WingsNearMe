@@ -10,6 +10,13 @@ import UIKit
 import Lottie
 
 class LottieSwitch: UIButton {
+    private lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     private lazy var lottieView: AnimationView = {
         let view = AnimationView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -21,31 +28,39 @@ class LottieSwitch: UIButton {
     private var keyPaths: AnimationKeypath?
     private var playbackSpeed: CGFloat = 1
     private var animated:Bool = true
-    private var frameSize: CGFloat = 50.0
     
-    required init(frame: CGRect?, animation: Animation, colorKeypaths: AnimationKeypath, playbackSpeed: CGFloat = 1, animated:Bool = true) {
+    required init(frame: CGRect? = nil, animation: Animation, colorKeypaths: AnimationKeypath? = nil, playbackSpeed: CGFloat = 1, animated:Bool = true, backgroundImage: UIImage? = nil) {
         if let frame = frame {
             super.init(frame: frame)
         } else {
-            super.init(frame: .init(x: 0, y: 0, width: frameSize, height: frameSize))
+            super.init(frame: .zero)
         }
         
         self.animation = animation
         self.keyPaths = colorKeypaths
         self.playbackSpeed = playbackSpeed
         self.animated = animated
+        self.backgroundImageView.image = backgroundImage
         
-        setup()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-                        
         setup()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        backgroundImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        backgroundImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        
+        lottieView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        lottieView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        lottieView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        lottieView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
     }
     
     override func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
@@ -75,14 +90,18 @@ class LottieSwitch: UIButton {
         if(animated) {
             if(isSelected) {
                 playAnimation(from: 0.5, to: 1.0)
+                backgroundImageView.isHidden = true
             } else {
                 playAnimation(from: 0.0, to: 0.5)
+                backgroundImageView.isHidden = false
             }
         } else {
             if(isSelected) {
                 lottieView.currentProgress = 0.0
+                backgroundImageView.isHidden = true
             } else {
                 lottieView.currentProgress = 0.5
+                backgroundImageView.isHidden = false
             }
         }
         isSelected = !isSelected
@@ -93,13 +112,16 @@ class LottieSwitch: UIButton {
         if(isOn) {
             isSelected = true
             lottieView.currentProgress = 0.5
+            backgroundImageView.isHidden = false
         } else {
             isSelected = false
             lottieView.currentProgress = 0
+            backgroundImageView.isHidden = true
         }
     }
     
     func setup() {
+        self.addSubview(backgroundImageView)
         self.addSubview(lottieView)
 
         self.lottieView.animation = animation

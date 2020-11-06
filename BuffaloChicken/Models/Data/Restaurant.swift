@@ -67,8 +67,6 @@ class Restaurant: NSObject {
                 } else if let subString = day.range(of: "Sunday") {
                     _day.removeSubrange(subString)
                 }
-                
-                
             }
         }
         return str

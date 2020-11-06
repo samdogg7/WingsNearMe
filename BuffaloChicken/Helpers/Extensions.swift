@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import CoreLocation
 import Lottie
-import SideMenu
 
 extension UIColor {
     class var inverse:UIColor {

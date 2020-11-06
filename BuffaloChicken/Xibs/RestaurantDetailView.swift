@@ -6,6 +6,7 @@
 //  Copyright © 2020 Sam Doggett. All rights reserved.
 //
 
+import Lottie
 import UIKit
 
 class RestaurantDetailView: UIView, UIScrollViewDelegate {
@@ -15,6 +16,7 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var hours: UILabel!
     @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var mainStack: UIStackView!
     
     var tableViewDelegate: FindWingsTableviewDelegate?
     var previousBorderLayer: CAShapeLayer?
@@ -78,6 +80,17 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         
         self.scrollView.contentSize = CGSize(width:self.scrollView.frame.size.width * CGFloat(_restaurant.photos.count), height: self.scrollView.frame.size.height)
         self.pageControl.addTarget(self, action: #selector(pageChanged), for: UIControl.Event.valueChanged)
+        
+        let chickenButtonStack = UIStackView()
+        chickenButtonStack.distribution = .fillEqually
+        
+        mainStack.addArrangedSubview(chickenButtonStack)
+        
+        for _ in 0..<5 {
+            guard let animation = Animation.named("chicken-icon") else { return  }
+            let lottieSwitch = LottieSwitch(animation: animation, animated: true, backgroundImage: UIImage(named: "Empty Wing"))
+            chickenButtonStack.addSubview(lottieSwitch)
+        }
     }
     
     @objc func closeView() {
