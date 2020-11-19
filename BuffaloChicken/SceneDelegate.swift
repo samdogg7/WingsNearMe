@@ -11,6 +11,19 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private lazy var tabBarController: UITabBarController = {
+        let tab = UITabBarController()
+
+        let mainVC = FindWingsParentVC()
+        mainVC.tabBarItem = UITabBarItem(title: "Find Wings", image: UIImage(systemName: "magnifyingglass"), tag: 0)
+        
+        let settingsVC = SettingsVC()
+        settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), tag: 1)
+
+        tab.viewControllers = [ mainVC, settingsVC ]
+
+        return tab
+    }()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -19,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: FindWingsParentVC())
+        window?.rootViewController = UINavigationController(rootViewController: tabBarController)
         window?.makeKeyAndVisible()
     }
 

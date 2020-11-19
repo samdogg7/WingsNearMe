@@ -55,7 +55,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Wings near me"
+        self.tabBarController?.title = "Wings near me"
         
         view.backgroundColor = .white
         self.present(loadingAlert, animated: true, completion: nil)
@@ -112,7 +112,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         filterView.setMaxDistance(d: .defaultRadius)
         self.view.addSubview(filterView)
         
-        self.navigationItem.rightBarButtonItem = filterButton
+        tabBarController?.navigationItem.rightBarButtonItem = filterButton
     }
     
     func setupSettings() {

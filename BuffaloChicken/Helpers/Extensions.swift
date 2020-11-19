@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import CoreLocation
 import Lottie
+import ViewAnimator
 
 extension UIColor {
     class var inverse:UIColor {
@@ -93,13 +94,14 @@ extension UIView {
         self.clipsToBounds = true
     }
     
-    func hideAnimated(duration: Double = 0.25){
-        UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
-            self.layoutIfNeeded()
-            self.center.y += self.bounds.height
-        },  completion: {(_ completed: Bool) -> Void in
-            self.isHidden = true
-        })
+    func hideAnimated(duration: Double = 0.25) {
+        UIView.transition(with: self, duration: duration, options: .curveLinear, animations: {
+                            self.layoutIfNeeded()
+                            self.center.y += self.bounds.height
+                          }, completion: { _ in
+                            self.isHidden = true
+                            self.center.y -= self.bounds.height
+                          })
     }
 }
 

@@ -1,10 +1,10 @@
 PODS:
   - lottie-ios (3.1.9)
-  - ViewAnimator (3.0.1)
+  - ViewAnimator (2.7.1)
 
 DEPENDENCIES:
   - lottie-ios
-  - ViewAnimator
+  - ViewAnimator (= 2.7.1)
 
 SPEC REPOS:
   trunk:
@@ -13,8 +13,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
-  ViewAnimator: dd18d2f5c1e472f78d0065ff92750fe56cbd2f39
+  ViewAnimator: 7512352ec4dec2901b980d16b1256d601c30a44c
 
-PODFILE CHECKSUM: cfe943c9af5b809c996e8572c334477b05ef2219
+PODFILE CHECKSUM: 90af4a5913cfb016eefe993cf5709985de3f41a1
 
 COCOAPODS: 1.9.1

@@ -7,5 +7,5 @@ target 'BuffaloChicken' do
 
   # Pods for BuffaloChicken
   pod 'lottie-ios'
-  pod 'ViewAnimator'
+  pod 'ViewAnimator', '2.7.1'
 end

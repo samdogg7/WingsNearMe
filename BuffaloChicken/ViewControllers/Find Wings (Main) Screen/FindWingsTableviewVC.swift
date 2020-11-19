@@ -67,12 +67,11 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
     func showRestaurantDetail(restaurant: Restaurant) {
         detailView.restaurant = restaurant
         detailView.isHidden = false
-        
         if let topCellIndexPath = self.tableView.indexPathsForVisibleRows?[0] {
             self.tableView.scrollToRow(at: topCellIndexPath, at: .top, animated: true)
         }
         
-        detailView.animate(animations: [AnimationType.vector(CGVector(dx: 0, dy: 100))], reversed: false, initialAlpha: 1, duration: 0.5)
+        detailView.animate(animations: [AnimationType.from(direction: .bottom, offset: 100.0)], duration: 0.5)
     }
     
     func hideRestaurantDetail(completion: (()-> Void)?) {
@@ -108,9 +107,9 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
                 }
             }
             if fromBottom {
-                UIView.animate(views: cells, animations: [AnimationType.vector(CGVector(dx: 0, dy: 75))], duration: 0.5)
+                UIView.animate(views: cells, animations: [AnimationType.from(direction: .bottom, offset: 100.0)], duration: 0.5)
             } else {
-                UIView.animate(views: cells, animations: [AnimationType.vector(CGVector(dx: 0, dy: -75))], duration: 0.5)
+                UIView.animate(views: cells, animations: [AnimationType.from(direction: .bottom, offset: 100.0)], duration: 0.5)
             }
         }
     }

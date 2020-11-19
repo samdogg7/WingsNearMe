@@ -53,6 +53,7 @@
 		9FC6D5E624899815002F8044 /* GoogleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC6D5E524899815002F8044 /* GoogleRequest.swift */; };
 		9FC8A7152492C10D0058E807 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC8A7142492C10D0058E807 /* WebKit.framework */; };
 		9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2604C246F24E2003E3443 /* loading-tenders.json */; };
+		9FE4DF8F255AF9CD005D7F1C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4DF8E255AF9CD005D7F1C /* SettingsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		9FC6D5E524899815002F8044 /* GoogleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleRequest.swift; sourceTree = "<group>"; };
 		9FC8A7142492C10D0058E807 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9FD2604C246F24E2003E3443 /* loading-tenders.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-tenders.json"; sourceTree = "<group>"; };
+		9FE4DF8E255AF9CD005D7F1C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		B264FC8BA2BCA33006203F8A /* Pods-BuffaloChicken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.release.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.release.xcconfig"; sourceTree = "<group>"; };
 		C367B850181FB308FF123AC7 /* Pods_BuffaloChicken.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuffaloChicken.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				9F42B26D2550824600F7CD29 /* Find Wings (Main) Screen */,
+				9FE4DF8E255AF9CD005D7F1C /* SettingsVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				9F6D458C248C5CFA001B2072 /* LoadingAlert.swift in Sources */,
 				9F08C41524690F900053CC42 /* SceneDelegate.swift in Sources */,
 				9FB2C03E246B050600650946 /* RestaurantTableViewCell.swift in Sources */,
+				9FE4DF8F255AF9CD005D7F1C /* SettingsVC.swift in Sources */,
 				9FB528F324F2D3C800F6108C /* PlistModel.swift in Sources */,
 				9F3F41372479BC5600F00A56 /* Restaurant.swift in Sources */,
 				9F4A3D342489B507003D6D24 /* GoogleError.swift in Sources */,
