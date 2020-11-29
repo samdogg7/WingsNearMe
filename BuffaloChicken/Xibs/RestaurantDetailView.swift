@@ -10,16 +10,56 @@ import Lottie
 import UIKit
 
 class RestaurantDetailView: UIView, UIScrollViewDelegate {
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var hours: UILabel!
-    @IBOutlet weak var location: UILabel!
-    @IBOutlet weak var mainStack: UIStackView!
+    private lazy var pullDownIndicatorView: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        button.backgroundColor = .lightGray
+        return button
+    }()
+    
+    private lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
+    }()
+    
+    private lazy var pageControl: UIPageControl = {
+        let control = UIPageControl()
+        control.translatesAutoresizingMaskIntoConstraints = false
+        control.pageIndicatorTintColor = .lightGray
+        control.currentPageIndicatorTintColor = .orange
+        return control
+    }()
+    
+    private lazy var mainStack: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        return stack
+    }()
+    
+    private lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Name"
+        return label
+    }()
+    
+    private lazy var hoursLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Hours"
+        return label
+    }()
+    
+    private lazy var locationLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Location"
+        return label
+    }()
+    
+    private var previousBorderLayer: CAShapeLayer?
     
     var tableViewDelegate: FindWingsTableviewDelegate?
-    var previousBorderLayer: CAShapeLayer?
     
     var restaurant: Restaurant? {
         didSet {
@@ -29,23 +69,52 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
     
     var scrollViewImages: [UIImage] = []
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.backgroundColor = .white
         
         scrollView.delegate = self
         scrollView.isPagingEnabled = true
         
-        self.closeButton.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        self.addSubview(mainStack)
+        self.addSubview(pullDownIndicatorView)
+        self.addSubview(pageControl)
+        self.addSubview(scrollView)
+        
+        mainStack.addArrangedSubview(nameLabel)
+        mainStack.addArrangedSubview(hoursLabel)
+        mainStack.addArrangedSubview(locationLabel)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        previousBorderLayer?.removeFromSuperlayer()
-        previousBorderLayer = self.addRoundedCorners(radius: .defaultCornerRadius + 5, corners: [ .topLeft, .topRight ], borderWidth: 1, borderColor: .separator)
+        pullDownIndicatorView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        pullDownIndicatorView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        pullDownIndicatorView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        pullDownIndicatorView.heightAnchor.constraint(equalToConstant: 4).isActive = true
+        pullDownIndicatorView.addRoundedCorners(radius: pullDownIndicatorView.bounds.height)
+        
+        scrollView.topAnchor.constraint(equalTo: pullDownIndicatorView.bottomAnchor, constant: 5).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        scrollView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
+        pageControl.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        pageControl.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 10).isActive = true
 
-        self.bringSubviewToFront(pageControl)
-        self.bringSubviewToFront(closeButton)
+        mainStack.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 10).isActive = true
+        mainStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10).isActive = true
+        mainStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        mainStack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        previousBorderLayer?.removeFromSuperlayer()
+        previousBorderLayer = self.addRoundedCorners(radius: 10, corners: [.topRight, .topLeft], borderWidth: 2, borderColor: .lightGray)
     }
     
     func setup() {
@@ -53,9 +122,9 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         
         pageControl.numberOfPages = _restaurant.photos.count
         
-        name.text = _restaurant.name + " - " + _restaurant.isOpenString
-        hours.text = _restaurant.hoursString
-        self.location.text = _restaurant.formattedAddress
+        nameLabel.text = _restaurant.name + " - " + _restaurant.isOpenString
+        hoursLabel.text = _restaurant.hoursString
+        locationLabel.text = _restaurant.formattedAddress
         
         setPage(index: 0, animated: false)
         

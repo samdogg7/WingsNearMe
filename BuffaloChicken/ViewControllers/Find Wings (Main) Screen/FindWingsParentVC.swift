@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Lottie
+import FirebaseDatabase
 
 protocol FindWingsParentDelegate {
     func filterAnnotations(filter: Filter)
@@ -17,8 +18,18 @@ protocol FindWingsParentDelegate {
 }
 
 class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsParentDelegate {
+    private let databaseRef = Database.database().reference(withPath: "Restaurant-Reviews")
+    
+    private lazy var settingsVC: SettingsVC = {
+        return SettingsVC()
+    }()
+    
     private lazy var filterButton: UIBarButtonItem = {
         return UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(switchFilterView))
+    }()
+    
+    private lazy var settingsButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(openSettings))
     }()
     
     private lazy var mapVC: FindWingsMapVC = {
@@ -54,8 +65,10 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tabBarController?.title = "Wings near me"
+                
+        self.title = "Wings near me"
+        navigationItem.rightBarButtonItem = filterButton
+        navigationItem.leftBarButtonItem = settingsButton
         
         view.backgroundColor = .white
         self.present(loadingAlert, animated: true, completion: nil)
@@ -69,6 +82,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         
         #if targetEnvironment(simulator)
         self.getPlaces()
@@ -111,8 +125,6 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         filterView.frame = self.view.frame
         filterView.setMaxDistance(d: .defaultRadius)
         self.view.addSubview(filterView)
-        
-        tabBarController?.navigationItem.rightBarButtonItem = filterButton
     }
     
     func setupSettings() {
@@ -240,6 +252,12 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
             filterButton.title = "Filter"
             self.tableViewDelegate?.animateTableCells(fromBottom: false)
         }
+    }
+    
+    //MARK: - Setting button helper method
+    
+    @objc func openSettings() {
+        self.present(settingsVC, animated: true, completion: nil)
     }
     
     // MARK: - LocationManager Delegate Methods

@@ -8,4 +8,6 @@ target 'BuffaloChicken' do
   # Pods for BuffaloChicken
   pod 'lottie-ios'
   pod 'ViewAnimator', '2.7.1'
+  pod 'Firebase/Database'
+  pod 'Firebase/Crashlytics'
 end

@@ -36,15 +36,18 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
     
     var parentDelegate: FindWingsParentDelegate?
     
-    private var detailView = RestaurantDetailView().loadNib() as! RestaurantDetailView
+    private lazy var detailView: RestaurantDetailView = {
+        let view = RestaurantDetailView()
+        view.tableViewDelegate = self
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private var sortedAnnotations:[RestaurantAnnotation]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         
-        detailView.tableViewDelegate = self
-        detailView.isHidden = true
-        detailView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(tableView)
         self.view.addSubview(detailView)
