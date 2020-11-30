@@ -9,40 +9,49 @@
 import UIKit
 import Lottie
 
+enum SwitchType {
+    case chicken
+    case fries
+    case sauce
+    case spice
+}
+
+protocol LottieSwitchDelegate {
+    func flipSwitch(sender: LottieSwitch, isOn: Bool)
+}
+
 class LottieSwitch: UIButton {
-    private lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-    
-    private lazy var lottieView: AnimationView = {
-        let view = AnimationView()
+    private lazy var lottieSwitch: AnimatedSwitch = {
+        let view = AnimatedSwitch()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
+        view.addTarget(self, action: #selector(switchFlipped), for: .touchUpInside)
         return view
     }()
     
-    private var animation: Animation?
-    private var keyPaths: AnimationKeypath?
-    private var playbackSpeed: CGFloat = 1
-    private var animated:Bool = true
+    private var delegate: LottieSwitchDelegate?
     
-    required init(frame: CGRect? = nil, animation: Animation, colorKeypaths: AnimationKeypath? = nil, playbackSpeed: CGFloat = 1, animated:Bool = true, backgroundImage: UIImage? = nil) {
-        if let frame = frame {
-            super.init(frame: frame)
-        } else {
-            super.init(frame: .zero)
+    required init(switchType: SwitchType, delegate: LottieSwitchDelegate? = nil, playbackSpeed: CGFloat = 1) {
+        super.init(frame: .zero)
+        
+        self.delegate = delegate
+        
+        lottieSwitch.animationSpeed = playbackSpeed
+        
+        lottieSwitch.setProgressForState(fromProgress: 0.0, toProgress: 0.90, forOnState: true)
+        lottieSwitch.setProgressForState(fromProgress: 1.0, toProgress: 1.0, forOnState: false)
+
+        switch switchType {
+        case .chicken:
+            lottieSwitch.animation = Animation.named("chicken-icon")
+        case .fries:
+            lottieSwitch.animation = Animation.named("fries-icon")
+        case .sauce:
+            lottieSwitch.animation = Animation.named("sauce-icon")
+        case .spice:
+            lottieSwitch.animation = Animation.named("spice-icon")
         }
         
-        self.animation = animation
-        self.keyPaths = colorKeypaths
-        self.playbackSpeed = playbackSpeed
-        self.animated = animated
-        self.backgroundImageView.image = backgroundImage
-        
-        setup()
+        self.addSubview(lottieSwitch)
     }
     
     required init?(coder: NSCoder) {
@@ -52,91 +61,17 @@ class LottieSwitch: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        backgroundImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        backgroundImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        
-        lottieView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        lottieView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        lottieView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        lottieView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        lottieSwitch.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        lottieSwitch.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        lottieSwitch.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        lottieSwitch.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
     }
     
-    override func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
-        if(animated) {
-            if(isSelected) {
-                playAnimation(from: 0.5, to: 1.0)
-            } else {
-                playAnimation(from: 0.0, to: 0.5)
-            }
-        } else {
-            if(isSelected) {
-                lottieView.currentProgress = 0.0
-            } else {
-                lottieView.currentProgress = 0.5
-            }
-        }
-        isSelected = !isSelected
-        
-        super.sendAction(action, to: target, for: event)
+    func setSwitch(isOn: Bool) {
+        lottieSwitch.setIsOn(isOn, animated: true)
     }
     
-    func playAnimation(from: CGFloat, to: CGFloat){
-        lottieView.play(fromProgress: from, toProgress: to)
-    }
-    
-    func flipSwitch() {
-        if(animated) {
-            if(isSelected) {
-                playAnimation(from: 0.5, to: 1.0)
-                backgroundImageView.isHidden = true
-            } else {
-                playAnimation(from: 0.0, to: 0.5)
-                backgroundImageView.isHidden = false
-            }
-        } else {
-            if(isSelected) {
-                lottieView.currentProgress = 0.0
-                backgroundImageView.isHidden = true
-            } else {
-                lottieView.currentProgress = 0.5
-                backgroundImageView.isHidden = false
-            }
-        }
-        isSelected = !isSelected
-    }
-    
-    //Set the state of the checkbox without user interaction
-    public func setOn(isOn: Bool){
-        if(isOn) {
-            isSelected = true
-            lottieView.currentProgress = 0.5
-            backgroundImageView.isHidden = false
-        } else {
-            isSelected = false
-            lottieView.currentProgress = 0
-            backgroundImageView.isHidden = true
-        }
-    }
-    
-    func setup() {
-        self.addSubview(backgroundImageView)
-        self.addSubview(lottieView)
-
-        self.lottieView.animation = animation
-        self.lottieView.animationSpeed = playbackSpeed
-        
-        lottieView.loopMode = .playOnce
-        
-        if keyPaths != nil {
-            updateColorPaths()
-        }
-    }
-    
-    func updateColorPaths(){
-        if let paths = keyPaths {
-            lottieView.setValueProvider(ColorValueProvider(UIColor.inverse.lottieColorValue), keypath: paths)
-        }
+    @objc func switchFlipped() {
+        delegate?.flipSwitch(sender: self, isOn: lottieSwitch.isOn)
     }
 }

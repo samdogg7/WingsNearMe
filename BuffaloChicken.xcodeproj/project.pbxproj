@@ -31,7 +31,6 @@
 		9F71D841247C7535004EF23E /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F71D840247C7535004EF23E /* FilterView.xib */; };
 		9F71D845247C75FD004EF23E /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71D844247C75FD004EF23E /* FilterView.swift */; };
 		9F79152F247DE9F900C0ECE0 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79152E247DE9F900C0ECE0 /* Review.swift */; };
-		9F791531247EDB4600C0ECE0 /* sidemenu-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F791530247EDB4600C0ECE0 /* sidemenu-icon.json */; };
 		9F8691B324A447D1001C418D /* GeocodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8691B224A447D1001C418D /* GeocodeRequest.swift */; };
 		9F8691B524A449D1001C418D /* GeocodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8691B424A449D1001C418D /* GeocodeResponse.swift */; };
 		9F8691C324A5261D001C418D /* ReusableIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8691C224A5261D001C418D /* ReusableIdentifier.swift */; };
@@ -54,6 +53,7 @@
 		9FC8A7152492C10D0058E807 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC8A7142492C10D0058E807 /* WebKit.framework */; };
 		9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2604C246F24E2003E3443 /* loading-tenders.json */; };
 		9FE4DF8F255AF9CD005D7F1C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4DF8E255AF9CD005D7F1C /* SettingsVC.swift */; };
+		9FEC11E0257493B5002A252D /* RatingStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEC11DF257493B5002A252D /* RatingStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,7 +84,6 @@
 		9F71D840247C7535004EF23E /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		9F71D844247C75FD004EF23E /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		9F79152E247DE9F900C0ECE0 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
-		9F791530247EDB4600C0ECE0 /* sidemenu-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sidemenu-icon.json"; sourceTree = "<group>"; };
 		9F8691B224A447D1001C418D /* GeocodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeRequest.swift; sourceTree = "<group>"; };
 		9F8691B424A449D1001C418D /* GeocodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeResponse.swift; sourceTree = "<group>"; };
 		9F8691C224A5261D001C418D /* ReusableIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableIdentifier.swift; sourceTree = "<group>"; };
@@ -107,6 +106,7 @@
 		9FC8A7142492C10D0058E807 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9FD2604C246F24E2003E3443 /* loading-tenders.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-tenders.json"; sourceTree = "<group>"; };
 		9FE4DF8E255AF9CD005D7F1C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		9FEC11DF257493B5002A252D /* RatingStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStack.swift; sourceTree = "<group>"; };
 		B815740AD8C3182FC01BFC64 /* Pods-BuffaloChicken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.release.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +212,7 @@
 			children = (
 				9F9ABFE2247F827800787376 /* LottieSwitch.swift */,
 				9F6D458B248C5CFA001B2072 /* LoadingAlert.swift */,
+				9FEC11DF257493B5002A252D /* RatingStack.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -293,7 +294,6 @@
 				9F9ABFD5247F6CE500787376 /* fries-icon.json */,
 				9F9ABFD6247F6CE500787376 /* sauce-icon.json */,
 				9F9ABFD7247F6CE500787376 /* spice-icon.json */,
-				9F791530247EDB4600C0ECE0 /* sidemenu-icon.json */,
 				9FD2604C246F24E2003E3443 /* loading-tenders.json */,
 			);
 			path = LottieAnimations;
@@ -381,7 +381,6 @@
 				9F9ABFDB247F6CE500787376 /* spice-icon.json in Resources */,
 				9F08C41C24690F910053CC42 /* Assets.xcassets in Resources */,
 				9F9ABFD9247F6CE500787376 /* fries-icon.json in Resources */,
-				9F791531247EDB4600C0ECE0 /* sidemenu-icon.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +440,7 @@
 				9F9ABFE3247F827800787376 /* LottieSwitch.swift in Sources */,
 				9F4A3D322489AD67003D6D24 /* PhotoResponse.swift in Sources */,
 				9FB528EB24F2CF0F00F6108C /* PlistHandler.swift in Sources */,
+				9FEC11E0257493B5002A252D /* RatingStack.swift in Sources */,
 				9F8691C324A5261D001C418D /* ReusableIdentifier.swift in Sources */,
 				9F8691B524A449D1001C418D /* GeocodeResponse.swift in Sources */,
 				9F4A3D2E24899CA4003D6D24 /* DetailRequest.swift in Sources */,

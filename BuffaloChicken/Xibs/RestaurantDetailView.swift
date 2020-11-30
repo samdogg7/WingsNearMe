@@ -36,6 +36,7 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
+        stack.distribution = .fill
         return stack
     }()
     
@@ -55,6 +56,12 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         let label = UILabel()
         label.text = "Location"
         return label
+    }()
+    
+    private lazy var chickenRatingStack: RatingStack = {
+        let stack = RatingStack(switchType: .chicken)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
     
     private var previousBorderLayer: CAShapeLayer?
@@ -85,6 +92,7 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         mainStack.addArrangedSubview(nameLabel)
         mainStack.addArrangedSubview(hoursLabel)
         mainStack.addArrangedSubview(locationLabel)
+        mainStack.addArrangedSubview(chickenRatingStack)
     }
     
     required init?(coder: NSCoder) {
@@ -96,7 +104,7 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         
         pullDownIndicatorView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
         pullDownIndicatorView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        pullDownIndicatorView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        pullDownIndicatorView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         pullDownIndicatorView.heightAnchor.constraint(equalToConstant: 4).isActive = true
         pullDownIndicatorView.addRoundedCorners(radius: pullDownIndicatorView.bounds.height)
         
@@ -109,7 +117,7 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         pageControl.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 10).isActive = true
 
         mainStack.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 10).isActive = true
-        mainStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10).isActive = true
+        mainStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         mainStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         mainStack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
@@ -149,17 +157,6 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         
         self.scrollView.contentSize = CGSize(width:self.scrollView.frame.size.width * CGFloat(_restaurant.photos.count), height: self.scrollView.frame.size.height)
         self.pageControl.addTarget(self, action: #selector(pageChanged), for: UIControl.Event.valueChanged)
-        
-        let chickenButtonStack = UIStackView()
-        chickenButtonStack.distribution = .fillEqually
-        
-        mainStack.addArrangedSubview(chickenButtonStack)
-        
-        for _ in 0..<5 {
-            guard let animation = Animation.named("chicken-icon") else { return  }
-            let lottieSwitch = LottieSwitch(animation: animation, animated: true, backgroundImage: UIImage(named: "Empty Wing"))
-            chickenButtonStack.addSubview(lottieSwitch)
-        }
     }
     
     @objc func closeView() {
