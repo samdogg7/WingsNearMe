@@ -46,30 +46,20 @@ class Restaurant: NSObject {
     }
     
     func formatHours(hours: [String]?) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        let today = dateFormatter.string(from: Date())
         
-        var str = "Monday: 11:00 AM - 9:00 PM"
-
         if let days = hours {
             for day in days {
                 var _day = day
-                if let subString = day.range(of: "Monday") {
+                if let subString = day.range(of: today) {
                     _day.removeSubrange(subString)
-                } else if let subString = day.range(of: "Tuesday") {
-                    _day.removeSubrange(subString)
-                } else if let subString = day.range(of: "Wendseday") {
-                    _day.removeSubrange(subString)
-                } else if let subString = day.range(of: "Thursday") {
-                    _day.removeSubrange(subString)
-                } else if let subString = day.range(of: "Friday") {
-                    _day.removeSubrange(subString)
-                } else if let subString = day.range(of: "Saturday") {
-                    _day.removeSubrange(subString)
-                } else if let subString = day.range(of: "Sunday") {
-                    _day.removeSubrange(subString)
+                    return "Today" + _day
                 }
             }
         }
-        return str
+        return "Hours missing"
     }
     
     func addPhoto(photo: UIImage, atIndex: Int? = nil) {

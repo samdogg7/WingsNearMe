@@ -11,6 +11,7 @@ import Foundation
 
 // MARK: - DetailsResponse
 struct DetailResponse: GoogleResponse, Codable {
+    var error_message: String?
     var htmlAttributions: [JSONAny]?
     var result: PlaceDetail?
     var status: String?

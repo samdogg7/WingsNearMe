@@ -10,5 +10,6 @@ import Foundation
 
 public protocol GoogleResponse: Decodable {
     var status: String? { get set }
+    var error_message: String? { get set }
     var htmlAttributions: [JSONAny]? { get set }
 }

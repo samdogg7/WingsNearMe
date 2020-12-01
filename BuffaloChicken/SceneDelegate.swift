@@ -15,22 +15,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UITabBarControllerDeleg
     private lazy var mainNavigationController: UINavigationController = {
         return UINavigationController(rootViewController: FindWingsParentVC())
     }()
-    
-//    private lazy var tabBarController: UITabBarController = {
-//        let tab = UITabBarController()
-//
-//        let mainVC = FindWingsParentVC()
-//        mainVC.tabBarItem = UITabBarItem(title: "Find Wings", image: UIImage(systemName: "magnifyingglass"), tag: 0)
-//
-//        let settingsVC = SettingsVC()
-//        settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), tag: 1)
-//
-//        tab.viewControllers = [ mainVC, settingsVC ]
-//
-//        tab.delegate = self
-//
-//        return tab
-//    }()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -40,6 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UITabBarControllerDeleg
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.rootViewController = mainNavigationController
+        if #available(iOS 13.0, *) {
+            window?.overrideUserInterfaceStyle = .light
+        }
         window?.makeKeyAndVisible()
     }
 

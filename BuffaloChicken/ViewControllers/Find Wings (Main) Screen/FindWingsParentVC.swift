@@ -71,7 +71,6 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         navigationItem.leftBarButtonItem = settingsButton
         
         view.backgroundColor = .white
-        self.present(loadingAlert, animated: true, completion: nil)
         
         locationManager.delegate = self
         filterView.delegate = self
@@ -83,6 +82,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.present(loadingAlert, animated: true, completion: nil)
         
         #if targetEnvironment(simulator)
         self.getPlaces()
@@ -101,7 +101,7 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         mapVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         mapVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         mapVC.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
-        mapVC.view.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        mapVC.view.heightAnchor.constraint(equalToConstant: 165).isActive = true
         
         tableviewVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         tableviewVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true

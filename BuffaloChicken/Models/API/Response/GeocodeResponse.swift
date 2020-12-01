@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - GeocodeResponse
 @objcMembers class GeocodeResponse: NSObject, Codable, GoogleResponse {
+    var error_message: String?
     var status: String?
     var htmlAttributions: [JSONAny]?
     var results: [AddressResult]?

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		92EF6F271AB70A5603A34F2D /* Pods_BuffaloChicken.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06822D9E15EC6318A297D25A /* Pods_BuffaloChicken.framework */; };
+		9B465E703ACA7F0B3653D3C9 /* Pods_BuffaloChicken.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A29091841A932CA25605F07 /* Pods_BuffaloChicken.framework */; };
 		9F08C41324690F900053CC42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41224690F900053CC42 /* AppDelegate.swift */; };
 		9F08C41524690F900053CC42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F08C41424690F900053CC42 /* SceneDelegate.swift */; };
 		9F08C41C24690F910053CC42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F08C41B24690F910053CC42 /* Assets.xcassets */; };
@@ -37,8 +37,8 @@
 		9F928758246B578D00E4DCCC /* RestaurantTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */; };
 		9F92875A246B7A7200E4DCCC /* DetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F928759246B7A7200E4DCCC /* DetailResponse.swift */; };
 		9F9ABFD9247F6CE500787376 /* fries-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F9ABFD5247F6CE500787376 /* fries-icon.json */; };
-		9F9ABFDA247F6CE500787376 /* sauce-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F9ABFD6247F6CE500787376 /* sauce-icon.json */; };
-		9F9ABFDB247F6CE500787376 /* spice-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F9ABFD7247F6CE500787376 /* spice-icon.json */; };
+		9F9ABFDA247F6CE500787376 /* spice-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F9ABFD6247F6CE500787376 /* spice-icon.json */; };
+		9F9ABFDB247F6CE500787376 /* sauce-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F9ABFD7247F6CE500787376 /* sauce-icon.json */; };
 		9F9ABFDC247F6CE500787376 /* chicken-icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F9ABFD8247F6CE500787376 /* chicken-icon.json */; };
 		9F9ABFDE247F761400787376 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9ABFDD247F761400787376 /* Extensions.swift */; };
 		9F9ABFE3247F827800787376 /* LottieSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9ABFE2247F827800787376 /* LottieSwitch.swift */; };
@@ -53,12 +53,13 @@
 		9FC8A7152492C10D0058E807 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC8A7142492C10D0058E807 /* WebKit.framework */; };
 		9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2604C246F24E2003E3443 /* loading-tenders.json */; };
 		9FE4DF8F255AF9CD005D7F1C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4DF8E255AF9CD005D7F1C /* SettingsVC.swift */; };
+		9FE91EEF2576FF07003026BF /* FilterPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE91EEE2576FF07003026BF /* FilterPresentationController.swift */; };
 		9FEC11E0257493B5002A252D /* RatingStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEC11DF257493B5002A252D /* RatingStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		06822D9E15EC6318A297D25A /* Pods_BuffaloChicken.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuffaloChicken.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F3BCBC0CF7DBD8E84E92F6B /* Pods-BuffaloChicken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.debug.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.debug.xcconfig"; sourceTree = "<group>"; };
+		8A29091841A932CA25605F07 /* Pods_BuffaloChicken.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BuffaloChicken.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D33E9631D5191BBA783EE68 /* Pods-BuffaloChicken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.release.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.release.xcconfig"; sourceTree = "<group>"; };
 		9F08C40F24690F900053CC42 /* Wings Near Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wings Near Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F08C41224690F900053CC42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F08C41424690F900053CC42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		9F08C42024690F910053CC42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F08C42824690FAD0053CC42 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		9F08C42A246914630053CC42 /* PlacesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesResponse.swift; sourceTree = "<group>"; };
+		9F0912512575689F002B3DFD /* BuffaloChicken-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BuffaloChicken-Bridging-Header.h"; sourceTree = "<group>"; };
 		9F17A38425531B9B00967F9C /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		9F2334632475895500C06EA3 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
 		9F3F41362479BC5600F00A56 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -90,8 +92,8 @@
 		9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableViewCell.xib; sourceTree = "<group>"; };
 		9F928759246B7A7200E4DCCC /* DetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailResponse.swift; sourceTree = "<group>"; };
 		9F9ABFD5247F6CE500787376 /* fries-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "fries-icon.json"; sourceTree = "<group>"; };
-		9F9ABFD6247F6CE500787376 /* sauce-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sauce-icon.json"; sourceTree = "<group>"; };
-		9F9ABFD7247F6CE500787376 /* spice-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "spice-icon.json"; sourceTree = "<group>"; };
+		9F9ABFD6247F6CE500787376 /* spice-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "spice-icon.json"; sourceTree = "<group>"; };
+		9F9ABFD7247F6CE500787376 /* sauce-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sauce-icon.json"; sourceTree = "<group>"; };
 		9F9ABFD8247F6CE500787376 /* chicken-icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "chicken-icon.json"; sourceTree = "<group>"; };
 		9F9ABFDD247F761400787376 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9F9ABFE2247F827800787376 /* LottieSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LottieSwitch.swift; sourceTree = "<group>"; };
@@ -106,8 +108,9 @@
 		9FC8A7142492C10D0058E807 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9FD2604C246F24E2003E3443 /* loading-tenders.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-tenders.json"; sourceTree = "<group>"; };
 		9FE4DF8E255AF9CD005D7F1C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		9FE91EEE2576FF07003026BF /* FilterPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresentationController.swift; sourceTree = "<group>"; };
 		9FEC11DF257493B5002A252D /* RatingStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStack.swift; sourceTree = "<group>"; };
-		B815740AD8C3182FC01BFC64 /* Pods-BuffaloChicken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.release.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.release.xcconfig"; sourceTree = "<group>"; };
+		C25B9DD9846D0C94316373B4 /* Pods-BuffaloChicken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.debug.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FC8A7152492C10D0058E807 /* WebKit.framework in Frameworks */,
-				92EF6F271AB70A5603A34F2D /* Pods_BuffaloChicken.framework in Frameworks */,
+				9B465E703ACA7F0B3653D3C9 /* Pods_BuffaloChicken.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,8 +129,8 @@
 		7057BD79C36779EC41D94EDE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4F3BCBC0CF7DBD8E84E92F6B /* Pods-BuffaloChicken.debug.xcconfig */,
-				B815740AD8C3182FC01BFC64 /* Pods-BuffaloChicken.release.xcconfig */,
+				C25B9DD9846D0C94316373B4 /* Pods-BuffaloChicken.debug.xcconfig */,
+				8D33E9631D5191BBA783EE68 /* Pods-BuffaloChicken.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				9F9ABFE2247F827800787376 /* LottieSwitch.swift */,
 				9F6D458B248C5CFA001B2072 /* LoadingAlert.swift */,
 				9FEC11DF257493B5002A252D /* RatingStack.swift */,
+				9FE91EEE2576FF07003026BF /* FilterPresentationController.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -262,6 +266,7 @@
 				9F8691C224A5261D001C418D /* ReusableIdentifier.swift */,
 				9FB528EA24F2CF0F00F6108C /* PlistHandler.swift */,
 				9F9ABFDD247F761400787376 /* Extensions.swift */,
+				9F0912512575689F002B3DFD /* BuffaloChicken-Bridging-Header.h */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -292,8 +297,8 @@
 			children = (
 				9F9ABFD8247F6CE500787376 /* chicken-icon.json */,
 				9F9ABFD5247F6CE500787376 /* fries-icon.json */,
-				9F9ABFD6247F6CE500787376 /* sauce-icon.json */,
-				9F9ABFD7247F6CE500787376 /* spice-icon.json */,
+				9F9ABFD6247F6CE500787376 /* spice-icon.json */,
+				9F9ABFD7247F6CE500787376 /* sauce-icon.json */,
 				9FD2604C246F24E2003E3443 /* loading-tenders.json */,
 			);
 			path = LottieAnimations;
@@ -303,7 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				9FC8A7142492C10D0058E807 /* WebKit.framework */,
-				06822D9E15EC6318A297D25A /* Pods_BuffaloChicken.framework */,
+				8A29091841A932CA25605F07 /* Pods_BuffaloChicken.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -315,11 +320,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F08C42324690F910053CC42 /* Build configuration list for PBXNativeTarget "BuffaloChicken" */;
 			buildPhases = (
-				2B842A368B09A2DF79422B98 /* [CP] Check Pods Manifest.lock */,
+				7C3CCB7A84191932A7AD49EC /* [CP] Check Pods Manifest.lock */,
 				9F08C40B24690F900053CC42 /* Sources */,
 				9F08C40C24690F900053CC42 /* Frameworks */,
 				9F08C40D24690F900053CC42 /* Resources */,
-				42C0E06E56705492C7834858 /* [CP] Embed Pods Frameworks */,
+				9F82CFB825755E59008F2411 /* ShellScript */,
+				4642278B805C7478BF85D3F0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -342,6 +348,7 @@
 				TargetAttributes = {
 					9F08C40E24690F900053CC42 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1220;
 					};
 				};
 			};
@@ -372,13 +379,13 @@
 				9F617D0B257416A9006E505E /* GoogleService-Info.plist in Resources */,
 				9F71D841247C7535004EF23E /* FilterView.xib in Resources */,
 				9F928758246B578D00E4DCCC /* RestaurantTableViewCell.xib in Resources */,
-				9F9ABFDA247F6CE500787376 /* sauce-icon.json in Resources */,
+				9F9ABFDA247F6CE500787376 /* spice-icon.json in Resources */,
 				9F17A38525531B9B00967F9C /* MainViewController.xib in Resources */,
 				9F08C41F24690F910053CC42 /* LaunchScreen.storyboard in Resources */,
 				9F9ABFDC247F6CE500787376 /* chicken-icon.json in Resources */,
 				9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */,
 				9FB528F524F2D64D00F6108C /* .gitignore in Resources */,
-				9F9ABFDB247F6CE500787376 /* spice-icon.json in Resources */,
+				9F9ABFDB247F6CE500787376 /* sauce-icon.json in Resources */,
 				9F08C41C24690F910053CC42 /* Assets.xcassets in Resources */,
 				9F9ABFD9247F6CE500787376 /* fries-icon.json in Resources */,
 			);
@@ -387,7 +394,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2B842A368B09A2DF79422B98 /* [CP] Check Pods Manifest.lock */ = {
+		4642278B805C7478BF85D3F0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C3CCB7A84191932A7AD49EC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -409,22 +433,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		42C0E06E56705492C7834858 /* [CP] Embed Pods Frameworks */ = {
+		9F82CFB825755E59008F2411 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -437,6 +462,7 @@
 				9F08C42924690FAD0053CC42 /* APIManager.swift in Sources */,
 				9FB528F124F2D28800F6108C /* ApiKeysModel.swift in Sources */,
 				9F92875A246B7A7200E4DCCC /* DetailResponse.swift in Sources */,
+				9FE91EEF2576FF07003026BF /* FilterPresentationController.swift in Sources */,
 				9F9ABFE3247F827800787376 /* LottieSwitch.swift in Sources */,
 				9F4A3D322489AD67003D6D24 /* PhotoResponse.swift in Sources */,
 				9FB528EB24F2CF0F00F6108C /* PlistHandler.swift in Sources */,
@@ -598,9 +624,10 @@
 		};
 		9F08C42424690F910053CC42 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F3BCBC0CF7DBD8E84E92F6B /* Pods-BuffaloChicken.debug.xcconfig */;
+			baseConfigurationReference = C25B9DD9846D0C94316373B4 /* Pods-BuffaloChicken.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8L782G9K5P;
 				INFOPLIST_FILE = BuffaloChicken/Info.plist;
@@ -612,6 +639,8 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samdoggett.WingsNearMe;
 				PRODUCT_NAME = "Wings Near Me";
+				SWIFT_OBJC_BRIDGING_HEADER = "BuffaloChicken/Helpers/BuffaloChicken-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -619,9 +648,10 @@
 		};
 		9F08C42524690F910053CC42 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B815740AD8C3182FC01BFC64 /* Pods-BuffaloChicken.release.xcconfig */;
+			baseConfigurationReference = 8D33E9631D5191BBA783EE68 /* Pods-BuffaloChicken.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8L782G9K5P;
 				INFOPLIST_FILE = BuffaloChicken/Info.plist;
@@ -633,6 +663,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.samdoggett.WingsNearMe;
 				PRODUCT_NAME = "Wings Near Me";
+				SWIFT_OBJC_BRIDGING_HEADER = "BuffaloChicken/Helpers/BuffaloChicken-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

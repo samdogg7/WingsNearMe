@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 public typealias ResultCallback<Value> = (Result<Value, Error>) -> Void
 
@@ -60,6 +61,12 @@ public class APIManager {
                         completion(.success(decodedModel))
                     } else {
                         err = GoogleError(status: status)
+                        let errorMessage = decodedModel.error_message ?? "No error message"
+                        Analytics.logEvent("URL Session Error", parameters: [
+                            "status": status as NSObject,
+                            "error_message": errorMessage as NSObject,
+                            "URL_request": (urlRequest.url?.absoluteString ?? "Missing URL in URL request") as NSObject
+                          ])
                     }
                 //Attempt to decode data as an image
                 } else if let data = data, let photoResponse = PhotoResponse(data: data) as? Response {

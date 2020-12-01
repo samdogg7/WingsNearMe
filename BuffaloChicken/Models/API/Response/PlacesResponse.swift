@@ -10,6 +10,7 @@
 
 // MARK: - PlacesResponse
 struct PlacesResponse: GoogleResponse, Codable {
+    var error_message: String?
     var htmlAttributions: [JSONAny]?
     var nextPageToken: String?
     var results: [Place]?

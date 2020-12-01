@@ -9,6 +9,7 @@
 import UIKit.UIImage
 
 class PhotoResponse: UIImage, GoogleResponse {
+    var error_message: String?
     var status: String?
     var htmlAttributions: [JSONAny]?
 }

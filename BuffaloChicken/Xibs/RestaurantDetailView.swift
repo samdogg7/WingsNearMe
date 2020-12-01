@@ -8,6 +8,7 @@
 
 import Lottie
 import UIKit
+import MapKit
 
 class RestaurantDetailView: UIView, UIScrollViewDelegate {
     private lazy var pullDownIndicatorView: UIButton = {
@@ -37,29 +38,73 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.distribution = .fill
+        stack.spacing = 5
         return stack
     }()
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name"
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 18.0)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     private lazy var hoursLabel: UILabel = {
         let label = UILabel()
         label.text = "Hours"
+        label.font = UIFont.systemFont(ofSize: 14.0)
         return label
     }()
     
-    private lazy var locationLabel: UILabel = {
+    private lazy var locationButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Location", for: .normal)
+        button.addTarget(self, action: #selector(pressedLocationButton), for: .touchUpInside)
+        button.setTitleColor(.blue, for: .normal)
+        button.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping;
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
+        button.contentHorizontalAlignment = .left
+        return button
+    }()
+    
+    private lazy var ratingStacks: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        stack.spacing = 10
+        return stack
+    }()
+    
+    private lazy var ratingLabel: UILabel = {
         let label = UILabel()
-        label.text = "Location"
+        label.font = UIFont.boldSystemFont(ofSize: 16.0)
+        label.text = "Reviews"
+        label.textAlignment = .center
         return label
     }()
     
     private lazy var chickenRatingStack: RatingStack = {
-        let stack = RatingStack(switchType: .chicken)
+        let stack = RatingStack(switchType: .chicken, touchEnabled: false, countEnabled: 4)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private lazy var spiceRatingStack: RatingStack = {
+        let stack = RatingStack(switchType: .spice, touchEnabled: false, countEnabled: 5)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private lazy var sauceRatingStack: RatingStack = {
+        let stack = RatingStack(switchType: .sauce, touchEnabled: false, countEnabled: 4)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private lazy var friesRatingStack: RatingStack = {
+        let stack = RatingStack(switchType: .fries, touchEnabled: false, countEnabled: 3)
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -91,8 +136,14 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         
         mainStack.addArrangedSubview(nameLabel)
         mainStack.addArrangedSubview(hoursLabel)
-        mainStack.addArrangedSubview(locationLabel)
-        mainStack.addArrangedSubview(chickenRatingStack)
+        mainStack.addArrangedSubview(locationButton)
+        mainStack.addArrangedSubview(ratingStacks)
+        
+        ratingStacks.addArrangedSubview(ratingLabel)
+        ratingStacks.addArrangedSubview(chickenRatingStack)
+        ratingStacks.addArrangedSubview(spiceRatingStack)
+        ratingStacks.addArrangedSubview(sauceRatingStack)
+        ratingStacks.addArrangedSubview(friesRatingStack)
     }
     
     required init?(coder: NSCoder) {
@@ -116,10 +167,10 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         pageControl.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         pageControl.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 10).isActive = true
 
-        mainStack.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 10).isActive = true
+        mainStack.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 5).isActive = true
         mainStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         mainStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-        mainStack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        mainStack.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -5).isActive = true
         
         previousBorderLayer?.removeFromSuperlayer()
         previousBorderLayer = self.addRoundedCorners(radius: 10, corners: [.topRight, .topLeft], borderWidth: 2, borderColor: .lightGray)
@@ -132,7 +183,7 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
         
         nameLabel.text = _restaurant.name + " - " + _restaurant.isOpenString
         hoursLabel.text = _restaurant.hoursString
-        locationLabel.text = _restaurant.formattedAddress
+        locationButton.setTitle(_restaurant.formattedAddress, for: .normal)
         
         setPage(index: 0, animated: false)
         
@@ -180,5 +231,13 @@ class RestaurantDetailView: UIView, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageNumber = round(scrollView.contentOffset.x / scrollView.frame.size.width)
         pageControl.currentPage = Int(pageNumber)
+    }
+    
+    @objc func pressedLocationButton() {
+        if let _restaurant = restaurant {
+            let destination = MKMapItem(placemark: MKPlacemark(coordinate: _restaurant.coordinate))
+            destination.name = _restaurant.name
+            MKMapItem.openMaps(with: [destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        }
     }
 }

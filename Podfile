@@ -10,4 +10,5 @@ target 'BuffaloChicken' do
   pod 'ViewAnimator', '2.7.1'
   pod 'Firebase/Database'
   pod 'Firebase/Crashlytics'
+  pod 'Firebase/Analytics'
 end

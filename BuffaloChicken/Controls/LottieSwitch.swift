@@ -20,7 +20,7 @@ protocol LottieSwitchDelegate {
     func flipSwitch(sender: LottieSwitch, isOn: Bool)
 }
 
-class LottieSwitch: UIButton {
+class LottieSwitch: UIView {
     private lazy var lottieSwitch: AnimatedSwitch = {
         let view = AnimatedSwitch()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -28,30 +28,56 @@ class LottieSwitch: UIButton {
         return view
     }()
     
+    private lazy var lottieView: AnimationView = {
+        let view = AnimationView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private var touchEnabled = true
     private var delegate: LottieSwitchDelegate?
     
-    required init(switchType: SwitchType, delegate: LottieSwitchDelegate? = nil, playbackSpeed: CGFloat = 1) {
+    required init(switchType: SwitchType, touchEnabled: Bool = true, delegate: LottieSwitchDelegate? = nil, playbackSpeed: CGFloat = 1, scale: CGFloat = 1) {
         super.init(frame: .zero)
         
         self.delegate = delegate
+        self.touchEnabled = touchEnabled
+        self.setContentHuggingPriority(UILayoutPriority(50), for: .vertical)
         
-        lottieSwitch.animationSpeed = playbackSpeed
-        
-        lottieSwitch.setProgressForState(fromProgress: 0.0, toProgress: 0.90, forOnState: true)
-        lottieSwitch.setProgressForState(fromProgress: 1.0, toProgress: 1.0, forOnState: false)
-
-        switch switchType {
-        case .chicken:
-            lottieSwitch.animation = Animation.named("chicken-icon")
-        case .fries:
-            lottieSwitch.animation = Animation.named("fries-icon")
-        case .sauce:
-            lottieSwitch.animation = Animation.named("sauce-icon")
-        case .spice:
-            lottieSwitch.animation = Animation.named("spice-icon")
+        if touchEnabled {
+            switch switchType {
+            case .chicken:
+                lottieSwitch.animation = Animation.named("chicken-icon")
+            case .fries:
+                lottieSwitch.animation = Animation.named("fries-icon")
+            case .sauce:
+                lottieSwitch.animation = Animation.named("sauce-icon")
+            case .spice:
+                lottieSwitch.animation = Animation.named("spice-icon")
+            }
+            
+            lottieSwitch.animationSpeed = playbackSpeed
+            
+            lottieSwitch.setProgressForState(fromProgress: 0.0, toProgress: 0.90, forOnState: true)
+            lottieSwitch.setProgressForState(fromProgress: 1.0, toProgress: 1.0, forOnState: false)
+            
+            self.addSubview(lottieSwitch)
+        } else {
+            switch switchType {
+            case .chicken:
+                lottieView.animation = Animation.named("chicken-icon")
+            case .fries:
+                lottieView.animation = Animation.named("fries-icon")
+            case .sauce:
+                lottieView.animation = Animation.named("sauce-icon")
+            case .spice:
+                lottieView.animation = Animation.named("spice-icon")
+            }
+            
+            lottieView.currentFrame = lottieView.animation?.endFrame ?? 0
+            
+            self.addSubview(lottieView)
         }
-        
-        self.addSubview(lottieSwitch)
     }
     
     required init?(coder: NSCoder) {
@@ -61,14 +87,29 @@ class LottieSwitch: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        lottieSwitch.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        lottieSwitch.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        lottieSwitch.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        lottieSwitch.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        if touchEnabled {
+            lottieSwitch.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            lottieSwitch.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            lottieSwitch.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            lottieSwitch.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        } else {
+            lottieView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            lottieView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            lottieView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            lottieView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        }
     }
     
     func setSwitch(isOn: Bool) {
-        lottieSwitch.setIsOn(isOn, animated: true)
+        if touchEnabled {
+            lottieSwitch.setIsOn(isOn, animated: true)
+        } else {
+            if isOn {
+                lottieView.currentProgress = 0.95
+            } else {
+                lottieView.currentProgress = 1.0
+            }
+        }
     }
     
     @objc func switchFlipped() {
