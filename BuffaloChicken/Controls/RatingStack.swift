@@ -61,7 +61,7 @@ class RatingStack: UIStackView, LottieSwitchDelegate {
         super.layoutSubviews()
                 
         for lottieSwitch in lottieSwitches {
-            lottieSwitch.heightAnchor.constraint(equalToConstant: 25).isActive = true
+            lottieSwitch.heightAnchor.constraint(lessThanOrEqualToConstant: 25).isActive = true
         }
     }
     

@@ -13,7 +13,6 @@ protocol FindWingsTableviewDelegate {
     func addCells(cells: [RestaurantAnnotation])
     func animateTableCells(fromBottom: Bool)
     func scrollToCell(indexPath: IndexPath)
-    func hideRestaurantDetail(completion: (()-> Void)?)
     func showRestaurantDetail(restaurant: Restaurant)
 }
 
@@ -35,54 +34,33 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
     }()
     
     var parentDelegate: FindWingsParentDelegate?
-    
-    private lazy var detailView: RestaurantDetailView = {
-        let view = RestaurantDetailView()
-        view.tableViewDelegate = self
-        view.isHidden = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private var sortedAnnotations:[RestaurantAnnotation]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.addSubview(tableView)
-        self.view.addSubview(detailView)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        
-        detailView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 2.5).isActive = true
-        detailView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        detailView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        detailView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
     func showRestaurantDetail(restaurant: Restaurant) {
-        detailView.restaurant = restaurant
-        detailView.isHidden = false
+        let detailViewController = RestaurantDetailViewController(restaurant: restaurant)
+        detailViewController.modalPresentationStyle = .custom
+        detailViewController.transitioningDelegate = self
+        
         if let topCellIndexPath = self.tableView.indexPathsForVisibleRows?[0] {
             self.tableView.scrollToRow(at: topCellIndexPath, at: .top, animated: true)
         }
-        
-        detailView.animate(animations: [AnimationType.from(direction: .bottom, offset: 100.0)], duration: 0.5)
-    }
-    
-    func hideRestaurantDetail(completion: (()-> Void)?) {
-        detailView.hideAnimated()
-        
-        if let complete = completion {
-            complete()
-        }
+                      
+        self.present(detailViewController, animated: true, completion: nil)
     }
     
     func addCells(cells: [RestaurantAnnotation]) {
@@ -92,13 +70,7 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
     }
     
     func scrollToCell(indexPath: IndexPath) {
-        if !detailView.isHidden {
-            hideRestaurantDetail() {
-                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-            }
-        } else {
-            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-        }
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     func animateTableCells(fromBottom: Bool) {
@@ -156,5 +128,11 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
         guard let annotation = sortedAnnotations?[indexPath.section] else { return }
         tableView.deselectRow(at: indexPath, animated: true)
         showRestaurantDetail(restaurant: annotation.restaurant)
+    }
+}
+
+extension FindWingsTableviewVC: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        SwipeablePresentationController(presentedViewController: presented, presenting: presenting, desiredTopAnchor: self.view.topAnchor)
     }
 }

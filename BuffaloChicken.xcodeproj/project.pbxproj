@@ -27,7 +27,7 @@
 		9F4A3D342489B507003D6D24 /* GoogleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A3D332489B507003D6D24 /* GoogleError.swift */; };
 		9F617D0B257416A9006E505E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F617D0A257416A9006E505E /* GoogleService-Info.plist */; };
 		9F6D458C248C5CFA001B2072 /* LoadingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6D458B248C5CFA001B2072 /* LoadingAlert.swift */; };
-		9F6D4590248CA1E0001B2072 /* RestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6D458F248CA1E0001B2072 /* RestaurantDetailView.swift */; };
+		9F6D4590248CA1E0001B2072 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6D458F248CA1E0001B2072 /* RestaurantDetailViewController.swift */; };
 		9F71D841247C7535004EF23E /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F71D840247C7535004EF23E /* FilterView.xib */; };
 		9F71D845247C75FD004EF23E /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71D844247C75FD004EF23E /* FilterView.swift */; };
 		9F79152F247DE9F900C0ECE0 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F79152E247DE9F900C0ECE0 /* Review.swift */; };
@@ -53,7 +53,7 @@
 		9FC8A7152492C10D0058E807 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC8A7142492C10D0058E807 /* WebKit.framework */; };
 		9FD2604D246F24E3003E3443 /* loading-tenders.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2604C246F24E2003E3443 /* loading-tenders.json */; };
 		9FE4DF8F255AF9CD005D7F1C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4DF8E255AF9CD005D7F1C /* SettingsVC.swift */; };
-		9FE91EEF2576FF07003026BF /* FilterPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE91EEE2576FF07003026BF /* FilterPresentationController.swift */; };
+		9FE91EEF2576FF07003026BF /* SwipeablePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE91EEE2576FF07003026BF /* SwipeablePresentationController.swift */; };
 		9FEC11E0257493B5002A252D /* RatingStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEC11DF257493B5002A252D /* RatingStack.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +82,7 @@
 		9F4A3D332489B507003D6D24 /* GoogleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleError.swift; sourceTree = "<group>"; };
 		9F617D0A257416A9006E505E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9F6D458B248C5CFA001B2072 /* LoadingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAlert.swift; sourceTree = "<group>"; };
-		9F6D458F248CA1E0001B2072 /* RestaurantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailView.swift; sourceTree = "<group>"; };
+		9F6D458F248CA1E0001B2072 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		9F71D840247C7535004EF23E /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		9F71D844247C75FD004EF23E /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		9F79152E247DE9F900C0ECE0 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		9FC8A7142492C10D0058E807 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9FD2604C246F24E2003E3443 /* loading-tenders.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loading-tenders.json"; sourceTree = "<group>"; };
 		9FE4DF8E255AF9CD005D7F1C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		9FE91EEE2576FF07003026BF /* FilterPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPresentationController.swift; sourceTree = "<group>"; };
+		9FE91EEE2576FF07003026BF /* SwipeablePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeablePresentationController.swift; sourceTree = "<group>"; };
 		9FEC11DF257493B5002A252D /* RatingStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStack.swift; sourceTree = "<group>"; };
 		C25B9DD9846D0C94316373B4 /* Pods-BuffaloChicken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BuffaloChicken.debug.xcconfig"; path = "Target Support Files/Pods-BuffaloChicken/Pods-BuffaloChicken.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,7 +216,7 @@
 				9F9ABFE2247F827800787376 /* LottieSwitch.swift */,
 				9F6D458B248C5CFA001B2072 /* LoadingAlert.swift */,
 				9FEC11DF257493B5002A252D /* RatingStack.swift */,
-				9FE91EEE2576FF07003026BF /* FilterPresentationController.swift */,
+				9FE91EEE2576FF07003026BF /* SwipeablePresentationController.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 				9F71D844247C75FD004EF23E /* FilterView.swift */,
 				9F928757246B578D00E4DCCC /* RestaurantTableViewCell.xib */,
 				9FB2C03D246B050600650946 /* RestaurantTableViewCell.swift */,
-				9F6D458F248CA1E0001B2072 /* RestaurantDetailView.swift */,
+				9F6D458F248CA1E0001B2072 /* RestaurantDetailViewController.swift */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Sam Doggett";
 				TargetAttributes = {
 					9F08C40E24690F900053CC42 = {
@@ -462,7 +462,7 @@
 				9F08C42924690FAD0053CC42 /* APIManager.swift in Sources */,
 				9FB528F124F2D28800F6108C /* ApiKeysModel.swift in Sources */,
 				9F92875A246B7A7200E4DCCC /* DetailResponse.swift in Sources */,
-				9FE91EEF2576FF07003026BF /* FilterPresentationController.swift in Sources */,
+				9FE91EEF2576FF07003026BF /* SwipeablePresentationController.swift in Sources */,
 				9F9ABFE3247F827800787376 /* LottieSwitch.swift in Sources */,
 				9F4A3D322489AD67003D6D24 /* PhotoResponse.swift in Sources */,
 				9FB528EB24F2CF0F00F6108C /* PlistHandler.swift in Sources */,
@@ -482,7 +482,7 @@
 				9FB528F324F2D3C800F6108C /* PlistModel.swift in Sources */,
 				9F3F41372479BC5600F00A56 /* Restaurant.swift in Sources */,
 				9F4A3D342489B507003D6D24 /* GoogleError.swift in Sources */,
-				9F6D4590248CA1E0001B2072 /* RestaurantDetailView.swift in Sources */,
+				9F6D4590248CA1E0001B2072 /* RestaurantDetailViewController.swift in Sources */,
 				9F79152F247DE9F900C0ECE0 /* Review.swift in Sources */,
 				9F9ABFDE247F761400787376 /* Extensions.swift in Sources */,
 				9F42B2712550824600F7CD29 /* FindWingsTableviewVC.swift in Sources */,
@@ -534,6 +534,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -594,6 +595,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

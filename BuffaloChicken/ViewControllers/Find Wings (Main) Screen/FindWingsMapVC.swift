@@ -34,8 +34,8 @@ class FindWingsMapVC: UIViewController, MKMapViewDelegate, FindWingsMapDelegate 
         self.view.addSubview(map)
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         map.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         map.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true

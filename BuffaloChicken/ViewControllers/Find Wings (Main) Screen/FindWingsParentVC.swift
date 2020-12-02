@@ -95,8 +95,8 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         mapVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5).isActive = true
         mapVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true

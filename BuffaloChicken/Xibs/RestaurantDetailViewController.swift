@@ -11,17 +11,42 @@ import UIKit
 import MapKit
 
 class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
-    private lazy var pullDownIndicatorView: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(closeView), for: .touchUpInside)
-        button.backgroundColor = .lightGray
-        return button
-    }()
-    
-    private lazy var scrollView: UIScrollView = {
+    private lazy var mainScrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.isScrollEnabled = true
+        return scroll
+    }()
+    
+    private lazy var contentStackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 10
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var pullDownView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction)))
+        return view
+    }()
+    
+    private lazy var pullDownIndicatorView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
+    private lazy var horzImageScrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.showsHorizontalScrollIndicator = false
+        scroll.delegate = self
+        scroll.isPagingEnabled = true
         return scroll
     }()
     
@@ -33,7 +58,7 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
         return control
     }()
     
-    private lazy var mainStack: UIStackView = {
+    private lazy var infoStack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -109,47 +134,66 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
         return stack
     }()
     
-    private var previousBorderLayer: CAShapeLayer?
-    
-    var tableViewDelegate: FindWingsTableviewDelegate?
-    
-    var restaurant: Restaurant? {
-        didSet {
-            setup()
-        }
-    }
-    
+    var startingConstantPosY: CGFloat = 0.0
+    var restaurant: Restaurant?
     var scrollViewImages: [UIImage] = []
     
-    required init() {
+    required init(restaurant: Restaurant) {
         super.init(nibName: nil, bundle: nil)
         
-        scrollView.delegate = self
-        scrollView.isPagingEnabled = true
+        self.restaurant = restaurant
         
-        view.addSubview(mainStack)
+        view.backgroundColor = .white
+        
         view.addSubview(pullDownIndicatorView)
-        view.addSubview(pageControl)
-        view.addSubview(scrollView)
+        view.addSubview(mainScrollView)
+        view.addSubview(pullDownView)
         
-        mainStack.addArrangedSubview(nameLabel)
-        mainStack.addArrangedSubview(hoursLabel)
-        mainStack.addArrangedSubview(locationButton)
-        mainStack.addArrangedSubview(ratingStacks)
+        mainScrollView.addSubview(contentStackView)
+        
+        contentStackView.addArrangedSubview(horzImageScrollView)
+        contentStackView.addArrangedSubview(infoStack)
+        contentStackView.addArrangedSubview(ratingStacks)
+
+        view.addSubview(pageControl)
+        
+        infoStack.addArrangedSubview(nameLabel)
+        infoStack.addArrangedSubview(hoursLabel)
+        infoStack.addArrangedSubview(locationButton)
         
         ratingStacks.addArrangedSubview(ratingLabel)
         ratingStacks.addArrangedSubview(chickenRatingStack)
         ratingStacks.addArrangedSubview(spiceRatingStack)
         ratingStacks.addArrangedSubview(sauceRatingStack)
         ratingStacks.addArrangedSubview(friesRatingStack)
+        
+        setup()
+        
+        view.bringSubviewToFront(pullDownView)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        mainScrollView.topAnchor.constraint(equalTo: pullDownIndicatorView.bottomAnchor, constant: 5).isActive = true
+        mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        mainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        contentStackView.topAnchor.constraint(equalTo: mainScrollView.topAnchor).isActive = true
+        contentStackView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor).isActive = true
+        contentStackView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor).isActive = true
+        contentStackView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor).isActive = true
+        contentStackView.widthAnchor.constraint(equalTo: mainScrollView.widthAnchor).isActive = true
+
+        pullDownView.topAnchor.constraint(equalTo: view.topAnchor, constant: 5).isActive = true
+        pullDownView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        pullDownView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        pullDownView.bottomAnchor.constraint(equalTo: pullDownIndicatorView.bottomAnchor, constant: 5).isActive = true
         
         pullDownIndicatorView.topAnchor.constraint(equalTo: view.topAnchor, constant: 5).isActive = true
         pullDownIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -157,26 +201,26 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
         pullDownIndicatorView.heightAnchor.constraint(equalToConstant: 4).isActive = true
         pullDownIndicatorView.addRoundedCorners(radius: pullDownIndicatorView.bounds.height)
         
-        scrollView.topAnchor.constraint(equalTo: pullDownIndicatorView.bottomAnchor, constant: 5).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        scrollView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        horzImageScrollView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
-        pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        pageControl.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 10).isActive = true
+        pageControl.centerXAnchor.constraint(equalTo: horzImageScrollView.centerXAnchor).isActive = true
+        pageControl.topAnchor.constraint(equalTo: horzImageScrollView.bottomAnchor, constant: -25).isActive = true
+        
+        var emptyFrame = CGRect.zero
 
-        mainStack.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 5).isActive = true
-        mainStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        mainStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        mainStack.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -5).isActive = true
+        for (index, subview) in horzImageScrollView.subviews.enumerated() where subview is UIImageView {
+            guard let imgView = subview as? UIImageView else { return }
+            emptyFrame.origin.x = self.horzImageScrollView.frame.size.width * CGFloat(index)
+            emptyFrame.size = self.horzImageScrollView.frame.size
+            imgView.frame = emptyFrame
+            imgView.roundCornersForAspectFit(radius: .defaultCornerRadius)
+        }
         
-        previousBorderLayer?.removeFromSuperlayer()
-        previousBorderLayer = view.addRoundedCorners(radius: 10, corners: [.topRight, .topLeft], borderWidth: 2, borderColor: .lightGray)
+        self.horzImageScrollView.contentSize = CGSize(width:self.horzImageScrollView.frame.size.width * CGFloat(restaurant?.photos.count ?? 0), height: self.horzImageScrollView.frame.size.height)
     }
     
     func setup() {
         guard let _restaurant = restaurant else { return }
-        
         pageControl.numberOfPages = _restaurant.photos.count
         
         nameLabel.text = _restaurant.name + " - " + _restaurant.isOpenString
@@ -185,44 +229,24 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
         
         setPage(index: 0, animated: false)
         
-        for subview in scrollView.subviews {
-            subview.removeFromSuperview()
-        }
-        
-        var frame = CGRect.zero
-        
         for index in 0..<_restaurant.photos.count {
-            frame.origin.x = self.scrollView.frame.size.width * CGFloat(index)
-            frame.size = self.scrollView.frame.size
-
-
             let imgView = UIImageView(image: _restaurant.photos[index])
             imgView.contentMode = .scaleAspectFit
-            imgView.frame = frame
-            imgView.roundCornersForAspectFit(radius: .defaultCornerRadius)
-
-            scrollView.addSubview(imgView)
+            horzImageScrollView.addSubview(imgView)
         }
         
-        self.scrollView.contentSize = CGSize(width:self.scrollView.frame.size.width * CGFloat(_restaurant.photos.count), height: self.scrollView.frame.size.height)
         self.pageControl.addTarget(self, action: #selector(pageChanged), for: UIControl.Event.valueChanged)
-    }
-    
-    @objc func closeView() {
-        if let delegate = tableViewDelegate {
-            delegate.hideRestaurantDetail(completion: nil)
-        }
     }
     
     func setPage(index: Int, animated: Bool = true) {
         pageControl.currentPage = index
-        let xVal = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
-        scrollView.setContentOffset(CGPoint(x: xVal, y: 0), animated: animated)
+        let xVal = CGFloat(pageControl.currentPage) * horzImageScrollView.frame.size.width
+        horzImageScrollView.setContentOffset(CGPoint(x: xVal, y: 0), animated: animated)
     }
     
     @objc func pageChanged() {
-        let xVal = CGFloat(pageControl.currentPage) * scrollView.frame.size.width
-        scrollView.setContentOffset(CGPoint(x: xVal, y: 0), animated: true)
+        let xVal = CGFloat(pageControl.currentPage) * horzImageScrollView.frame.size.width
+        horzImageScrollView.setContentOffset(CGPoint(x: xVal, y: 0), animated: true)
     }
     
     //MARK: UIScrollViewDelegate
@@ -236,6 +260,24 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
             let destination = MKMapItem(placemark: MKPlacemark(coordinate: _restaurant.coordinate))
             destination.name = _restaurant.name
             MKMapItem.openMaps(with: [destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
+        }
+    }
+    
+    @objc func panGestureRecognizerAction(_ sender: UIPanGestureRecognizer) {
+        if let slidablePC = self.presentationController as? SwipeablePresentationController {
+            if sender.state == .began {
+                startingConstantPosY =  slidablePC.translationConstraint?.constant ?? 0.0
+            } else if sender.state == .changed {
+                slidablePC.translationConstraint?.constant = startingConstantPosY + sender.translation(in: self.view).y
+            } else if sender.state == .ended {
+                if sender.velocity(in: view).y >= 1250 {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+//                    UIView.animate(withDuration: 0.3) {
+//                        self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
+//                    }
+                }
+            }
         }
     }
 }
