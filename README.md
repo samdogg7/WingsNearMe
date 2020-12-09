@@ -9,6 +9,4 @@ Some of the highlights of the project include:
 - Lottie Animations
 - MapKit
 
-[Click Here for a Full Demo Video](https://samdoggett.com/WingsNearMe/DemoVideo.mp4).
-
-[![](https://samdoggett.com/WingsNearMe/Demo01.GIF)](https://samdoggett.com/WingsNearMe/Demo01.GIF)
+[Click Here for a Full Demo Video](https://www.youtube.com/watch?v=t5foH4HKwGM&feature=youtu.be).
