@@ -27,7 +27,7 @@ class SettingsVC: UIViewController {
     
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .border
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -55,7 +55,7 @@ class SettingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Settings"
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .background
         setupSubviews()
     }
     

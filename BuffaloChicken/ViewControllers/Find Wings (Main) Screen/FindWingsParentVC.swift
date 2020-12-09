@@ -66,11 +66,11 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        self.title = "Wings near me"
+        self.title = "Wings Near Me"
         navigationItem.rightBarButtonItem = filterButton
         navigationItem.leftBarButtonItem = settingsButton
         
-        view.backgroundColor = .white
+        view.backgroundColor = .background
         
         locationManager.delegate = self
         filterView.delegate = self

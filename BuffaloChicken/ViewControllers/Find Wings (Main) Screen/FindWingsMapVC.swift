@@ -21,7 +21,8 @@ class FindWingsMapVC: UIViewController, MKMapViewDelegate, FindWingsMapDelegate 
         map.translatesAutoresizingMaskIntoConstraints = false
         map.delegate = self
         map.layer.masksToBounds = true
-        map.layer.cornerRadius = 10
+        map.layer.cornerRadius = .defaultCornerRadius
+        map.addBorder(color: .border, width: 1)
         return map
     }()
     

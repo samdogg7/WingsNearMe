@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SwipeablePresentationController: UIPresentationController {
+class SlidePresentationController: UIPresentationController {
     // MARK: Properties
     private lazy var blurEffectView: UIVisualEffectView = {
         let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
@@ -19,19 +19,23 @@ class SwipeablePresentationController: UIPresentationController {
     }()
     
     private var previousBorderLayer: CAShapeLayer?
-    private var desiredTopAnchor: NSLayoutYAxisAnchor
+    private var middleAnchor: NSLayoutYAxisAnchor
+    private var upperAnchor: NSLayoutYAxisAnchor
     var translationConstraint: NSLayoutConstraint?
+    var bottomConstraint: NSLayoutConstraint?
 
-    required init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, desiredTopAnchor: NSLayoutYAxisAnchor) {
-        self.desiredTopAnchor = desiredTopAnchor
+    required init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, upperAnchor: NSLayoutYAxisAnchor, middleAnchor: NSLayoutYAxisAnchor) {
+        self.upperAnchor = upperAnchor
+        self.middleAnchor = middleAnchor
         
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         presentedView?.translatesAutoresizingMaskIntoConstraints = false
-        translationConstraint = presentedView?.topAnchor.constraint(equalTo: desiredTopAnchor)
+        translationConstraint = presentedView?.topAnchor.constraint(equalTo: middleAnchor, constant: 5)
     }
     
     override func presentationTransitionWillBegin() {
-        containerView?.addSubview(blurEffectView)
+        guard let containerView = containerView  else { return }
+        containerView.addSubview(blurEffectView)
         self.blurEffectView.alpha = 0
         self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
             self.blurEffectView.alpha = 0.6
@@ -52,11 +56,15 @@ class SwipeablePresentationController: UIPresentationController {
         guard let containerView = containerView  else { return }
 
         previousBorderLayer?.removeFromSuperlayer()
-        previousBorderLayer = presentedView?.addRoundedCorners(radius: 20, corners: [.topLeft, .topRight], borderWidth: 1, borderColor: .lightGray)
+        previousBorderLayer = presentedView?.addRoundedCorners(corners: [.topLeft, .topRight], hasBorder: true)
         
         translationConstraint?.isActive = true
-
-        presentedView?.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
+        
+        if bottomConstraint == nil {
+            bottomConstraint = presentedView?.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+        }
+        bottomConstraint?.isActive = true
+        
         presentedView?.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
         presentedView?.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
         
@@ -68,5 +76,26 @@ class SwipeablePresentationController: UIPresentationController {
     
     @objc func dismissController(){
         self.presentedViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    enum TopAnchorPosition {
+        case upper
+        case middle
+    }
+    
+    func updateContainerViewTopAnchor(_ topAnchorPos: TopAnchorPosition) {
+        translationConstraint?.isActive = false
+        
+        switch topAnchorPos {
+        case .upper:
+            translationConstraint = presentedView?.topAnchor.constraint(equalTo: upperAnchor, constant: 5)
+        case .middle:
+            translationConstraint = presentedView?.topAnchor.constraint(equalTo: middleAnchor, constant: 5)
+        }
+        
+        translationConstraint?.isActive = true
+        UIView.animate(withDuration: 0.3, animations: {
+            self.presentedView?.layoutIfNeeded()
+        })
     }
 }

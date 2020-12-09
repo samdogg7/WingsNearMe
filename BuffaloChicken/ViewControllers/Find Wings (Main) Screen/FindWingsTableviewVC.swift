@@ -25,7 +25,7 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
         table.translatesAutoresizingMaskIntoConstraints = false
         table.delegate = self
         table.dataSource = self
-        
+        table.backgroundColor = .clear
         let tableViewNib = UINib(nibName: "RestaurantTableViewCell", bundle: nil)
         table.register(tableViewNib, forCellReuseIdentifier: cellId)
         table.showsVerticalScrollIndicator = false
@@ -52,15 +52,16 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
     }
     
     func showRestaurantDetail(restaurant: Restaurant) {
-        let detailViewController = RestaurantDetailViewController(restaurant: restaurant)
+        let detailViewController = RestaurantDetailViewController(restaurant: restaurant, initialHeight: view.bounds.height)
         detailViewController.modalPresentationStyle = .custom
         detailViewController.transitioningDelegate = self
         
         if let topCellIndexPath = self.tableView.indexPathsForVisibleRows?[0] {
             self.tableView.scrollToRow(at: topCellIndexPath, at: .top, animated: true)
         }
-                      
-        self.present(detailViewController, animated: true, completion: nil)
+            
+        navigationController?.present(detailViewController, animated: true, completion: nil)
+//        self.present(detailViewController, animated: true, completion: nil)
     }
     
     func addCells(cells: [RestaurantAnnotation]) {
@@ -109,8 +110,7 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
         let restaurant = sortedAnnotations?[indexPath.section].restaurant
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RestaurantTableViewCell
         cell.restaurant = restaurant
-        
-        cell.addRoundedCorners(borderWidth: 1, borderColor: .separator)
+        cell.addRoundedCorners(hasBorder: true)
         cell.clipsToBounds = true
                 
         return cell
@@ -133,6 +133,7 @@ class FindWingsTableviewVC: UIViewController, UITableViewDelegate,  UITableViewD
 
 extension FindWingsTableviewVC: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        SwipeablePresentationController(presentedViewController: presented, presenting: presenting, desiredTopAnchor: self.view.topAnchor)
+        guard let upperAnchor = self.parent?.view.safeAreaLayoutGuide.topAnchor else { return nil }
+        return SlidePresentationController(presentedViewController: presented, presenting: presenting, upperAnchor: upperAnchor, middleAnchor: self.view.topAnchor)
     }
 }

@@ -13,6 +13,7 @@ class RatingStack: UIStackView, LottieSwitchDelegate {
         let label = UILabel()
         label.text = "Rating:"
         label.font = UIFont.systemFont(ofSize: 14.0)
+        label.textColor = .secondary
         return label
     }()
 

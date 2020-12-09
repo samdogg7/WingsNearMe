@@ -12,9 +12,26 @@ import Lottie
 import ViewAnimator
 
 extension UIColor {
-    class var inverse:UIColor {
-        return UIColor(named: "InverseSystem") ?? UIColor.systemGray2
+    class var background:UIColor {
+        return UIColor(named: "Background") ?? UIColor.white
     }
+    
+    class var primary:UIColor {
+        return UIColor(named: "Primary") ?? UIColor.white
+    }
+    
+    class var secondary:UIColor {
+        return UIColor(named: "Secondary") ?? UIColor.white
+    }
+    
+    class var tertiary:UIColor {
+        return UIColor(named: "Tertiary") ?? UIColor.white
+    }
+
+    class var border:UIColor {
+        return UIColor(named: "Border") ?? UIColor.white
+    }
+    
 }
 
 extension String {
@@ -63,7 +80,7 @@ extension UIView {
         return nib.instantiate(withOwner: self, options: nil).first as! UIView
     }
     
-    @discardableResult func addRoundedCorners(radius: CGFloat = .defaultCornerRadius, corners: UIRectCorner = [ .allCorners ], borderWidth: CGFloat = 0, borderColor: UIColor = .inverse) -> CAShapeLayer? {
+    @discardableResult func addRoundedCorners(radius: CGFloat = .defaultCornerRadius, corners: UIRectCorner = [ .allCorners ], hasBorder: Bool = false) -> CAShapeLayer? {
         let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         
         // Add rounded corners
@@ -73,12 +90,12 @@ extension UIView {
         self.layer.mask = maskLayer
         
         //Add rounded borders
-        if borderWidth > 0 {
+        if hasBorder {
             let borderLayer = CAShapeLayer()
             borderLayer.path = maskPath.cgPath
             borderLayer.fillColor = UIColor.clear.cgColor
-            borderLayer.strokeColor = borderColor.cgColor
-            borderLayer.lineWidth = borderWidth
+            borderLayer.strokeColor = UIColor.border.cgColor
+            borderLayer.lineWidth = 1
             borderLayer.frame = self.bounds
             self.layer.addSublayer(borderLayer)
             //We do not want to add multiple borders if this is called with a view that uses layoutSubviews.
@@ -88,7 +105,7 @@ extension UIView {
         return nil
     }
     
-    func addBorder(color: UIColor = UIColor.systemGray, width: CGFloat = 1) {
+    func addBorder(color: UIColor = .border, width: CGFloat = 1) {
         self.layer.borderColor = color.cgColor
         self.layer.borderWidth = width
         self.clipsToBounds = true
