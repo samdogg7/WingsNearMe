@@ -53,17 +53,17 @@ class SlidePresentationController: UIPresentationController {
     override func containerViewDidLayoutSubviews() {
         super.containerViewDidLayoutSubviews()
         
-        guard let containerView = containerView  else { return }
+        guard let containerView = containerView else { return }
 
         previousBorderLayer?.removeFromSuperlayer()
         previousBorderLayer = presentedView?.addRoundedCorners(corners: [.topLeft, .topRight], hasBorder: true)
         
-        translationConstraint?.isActive = true
-        
         if bottomConstraint == nil {
-            bottomConstraint = presentedView?.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            bottomConstraint = presentedView?.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 300)
+            bottomConstraint?.isActive = true
         }
-        bottomConstraint?.isActive = true
+        
+        translationConstraint?.isActive = true
         
         presentedView?.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
         presentedView?.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
@@ -75,7 +75,11 @@ class SlidePresentationController: UIPresentationController {
     }
     
     @objc func dismissController(){
-        self.presentedViewController.dismiss(animated: true, completion: nil)
+        if let restaurantDetailVC = self.presentedViewController as? RestaurantDetailViewController {
+            restaurantDetailVC.dismissTriggered()
+        } else {
+            self.presentedViewController.dismiss(animated: true, completion: nil)
+        }
     }
     
     enum TopAnchorPosition {
@@ -86,15 +90,15 @@ class SlidePresentationController: UIPresentationController {
     func updateContainerViewTopAnchor(_ topAnchorPos: TopAnchorPosition) {
         translationConstraint?.isActive = false
         
-        switch topAnchorPos {
-        case .upper:
-            translationConstraint = presentedView?.topAnchor.constraint(equalTo: upperAnchor, constant: 5)
-        case .middle:
-            translationConstraint = presentedView?.topAnchor.constraint(equalTo: middleAnchor, constant: 5)
-        }
-        
-        translationConstraint?.isActive = true
         UIView.animate(withDuration: 0.3, animations: {
+            switch topAnchorPos {
+            case .upper:
+                self.translationConstraint = self.presentedView?.topAnchor.constraint(equalTo: self.upperAnchor, constant: 5)
+            case .middle:
+                self.translationConstraint = self.presentedView?.topAnchor.constraint(equalTo: self.middleAnchor, constant: 5)
+            }
+            self.translationConstraint?.isActive = true
+            
             self.presentedView?.layoutIfNeeded()
         })
     }

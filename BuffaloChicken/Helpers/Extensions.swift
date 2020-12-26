@@ -31,7 +31,10 @@ extension UIColor {
     class var border:UIColor {
         return UIColor(named: "Border") ?? UIColor.white
     }
-    
+ 
+    class var orange:UIColor {
+        return UIColor(named: "Orange") ?? UIColor.orange
+    }
 }
 
 extension String {
@@ -155,5 +158,14 @@ extension UIViewController {
     
     var navBarHeight: CGFloat {
         return self.navigationController?.navigationBar.frame.height ?? 80
+    }
+}
+
+extension Encodable {
+    var toDictionary: [String : Any]? {
+        guard let data =  try? JSONEncoder().encode(self) else {
+            return nil
+        }
+        return try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
     }
 }

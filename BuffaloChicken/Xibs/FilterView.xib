@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -59,16 +59,16 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Jbc-Gx-tWC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="66.5" height="33"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="54.5" height="33"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Max distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RA9-Wr-a5o">
-                                                                <rect key="frame" x="0.0" y="0.0" width="66.5" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="54.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMB-oe-rb2">
-                                                                <rect key="frame" x="0.0" y="20.5" width="66.5" height="12.5"/>
+                                                                <rect key="frame" x="0.0" y="20.5" width="54.5" height="12.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -76,7 +76,8 @@
                                                         </subviews>
                                                     </stackView>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10000" minValue="0.0" maxValue="10000" translatesAutoresizingMaskIntoConstraints="NO" id="Hlj-AQ-sbE">
-                                                        <rect key="frame" x="74.5" y="0.0" width="462.5" height="34"/>
+                                                        <rect key="frame" x="62.5" y="0.0" width="474.5" height="34"/>
+                                                        <color key="tintColor" name="Orange"/>
                                                     </slider>
                                                 </subviews>
                                                 <viewLayoutGuide key="safeArea" id="vPJ-kk-y2Q"/>
@@ -95,26 +96,31 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rl-0I-fL5" customClass="RatingStar" customModule="Wings_Near_Me" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="82.5" height="22"/>
+                                                                <color key="tintColor" name="Orange"/>
                                                                 <state key="normal" image="star" catalog="system"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YP1-om-Z3C" customClass="RatingStar" customModule="Wings_Near_Me" customModuleProvider="target">
                                                                 <rect key="frame" x="82.5" y="0.0" width="82.5" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="tintColor" name="Orange"/>
                                                                 <state key="normal" image="star" catalog="system"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hJR-8b-yNR" customClass="RatingStar" customModule="Wings_Near_Me" customModuleProvider="target">
                                                                 <rect key="frame" x="165" y="0.0" width="82" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="tintColor" name="Orange"/>
                                                                 <state key="normal" image="star" catalog="system"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="s02-VE-GtT" customClass="RatingStar" customModule="Wings_Near_Me" customModuleProvider="target">
                                                                 <rect key="frame" x="247" y="0.0" width="82.5" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="tintColor" name="Orange"/>
                                                                 <state key="normal" image="star" catalog="system"/>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yRO-UQ-y8f" customClass="RatingStar" customModule="Wings_Near_Me" customModuleProvider="target">
                                                                 <rect key="frame" x="329.5" y="0.0" width="82.5" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="tintColor" name="Orange"/>
                                                                 <state key="normal" image="star" catalog="system"/>
                                                             </button>
                                                         </subviews>
@@ -124,6 +130,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdC-yc-hB1">
                                                 <rect key="frame" x="0.0" y="226" width="535" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <color key="tintColor" name="Orange"/>
                                                 <state key="normal" title="Filter"/>
                                             </button>
                                         </subviews>
@@ -173,6 +180,9 @@
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="Background">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Orange">
+            <color red="1" green="0.59700000286102295" blue="0.28099998831748962" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

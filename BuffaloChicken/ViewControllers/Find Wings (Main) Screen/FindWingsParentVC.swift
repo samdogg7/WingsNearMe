@@ -10,26 +10,29 @@ import UIKit
 import MapKit
 import CoreLocation
 import Lottie
-import FirebaseDatabase
+import FirebaseAuth
+import FirebaseUI
 
 protocol FindWingsParentDelegate {
     func filterAnnotations(filter: Filter)
     func switchFilterView()
 }
 
-class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsParentDelegate {
-    private let databaseRef = Database.database().reference(withPath: "Restaurant-Reviews")
-    
+class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsParentDelegate, FUIAuthDelegate {
     private lazy var settingsVC: SettingsVC = {
         return SettingsVC()
     }()
     
     private lazy var filterButton: UIBarButtonItem = {
-        return UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(switchFilterView))
+        let button = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(switchFilterView))
+        button.tintColor = .orange
+        return button
     }()
     
     private lazy var settingsButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(openSettings))
+        let button = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .plain, target: self, action: #selector(openSettings))
+        button.tintColor = .orange
+        return button
     }()
     
     private lazy var mapVC: FindWingsMapVC = {
@@ -76,23 +79,29 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         filterView.delegate = self
         
         setupSubviews()
-        setupSettings()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.present(loadingAlert, animated: true, completion: nil)
-        
-        #if targetEnvironment(simulator)
-        self.getPlaces()
-        #else
-        if UserDefaults.standard.bool(forKey: .isTestingKey), CLLocationManager.authorizationStatus() == .notDetermined {
-            self.locationManager.requestWhenInUseAuthorization()
+        if Auth.auth().currentUser == nil {
+            
+            //Could do an auth screen here, but not necessary for the scope of this application
+//            if let authUI = FUIAuth.defaultAuthUI() {
+//                authUI.providers = [  FUIEmailAuth(), FUIGoogleAuth(), FUIOAuth.appleAuthProvider() ]
+//                authUI.delegate = self
+//                authUI.shouldHideCancelButton = false
+//                let authVC = authUI.authViewController()
+//                authVC.modalPresentationStyle = .overFullScreen
+//                self.present(authVC, animated: true, completion: nil)
+//            }
+            
+            Auth.auth().signInAnonymously() { (authResult, error) in
+                self.setup()
+            }
+        } else {
+            setup()
         }
-        self.locationManager.startMonitoringSignificantLocationChanges()
-        #endif
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -107,6 +116,25 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         tableviewVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5).isActive = true
         tableviewVC.view.topAnchor.constraint(equalTo: mapVC.view.bottomAnchor).isActive = true
         tableviewVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    func setup() {
+        if UserDefaults.standard.object(forKey: .isTestingKey) == nil {
+            UserDefaults.standard.set(true, forKey: .isTestingKey)
+        }
+        
+        print("API testing enabled: \(UserDefaults.standard.bool(forKey: .isTestingKey))")
+        
+        self.present(loadingAlert, animated: true, completion: nil)
+        
+        #if targetEnvironment(simulator)
+        self.getPlaces()
+        #else
+        if UserDefaults.standard.bool(forKey: .isTestingKey), CLLocationManager.authorizationStatus() == .notDetermined {
+            self.locationManager.requestWhenInUseAuthorization()
+        }
+        self.locationManager.startMonitoringSignificantLocationChanges()
+        #endif
     }
     
     func setupSubviews() {
@@ -125,14 +153,6 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         filterView.frame = self.view.frame
         filterView.setMaxDistance(d: .defaultRadius)
         self.view.addSubview(filterView)
-    }
-    
-    func setupSettings() {
-        if UserDefaults.standard.object(forKey: .isTestingKey) == nil {
-            UserDefaults.standard.set(true, forKey: .isTestingKey)
-        }
-        
-        print("API testing enabled: \(UserDefaults.standard.bool(forKey: .isTestingKey))")
     }
     
     // MARK: - API Request Methods
@@ -281,5 +301,9 @@ class FindWingsParentVC: UIViewController, CLLocationManagerDelegate, FindWingsP
         if status == .denied {
             getPlaces()
         }
+    }
+    
+    func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
+        setup()
     }
 }

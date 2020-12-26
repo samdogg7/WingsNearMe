@@ -23,7 +23,7 @@ class FilterView: UIView {
         
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+                
         maxDistanceSlider.maximumValue = 12070.0
         maxDistanceSlider.minimumValue = 500.0
         maxDistanceSlider.value = 8046.72 //5 miles in meters

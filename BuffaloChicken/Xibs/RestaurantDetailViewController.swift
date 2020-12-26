@@ -10,7 +10,7 @@ import Lottie
 import UIKit
 import MapKit
 
-class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
+class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate, InteractableFullRatingStackDelegate {
     private lazy var mainScrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +21,7 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
     private lazy var contentStackView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
-        view.spacing = 10
+        view.spacing = 5
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -54,7 +54,7 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
         let control = UIPageControl()
         control.translatesAutoresizingMaskIntoConstraints = false
         control.pageIndicatorTintColor = .tertiary
-        control.currentPageIndicatorTintColor = .secondary
+        control.currentPageIndicatorTintColor = .orange
         return control
     }()
     
@@ -63,7 +63,7 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.distribution = .fill
-        stack.spacing = 5
+        stack.spacing = 0
         return stack
     }()
     
@@ -96,47 +96,81 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
-    private lazy var ratingStacks: UIStackView = {
+    private lazy var ratingHeaderStack: UIStackView = {
         let stack = UIStackView()
-        stack.axis = .vertical
-        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.distribution = .fill
         stack.spacing = 10
         return stack
     }()
     
-    private lazy var ratingLabel: UILabel = {
+    private lazy var ratingHeaderLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16.0)
-        label.text = "Reviews (WIP - Placeholder)"
-        label.textAlignment = .center
+        label.text = "Average Ratings"
+        label.textAlignment = .left
         label.textColor = .primary
         return label
     }()
     
-    private lazy var chickenRatingStack: RatingStack = {
-        let stack = RatingStack(switchType: .chicken, touchEnabled: false, countEnabled: 4)
-        stack.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var personalRatingsLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 16.0)
+        label.text = "Tap to add your own ratings"
+        label.textAlignment = .right
+        label.numberOfLines = 0
+        label.textColor = .primary
+        return label
+    }()
+    
+    private lazy var ratingContentStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.spacing = 7.5
         return stack
     }()
     
-    private lazy var spiceRatingStack: RatingStack = {
-        let stack = RatingStack(switchType: .spice, touchEnabled: false, countEnabled: 5)
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
+    private lazy var previousReviewsStack: StaticFullRatingStack = {
+        let ratingStack = StaticFullRatingStack()
+        ratingStack.setStackEnabled(stackType: .chicken, countEnabled: 4)
+        ratingStack.setStackEnabled(stackType: .spice, countEnabled: 3)
+        ratingStack.setStackEnabled(stackType: .sauce, countEnabled: 5)
+        ratingStack.setStackEnabled(stackType: .sides, countEnabled: 4)
+        return ratingStack
     }()
     
-    private lazy var sauceRatingStack: RatingStack = {
-        let stack = RatingStack(switchType: .sauce, touchEnabled: false, countEnabled: 4)
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
+    private lazy var separator: UIView = {
+        let view = UIView()
+        view.backgroundColor = .separator
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    private lazy var friesRatingStack: RatingStack = {
-        let stack = RatingStack(switchType: .fries, touchEnabled: false, countEnabled: 3)
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
+    private lazy var spacer: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
     }()
     
+    private lazy var userReviewsStack: InteractableFullRatingStack = {
+        return InteractableFullRatingStack(delegate: self)
+    }()
+    
+    private lazy var moreComingSoonLabel: UILabel = {
+        let label = UILabel()
+        label.text = "More in depth the ratings/review process coming soon"
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var mapButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: "MapIcon"), for: .normal)
+        button.addTarget(self, action: #selector(openInMaps), for: .touchUpInside)
+        return button
+    }()
+   
     var startingConstantPosY: CGFloat = 0.0
     var restaurant: Restaurant
     var scrollViewImages: [UIImage] = []
@@ -158,19 +192,23 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
         
         contentStackView.addArrangedSubview(horzImageScrollView)
         contentStackView.addArrangedSubview(infoStack)
-        contentStackView.addArrangedSubview(ratingStacks)
-
+        contentStackView.addArrangedSubview(ratingHeaderStack)
+        contentStackView.addArrangedSubview(ratingContentStack)
+        contentStackView.addArrangedSubview(moreComingSoonLabel)
+        
         view.addSubview(pageControl)
         
         infoStack.addArrangedSubview(nameLabel)
         infoStack.addArrangedSubview(hoursLabel)
         infoStack.addArrangedSubview(locationButton)
         
-        ratingStacks.addArrangedSubview(ratingLabel)
-        ratingStacks.addArrangedSubview(chickenRatingStack)
-        ratingStacks.addArrangedSubview(spiceRatingStack)
-        ratingStacks.addArrangedSubview(sauceRatingStack)
-        ratingStacks.addArrangedSubview(friesRatingStack)
+        ratingHeaderStack.addArrangedSubview(ratingHeaderLabel)
+        ratingHeaderStack.addArrangedSubview(personalRatingsLabel)
+        
+        ratingContentStack.addArrangedSubview(previousReviewsStack)
+        ratingContentStack.addArrangedSubview(spacer)
+        ratingContentStack.addArrangedSubview(separator)
+        ratingContentStack.addArrangedSubview(userReviewsStack)
         
         setup()
     }
@@ -182,10 +220,16 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        mapButton.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        
         mainScrollView.topAnchor.constraint(equalTo: pullDownView.bottomAnchor).isActive = true
         mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         mainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        if let presentingController = self.presentationController as? SlidePresentationController, let constraint = presentingController.containerView?.bottomAnchor {
+            mainScrollView.bottomAnchor.constraint(equalTo: constraint).isActive = true
+        } else {
+            mainScrollView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        }
         
         contentStackView.topAnchor.constraint(equalTo: mainScrollView.topAnchor).isActive = true
         contentStackView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor).isActive = true
@@ -222,6 +266,8 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
         }
         
         self.horzImageScrollView.contentSize = CGSize(width:self.horzImageScrollView.frame.size.width * CGFloat(restaurant.photos.count), height: self.horzImageScrollView.frame.size.height)
+        
+        separator.widthAnchor.constraint(equalToConstant: 1.5).isActive = true
     }
     
     func setup() {
@@ -275,12 +321,9 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
             
             if sender.state == .changed {
                 slidePresentationController.translationConstraint?.constant = constant
-                if constant > 0 {
-                    slidePresentationController.bottomConstraint?.constant = constant
-                }
             } else if sender.state == .ended {
                 if sender.velocity(in: view).y >= 1250 {
-                    self.dismiss(animated: true, completion: nil)
+                    dismissTriggered()
                 } else {
                     if view.bounds.height > initialHeight && constant < 0 {
                         slidePresentationController.updateContainerViewTopAnchor(.upper)
@@ -290,5 +333,20 @@ class RestaurantDetailViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
+    }
+    
+    func reviewSubmit() {
+        FirebaseReviewHandler.addRestaurantReview(placeId: restaurant.placeID, userReview: userReviewsStack.getReviews())
+    }
+    
+    func dismissTriggered() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func openInMaps() {
+        let destination = MKMapItem(placemark: MKPlacemark(coordinate: restaurant.coordinate))
+        destination.name = restaurant.name
+        
+        MKMapItem.openMaps(with: [destination], launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving])
     }
 }

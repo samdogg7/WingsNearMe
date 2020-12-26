@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SettingsVC: UIViewController {
     private lazy var mainStack: UIStackView = {
@@ -51,6 +52,14 @@ class SettingsVC: UIViewController {
         return s
     }()
     
+    private lazy var signOutButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sign out", for: .normal)
+        button.addTarget(self, action: #selector(signOutButtonPressed), for: .touchUpInside)
+        button.backgroundColor = .lightGray
+        return button
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,9 +92,11 @@ class SettingsVC: UIViewController {
         self.view.addSubview(doneButton)
         self.view.addSubview(separatorView)
 
-        mainStack.addArrangedSubview(testingModeStack)
         testingModeStack.addArrangedSubview(testingModeLabel)
         testingModeStack.addArrangedSubview(testingModeSwitch)
+        
+        mainStack.addArrangedSubview(testingModeStack)
+//        mainStack.addArrangedSubview(signOutButton)
     }
     
     @objc func testingSwitchToggle() {
@@ -94,5 +105,10 @@ class SettingsVC: UIViewController {
     
     @objc func doneButtonPressed() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func signOutButtonPressed() {
+        do { try Auth.auth().signOut() }
+        catch { print("Already logged out") }
     }
 }
