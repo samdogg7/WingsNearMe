@@ -9,4 +9,4 @@ Some of the highlights of the project include:
 - Lottie Animations
 - MapKit
 
-[Click Here for a Full Demo Video](https://www.youtube.com/watch?v=t5foH4HKwGM&feature=youtu.be).
+[Click Here for a Full Demo Video](https://youtu.be/1szIuYGDaQ8).
